@@ -11,7 +11,37 @@
 
 <body>
 
-    <h3>My Google Maps Demo</h3>
+    
+
+    <!-- Überschrift der Webseite -->
+    <h1 class="header_1"> Willkommen zu unserer Supply Chain</h1>
+    <div class="uebersicht grid1">
+        <h2 class="header_2 grid2">Standortsuche:</h2>
+
+        <div class="suche">
+            <input type="text" class="searchbar" name="Suche" placeholder="Land, Stadt, PLZ">
+            <button class="button">Suchen</button>
+        </div>
+        
+        <!-- <div class="">
+             Icon aus der Webseite
+        </div> -->
+        <section class="check">
+
+            <div class="div_check">
+                <input type="checkbox" class="checkbox" name="Lieferanten">
+                <label class="label">Lieferanten</label>
+            </div>
+                
+            <div class="div_check">
+                    <input type="checkbox" class="checkbox" name="Produzenten">
+                    <label class="label">Produzenten</label>
+            </div>
+         </section>
+
+
+    </div>
+    
     <!--The div element for the map -->
     <div id="map"></div>
     <script>
@@ -34,37 +64,12 @@
             });
         }
     </script>
-
-
-
-    <!-- Überschrift der Webseite -->
-    <h1 class="header_1"> Willkommen zu unserer Supply Chain</h1>
-    <div class="uebersicht grid1">
-        <h2 class="header_2 grid2">Standortsuche:</h2>
-
-        <div class="suche">
-            <input type="text" class="searchbar" name="Suche" placeholder="Land, Stadt, PLZ">
-            <button class="button">Suchen</button>
-        </div>
-
-        <!-- <div class="">
-             Icon aus der Webseite
-        </div> -->
-        <section class="check">
-            <div class="input">
-                <input type="checkbox" class="checkbox" name="Lieferanten">
-                <label class="label">Lieferanten</label>
-            </div>
-            <div class="input">
-                <input type="checkbox" class="checkbox" name="Produzenten">
-                <label class="label">Produzenten</label>
-            </div>
-        </section>
-
-
-    </div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYjYJez0Rc4y0RIwvhh0aZ_2AmLZo3dOA&callback=initMap" type="text/javascript"></script>
-    <!-- JS einfügen -->
+
+
 </body>
+<footer>
+    &copy; by Cara, Dominik, Felix, Hani und Jakob
+</footer>
 
 </html>

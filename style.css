@@ -8,22 +8,24 @@
 .header_1 {
     background: grey;
     text-align: center;
+    padding-top: 10px;
 }
 
 .header_2 {
     padding: 1rem;
+    color: black;
 }
 
 .input {
     margin: 0.8rem;
 }
-}
+
 
 /* Komplette Seachbar  */
 .uebersicht {
     padding: 1rem;
     margin: 1rem;
-    background-color: #;
+    
     text-align: left;
     float: left;
 }
@@ -36,7 +38,7 @@
     height: 2rem;
     padding-left: 1rem;
     margin-left: 0.5rem;
-    float: left;
+    
 }
 
 /* Search button */
@@ -46,22 +48,27 @@
     background: black;
     color: white;
     border-radius: 0.5rem;
-    width: 20rem;
+    height: 2rem;
     display: inline-block;
-    float: right;
     margin-top: 0;
+    width: 5rem;
 }
 
-/* Checkboxen und text */
+/* Checkboxen und Text */
 .label {
     color: black;
-
 }
 
-.check {
-    float: left;
+.div_check {
+    padding: 0.5rem;
     display: inline-block;
+    
 }
+    
+footer{
+    
+}
+
 
 /* Set the size of the div element that contains the map */
       #map {
