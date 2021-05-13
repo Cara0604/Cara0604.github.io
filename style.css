@@ -62,11 +62,52 @@
 .div_check {
     padding: 0.5rem;
     display: inline-block;
-    
+    cursor: pointer;
 }
-    
-footer{
-    
+
+/* Checkboxen-Bearbeitung */
+input[type="checkbox"] {
+    position: relative;
+    width: 24px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0, .2);
+    transition: .5s;
+    cursor: pointer;
+}
+
+/*Wenn man drüber geht, ändert sich der Cursor so wie die Farbe des Textes*/
+.label:hover {
+    cursor: pointer;  
+    color:rgba(65, 58, 58, 0.2)
+}
+
+/* Sobald es gedrückt wird, erscheint es blau */
+input:checked[type ="checkbox"] {
+    background: #03a9fe;
+}
+
+/* bearbeitet den Kreis selber */
+input[type="checkbox"]:before {
+    content: ""; /*Fügt den Kreis hinzu*/
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    transform: scale(1.4); /*Macht den Kreis größer*/
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.2); /*Schatten*/
+    transition: 0.5s; /*Movement einstellen*/
+}
+
+/*Stellt die Position des Kreises ein, sobald er gedrückt wird*/
+input:checked[type = "checkbox"]:before {
+    left: 14px;
 }
 
 
