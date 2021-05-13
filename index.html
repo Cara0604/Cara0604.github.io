@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Karte</title>
-    </head>
-    <body>
-        <h2>Felix ist ein Spast</h2>
-        <h1>Selber</h1>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="">
+
+    <title>Supply-Chain Übersicht</title>
+</head>
+
+<body>
+
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            const uluru = {
+                lat: -25.344,
+                lng: 131.036
+            };
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
+    </script>
+
+
+
+    <!-- Überschrift der Webseite -->
+    <h1 class="header_1"> Willkommen zu unserer Supply Chain</h1>
+    <div class="uebersicht grid1">
+        <h2 class="header_2 grid2">Standortsuche:</h2>
+
+        <div class="suche">
+            <input type="text" class="searchbar" name="Suche" placeholder="Land, Stadt, PLZ">
+            <button class="button">Suchen</button>
+        </div>
+
+        <!-- <div class="">
+             Icon aus der Webseite
+        </div> -->
+        <section class="check">
+            <div class="input">
+                <input type="checkbox" class="checkbox" name="Lieferanten">
+                <label class="label">Lieferanten</label>
+            </div>
+            <div class="input">
+                <input type="checkbox" class="checkbox" name="Produzenten">
+                <label class="label">Produzenten</label>
+            </div>
+        </section>
+
+
+    </div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYjYJez0Rc4y0RIwvhh0aZ_2AmLZo3dOA&callback=initMap" type="text/javascript"></script>
+    <!-- JS einfügen -->
+</body>
+
 </html>

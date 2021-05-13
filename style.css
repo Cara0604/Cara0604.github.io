@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ueberschriften Klassen */
+.header_1 {
+    background: grey;
+    text-align: center;
+}
+
+.header_2 {
+    padding: 1rem;
+}
+
+.input {
+    margin: 0.8rem;
+}
+}
+
+/* Komplette Seachbar  */
+.uebersicht {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #;
+    text-align: left;
+    float: left;
+}
+
+/*  searchbar alleine */
+.searchbar {
+    border-radius: 0.5rem;
+    border-color: black;
+    width: 20rem;
+    height: 2rem;
+    padding-left: 1rem;
+    margin-left: 0.5rem;
+    float: left;
+}
+
+/* Search button */
+.button {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background: black;
+    color: white;
+    border-radius: 0.5rem;
+    width: 20rem;
+    display: inline-block;
+    float: right;
+    margin-top: 0;
+}
+
+/* Checkboxen und text */
+.label {
+    color: black;
+
+}
+
+.check {
+    float: left;
+    display: inline-block;
+}
+
+/* Set the size of the div element that contains the map */
+      #map {
+        height: 300px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
