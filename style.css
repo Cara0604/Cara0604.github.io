@@ -20,7 +20,6 @@
     margin: 0.8rem;
 }
 
-
 /* Komplette Seachbar  */
 .uebersicht {
     padding: 1rem;
@@ -47,16 +46,36 @@
     margin: 0.5rem;
     background: black;
     color: white;
-    border-radius: 0.5rem;
+    border: black;
+    border-radius: 0.8rem;
     height: 2rem;
     display: inline-block;
     margin-top: 0;
     width: 5rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(105, 102, 102);
+    border-color:rgb(105, 102, 102);
+    box-shadow: inset 0 0 5px rgb(105, 102, 102);
 }
 
 /* Checkboxen und Text */
 .label {
     color: black;
+    font-style: italic;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 1px 4px rgb(105, 102, 102); /*x-Verschiebung, y-Verschiebung  deutlichkeit des Schatten*/
+
+}
+
+/*Wenn man drüber geht, ändert sich der Cursor so wie die Farbe des Textes*/
+.label:hover {
+    cursor: pointer;  
+    text-shadow: 0 1px 4px rgb(105, 102, 102);
+    color:rgb(224, 21, 21);
+
 }
 
 .div_check {
@@ -79,19 +98,13 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-/*Wenn man drüber geht, ändert sich der Cursor so wie die Farbe des Textes*/
-.label:hover {
-    cursor: pointer;  
-    color:rgba(65, 58, 58, 0.2)
-}
-
 /* Sobald es gedrückt wird, erscheint es blau */
 input:checked[type ="checkbox"] {
     background: #03a9fe;
 }
 
-/* bearbeitet den Kreis selber */
-input[type="checkbox"]:before {
+
+input[type="checkbox"]:after {
     content: ""; /*Fügt den Kreis hinzu*/
     position: absolute;
     width: 10px;
@@ -106,7 +119,7 @@ input[type="checkbox"]:before {
 }
 
 /*Stellt die Position des Kreises ein, sobald er gedrückt wird*/
-input:checked[type = "checkbox"]:before {
+input:checked[type = "checkbox"]:after {
     left: 14px;
 }
 
