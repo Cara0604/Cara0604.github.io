@@ -1,9 +1,11 @@
+
+
 function initMap() {
     //hier werden alle Marker mit Standorten definiert
     const uluru = { lat: -25.363, lng: 131.044 };
     const jakob = {lat: 30.363, lng: 110.234};
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 3,
+      zoom: 3.5,
       center: {lat: 30.363, lng: 50.234},
     });
 
@@ -50,7 +52,6 @@ function initMap() {
 
     //es wird nur ein infowindow benötigt
     const infowindow = new google.maps.InfoWindow({
-      content: contentString,
     });
 
     //für jeden Standort benötigen wir einen Marker
