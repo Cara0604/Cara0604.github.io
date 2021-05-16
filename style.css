@@ -44,9 +44,9 @@
 	margin-left: 0.5rem;
 }
 
-/* Search button */
+/* Search button
 .button {
-	/* padding: 0.5rem; */
+	padding: 0.5rem;
 	margin: 0.5rem;
 	background: white;
 	color: black;
@@ -66,7 +66,7 @@
     border: 2px solid rgb(105, 102, 102);
     opacity: 1.0;
     transition: 0.3s;
-}
+} */
 
 /* Checkboxen und Text */
 .label {
@@ -129,7 +129,7 @@ input:checked[type = "checkbox"]:after {
 }
 
 #map {
-	height: 300px;
+	height: 700px;
 	width: 95%;
 	margin: auto;
 }
