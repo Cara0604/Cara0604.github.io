@@ -106,7 +106,7 @@ input[type="checkbox"] {
 
 /* Sobald es gedrückt wird, erscheint es blau */
 input:checked[type ="checkbox"] {
-	background: #03a9fe;
+	background: #03aafe7e;
 }
 
 input[type="checkbox"]:after {
