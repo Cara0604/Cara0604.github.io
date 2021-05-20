@@ -29,7 +29,7 @@ function initMap() {
       "rock caves and ancient paintings. Uluru is listed as a World " +
       "Heritage Site.</p>" +
       '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-      "https://de.wikipedia.org/wiki/Abfall</a> " +
+      "https://de.wikipedia.org/wiki/Dinosaurier</a> " +
       "(last visited May 16, 2021).</p>" +
       //Bild einfügen
       '<img src="https://www.ntz.de/uploads/tx_templavoila/nzwz-a67d6045-8644-4e40-9536-32a67edada4e_onlineBild.jpg" width="400" alt="großer Dino">'
@@ -41,10 +41,10 @@ function initMap() {
       '<div id="content">' +
       '<div id="siteNotice">' +
       "</div>" +
-      '<h1 id="firstHeading" class="firstHeading">Jakob</h1>' +
+      '<h1 id="firstHeading" class="firstHeading">Hier </h1>' +
       '<div id="bodyContent">' +
-      "<p><b>Jakob</b>, also referred to as <b>Syxgott</b>, is a large " +
-      "and very very nice person" +
+      "<p><b>Test1</b>, ist  <b>Text</b>, drinnen " +
+      "test2" +
       //Bild einfügen
       '<img src="https://www.tagesspiegel.de/images/google-logo/12266780/4-format43.jpg" width="400" alt="google">'
       "</div>" +
