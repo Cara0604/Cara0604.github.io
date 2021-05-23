@@ -1,9 +1,30 @@
+var la;
+var lo;
+var nme;
+var type;
+var adress;
+var bild;
 
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    la = myObj.results[1].data.coordinates.latitude;
+    lo = myObj.results[1].data.coordinates.longitude;
+    nme = myObj.results[1].data.name;
+    type = myObj.results[1].data.type;
+    adress = myObj.results[1].data.street + " <p>" +  myObj.results[1].data.zip_code + " ," + myObj.results[1].data.place + "<p>" + myObj.results[1].data.country_code + " ," + myObj.results[1].data.country;
+    bild = myObj.results[1].data.url;
+  }
+};
+xmlhttp.open("GET", "response2.json", true);
+xmlhttp.send();
 
 function initMap() {
     //hier werden alle Marker mit Standorten definiert
     const uluru = { lat: -25.363, lng: 131.044 };
     const jakob = {lat: 30.363, lng: 110.234};
+    const test = {lat: parseFloat(la), lng: parseFloat(lo)};
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3.5,
       center: {lat: 30.363, lng: 50.234},
@@ -50,6 +71,18 @@ function initMap() {
       "</div>" +
       "</div>";
 
+      const contentString3 =
+     '<div id="content>' +
+     '<div id="siteNotice">' +
+     "</div>" +
+     `<h1 id="firstHeading" class="firstHeading">${ nme }</h1>` +
+     '<div id="bodyContent">' +
+     `<p><b>- Typ: </b> ${type} <\p> `+
+     `<p><b>- Adresse: </b> ${adress} <\p> `+      //Bild einfügen
+     `<img src="https://www.tagesspiegel.de/images/google-logo/12266780/4-format43.jpg" width="400" alt="google">`
+     "</div>" +
+     "</div>";
+
     //es wird nur ein infowindow benötigt
     const infowindow = new google.maps.InfoWindow({
     });
@@ -67,6 +100,12 @@ function initMap() {
         title: "Jakob (hart wie ein Stein)",
     });
 
+    const marker3 = new google.maps.Marker({
+      position: test,
+      map,
+      title: "Test",
+    });
+
     //zudem benötigen wir für jeden Standort noch einen Listener
     //dieser ist dazu da, um den Klick auf den Standort zu erkennen
     marker.addListener("click", () => {
@@ -80,5 +119,11 @@ function initMap() {
         map.setZoom(8);
         map.setCenter(marker2.getPosition());
       });
+
+      marker3.addListener("click", () => {
+        infowindow.setContent(contentString3);
+        infowindow.open(map, marker3);
+        map.setZoom(8);
+        map.setCenter(marker3.getPosition());
+      });
   }
-  
