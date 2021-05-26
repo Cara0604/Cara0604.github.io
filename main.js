@@ -7,7 +7,7 @@ var bild;
 var creditor;
 var division;
 var partner_since_year;
-var purchasing_value;
+var purchasing_volume;
 var estimated_leverage;
 var employees_female;
 var employees_male;
@@ -38,7 +38,7 @@ xmlhttp.onreadystatechange = function() {
     creditor = myObj.results[1].data.creditor;
     division = myObj.results[1].data.devision;
     partner_since_year = myObj.results[1].data.partner_since_year;
-    purchasing_value = myObj.results[1].data.purchasing_value;
+    purchasing_volume = myObj.results[1].data.purchasing_volume;
     estimated_leverage = myObj.results[1].data.estimated_leverage;
     employees_female = myObj.results[1].data.emloyees_female;
     employees_male = myObj.results[1].data.employees_male;
@@ -122,7 +122,7 @@ function initMap() {
      `<p><b>- Adresse: </b> ${adress} </p> `+      
      `<p><b>- Creditor: </b> ${creditor} </p>` + 
      `<p><b>- Partner seit: </b> ${partner_since_year} </p>` + 
-     `<p><b>- Purchasing value: </b> ${purchasing_value} </p>` + 
+     `<p><b>- Purchasing volume: </b> ${purchasing_volume} </p>` + 
      `<p><b>- Estimated Leverage: </b> ${estimated_leverage} </p>` + 
      `<p><b>- Arbeiterinnen: </b> ${employees_female} </p>` + 
      `<p><b>- Arbeiter: </b> ${employees_male} </p>` + 
