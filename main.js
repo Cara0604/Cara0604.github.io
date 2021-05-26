@@ -4,6 +4,26 @@ var nme;
 var type;
 var adress;
 var bild;
+var creditor;
+var division;
+var partner_since_year;
+var purchasing_value;
+var estimated_leverage;
+var employees_female;
+var employees_male;
+var audit_type;
+var fair_wear_audit;
+var last_fair_wear_training;
+var bsci_id;
+var wrap_id;
+var complaints;
+var certificates;
+var mode_of_transportation;
+var port_name;
+var port_coordinates_latitude;
+var port_coordinates_longitude;
+var warehouse_name;
+var carbon_footprint;
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
@@ -14,7 +34,28 @@ xmlhttp.onreadystatechange = function() {
     nme = myObj.results[1].data.name;
     type = myObj.results[1].data.type;
     adress = myObj.results[1].data.street + " <p>" +  myObj.results[1].data.zip_code + " ," + myObj.results[1].data.place + "<p>" + myObj.results[1].data.country_code + " ," + myObj.results[1].data.country;
-    bild = myObj.results[1].data.url;
+    bild = myObj.results[1].data.supplier_image.url;
+    creditor = myObj.results[1].data.creditor;
+    division = myObj.results[1].data.devision;
+    partner_since_year = myObj.results[1].data.partner_since_year;
+    purchasing_value = myObj.results[1].data.purchasing_value;
+    estimated_leverage = myObj.results[1].data.estimated_leverage;
+    employees_female = myObj.results[1].data.emloyees_female;
+    employees_male = myObj.results[1].data.employees_male;
+    audit_type = myObj.results[1].data.audit_type;
+    fair_wear_audit = myObj.results[1].data.fair_wear_audit;
+    last_fair_wear_training = myObj.results[1].data.last_fair_wear_training;
+    bsci_id = myObj.results[1].data.bsci_id;
+    wrap_id = myObj.results[1].data.wrap_id;
+    complaints = myObj.results[1].data.complaints;
+    certificates = myObj.results[1].data.certificates;
+    mode_of_transportation = myObj.results[1].data.mode_of_transportation;
+    port_name = myObj.results[1].data.port_name;
+    port_coordinates_latitude = myObj.results[1].data.port_coordinates_latitude;
+    port_coordinates_longitude = myObj.results[1].data.port_coordinates_longitude;
+    warehouse_name = myObj.results[1].data.warehouse_name;
+    carbon_footprint = myObj.results[1].data.carbon_footprint;
+
   }
 };
 xmlhttp.open("GET", "response2.json", true);
@@ -77,9 +118,20 @@ function initMap() {
      "</div>" +
      `<h1 id="firstHeading" class="firstHeading">${ nme }</h1>` +
      '<div id="bodyContent">' +
-     `<p><b>- Typ: </b> ${type} <\p> `+
-     `<p><b>- Adresse: </b> ${adress} <\p> `+      //Bild einfügen
-     `<img src="https://www.tagesspiegel.de/images/google-logo/12266780/4-format43.jpg" width="400" alt="google">`
+     `<p><b>- Typ: </b> ${type} </p> `+
+     `<p><b>- Adresse: </b> ${adress} </p> `+      
+     `<p><b>- Creditor: </b> ${creditor} </p>` + 
+     `<p><b>- Partner seit: </b> ${partner_since_year} </p>` + 
+     `<p><b>- Purchasing value: </b> ${purchasing_value} </p>` + 
+     `<p><b>- Estimated Leverage: </b> ${estimated_leverage} </p>` + 
+     `<p><b>- Arbeiterinnen: </b> ${employees_female} </p>` + 
+     `<p><b>- Arbeiter: </b> ${employees_male} </p>` + 
+     `<p><b>- Beschwerden: </b> ${complaints} </p>` + 
+     `<p><b>- Transportart: </b> ${mode_of_transportation} </p>` + 
+     `<p><b>- CO2-Fußabdruck: </b> ${carbon_footprint} </p>` + 
+
+     //Bild einfügen
+     `<img src=${bild} width="400" alt="supplier_image">`
      "</div>" +
      "</div>";
 
