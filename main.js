@@ -1,7 +1,7 @@
 //BITTE MEHR KOMME
 var la;
 var lo;
-var nme;
+var name;
 var type;
 var adress;
 var bild;
@@ -25,6 +25,9 @@ var port_coordinates_latitude;
 var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
+
+var markers = [];
+var markers2 = [];
 
 
 var xmlhttp = new XMLHttpRequest();
@@ -150,6 +153,8 @@ function initMap() {
       title: "Uluru (Ayers Rock)",
     });
 
+    
+
     const marker2 = new google.maps.Marker({
         position: jakob,
         map,
@@ -161,6 +166,11 @@ function initMap() {
       map,
       title: "Test",
     });
+    
+    
+    markers.push(marker3);
+
+    
 
     marker.addListener("click", () => {
       infowindow.setContent(contentString);
@@ -180,6 +190,31 @@ function initMap() {
         map.setZoom(8);
         map.setCenter(marker3.getPosition());
       });
+
+      //Test mit Marker-Feld
+
+      var coord = [
+        [12.213, 33.123],
+        [33.999, 25.23],
+        [-33.444, 60.73]
+      ];
+
+      var ti = ["Eins", "Zwei", "Drei"];
+
+      var ty = ["Factory", "Supplier", "Supplier"];
+
+      for (i = 0; i < 3; i++) {
+        newMarker = new google.maps.Marker({
+          position: {lat: coord[i][0], lng: coord[i][1]},
+          map: map,
+          title: ti[i]
+        });
+
+        newMarker.category = ty[i];
+
+        markers2.push(newMarker);
+      }
+
 
     //zudem benötigen wir für jeden Standort noch einen Listener
     //dieser ist dazu da, um den Klick auf den Standort zu erkennen
@@ -202,4 +237,76 @@ function initMap() {
 
 
       } */
+
+      
+        // Hier wird der Filter für die Produzenten gesetzt
+      var checkbox_produzenten = document.getElementById('checkbox-1');
+
+      checkbox_produzenten.addEventListener('change', function() {
+        var i;
+
+        if(this.checked) {
+          for (i = 0; i < markers.length; i++) {
+            if(markers[i].category === "Factory") {
+              markers[i].setVisible(true);
+            }   
+          }
+          for (i = 0; i < markers2.length; i++) {
+            if(markers2[i].category === "Factory") {
+              markers2[i].setVisible(true);
+            } 
+          }
+        } else {
+          for (i = 0; i < markers.length; i++) {
+            if(markers[i].category === "Factory") {
+              markers[i].setVisible(false);
+            } 
+          }
+          for (i = 0; i < markers2.length; i++) {
+            if(markers2[i].category === "Factory") {
+              markers2[i].setVisible(false);
+            } 
+          }
+        }
+        
+      });
+
+       // Hier wird der Filter für die Lieferanten gesetzt 
+      
+      
+      var checkbox_lieferanten = document.getElementById('checkbox-2');
+
+      checkbox_lieferanten.addEventListener('change', function() {
+        var i;
+
+        if(this.checked) {
+          for (i = 0; i < markers.length; i++) {
+            if(markers[i].category === "Supplier") { //Wir wissen noch nicht wie ein Lieferant in der Datenbank heißt, deshalb mal so bis jetzt
+              markers[i].setVisible(true);
+            } 
+          }
+          for (i = 0; i < markers2.length; i++) {
+            if(markers2[i].category === "Factory") {
+              markers2[i].setVisible(true);
+            } 
+          }
+        } else {
+          for (i = 0; i < markers.length; i++) {
+            if(markers[i].category === "Supplier") { //Wir wissen noch nicht wie ein Lieferant in der Datenbank heißt, deshalb mal so bis jetzt
+              markers[i].setVisible(false);
+            } 
+            for (i = 0; i < markers2.length; i++) {
+              if(markers2[i].category === "Factory") {
+                markers2[i].setVisible(false);
+              } 
+            }
+        }
+      }
+    });
+
   }
+  
+ 
+
+  
+  

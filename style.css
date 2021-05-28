@@ -7,18 +7,21 @@
 .container {
     width: 95%;
     margin: auto;
+	background-color: white;
 }
 
 /* Ueberschriften Klassen */
 .header_1 {
-	background: grey;
+	background: white;
 	text-align: center;
 	padding-top: 10px;
+	font-family: "KlavikaDisplayUltraBlack",sans-serif;
 }
 
 .header_2 {
 	padding: 1rem;
 	color: black;
+	
 }
 
 .input {
@@ -71,16 +74,15 @@
 /* Checkboxen und Text */
 .label {
 	color: black;
-	font-style: italic;
-	font-family: 'Courier New', Courier, monospace;
-	text-shadow: 0 1px 4px rgb(105, 102, 102); /*x-Verschiebung, y-Verschiebung  deutlichkeit des Schatten*/
+	font-family: 'Arial', Courier, monospace;
+	text-shadow: 0 1px 100px rgb(105, 102, 102); /*x-Verschiebung, y-Verschiebung  deutlichkeit des Schatten*/
 }
 
 /*Wenn man drüber geht, ändert sich der Cursor so wie die Farbe des Textes*/
 .label:hover {
 	cursor: pointer;
-	text-shadow: 0 1px 4px rgb(224, 21, 21);;
-	color: rgb(224, 21, 21); /*? Hier kann man noch über die Farbe diskutieren*/
+	text-shadow: greenyellow;
+	color:grey; /*? Hier kann man noch über die Farbe diskutieren; wir haben es auf die Farben geändert*/
     transition: .3s;
 }
 
@@ -104,9 +106,9 @@ input[type="checkbox"] {
 	cursor: pointer;
 }
 
-/* Sobald es gedrückt wird, erscheint es blau */
+/* Sobald es gedrückt wird, erscheint es blau, hab die Farbe auf die selbe wie bei der Searchbar gemacht */
 input:checked[type ="checkbox"] {
-	background: #03aafe7e;
+	background: #00B4CC;
 }
 
 input[type="checkbox"]:after {
@@ -138,3 +140,40 @@ input:checked[type = "checkbox"]:after {
 input[type="text"]:checked {
     background-color: #f5f5f5;
 }
+
+/*Hier  beginnt die Searchbar*/
+body{
+	background: white;
+	font-family: 'Arial', sans-serif;
+  }
+  
+  .search {
+	width: 100%;
+	position: relative;
+	display: flex;
+  }
+  
+  .searchTerm {
+	width: 100%;
+	border: 3px solid #00B4CC;
+	border-right: none;
+	padding: 5px;
+	height: 40px;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+	color: black;
+  }
+  
+  .searchButton {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #00B4CC;
+	background: #00B4CC;
+	text-align: center;
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 20px;
+  }
+  
+ 
