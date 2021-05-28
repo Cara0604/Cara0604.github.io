@@ -167,7 +167,7 @@ function initMap() {
       title: "Test",
     });
     
-    
+    marker3.category = type;
     markers.push(marker3);
 
     
@@ -213,6 +213,16 @@ function initMap() {
         newMarker.category = ty[i];
 
         markers2.push(newMarker);
+      }
+
+      for(i = 0; i < markers2.length; i++) {
+        const a = i;
+        markers2[a].addListener("click", () => {
+          infowindow.setContent("Test" + (a+1));
+          infowindow.open(map, markers2[a]);
+          map.setZoom(8);
+          map.setCenter(markers2[a].getPosition());
+        });
       }
 
 
@@ -286,7 +296,7 @@ function initMap() {
             } 
           }
           for (i = 0; i < markers2.length; i++) {
-            if(markers2[i].category === "Factory") {
+            if(markers2[i].category === "Supplier") {
               markers2[i].setVisible(true);
             } 
           }
@@ -296,7 +306,7 @@ function initMap() {
               markers[i].setVisible(false);
             } 
             for (i = 0; i < markers2.length; i++) {
-              if(markers2[i].category === "Factory") {
+              if(markers2[i].category === "Supplier") {
                 markers2[i].setVisible(false);
               } 
             }
