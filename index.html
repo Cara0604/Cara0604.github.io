@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
+
+<script>
+fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi')
+     .then(res => res.json())
+     .then((out) => {
+        console.log('Output: ', out);
+ }).catch(err => console.error(err));
+ </script>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
@@ -36,8 +45,8 @@
                 
             
                     <div class="search">
-                       <input type="text" class="searchTerm" placeholder="Land, Stadt, PLZ...">
-                       <button type="submit" class="searchButton">
+                       <input type="text" class="searchTerm" placeholder="Land, Stadt, PLZ..." id="searchbar">
+                       <button type="button" class="searchButton" id="button">
                          <i class="fa fa-search"></i>
                       </button>
                     </div>
