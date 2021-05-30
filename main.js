@@ -71,8 +71,6 @@ xmlhttp.onreadystatechange = function() {
     port_coordinates_longitude = myObj.results[1].data.port_coordinates_longitude;
     warehouse_name = myObj.results[1].data.warehouse_name;
     carbon_footprint = myObj.results[1].data.carbon_footprint;
-    
-
   }
 };
 
