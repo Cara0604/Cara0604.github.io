@@ -175,5 +175,28 @@ body{
 	cursor: pointer;
 	font-size: 20px;
   }
+
+  /* Media Querys */
+
+  @media only  screen  and (max-width:600px){
+	  .uebersicht{
+		  display: flex;
+		  align-items: center;
+		
+		  
+		 
+	  }
+
+	  
+	  .search{
+		  margin-top: 5rem;
+		 
+	  }
+	  #map{
+		width: 100%;
+		max-height: 500px;
+	  }
+	  
+  }
   
  

@@ -1,8 +1,13 @@
-//BITTE MEHR KOMME
 var la;
 var lo;
 var name;
 var type;
+var street;
+var street_addition;
+var zip_code;
+var place;
+var country_code;
+var country;
 var adress;
 var bild;
 var creditor;
@@ -32,12 +37,18 @@ var markers2 = [];
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) { //was machen readyState und status?
-    var myObj = JSON.parse(this.responseText); // und was ist das? responseText und parse?
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
     la = myObj.results[1].data.coordinates.latitude;
     lo = myObj.results[1].data.coordinates.longitude;
     name = myObj.results[1].data.name;
     type = myObj.results[1].data.type;
+    street = myObj.results[1].data.street;
+    street_addition = myObj.results[1].data.street_addition;
+    zip_code = myObj.results[1].data.zip_code;
+    place = myObj.results[1].data.place;
+    country_code = myObj.results[1].data.country_code;
+    country = myObj.results[1].data.country;
     adress = myObj.results[1].data.street + " <p>" +  myObj.results[1].data.zip_code + " ," + myObj.results[1].data.place + "<p>" + myObj.results[1].data.country_code + " ," + myObj.results[1].data.country;
     bild = myObj.results[1].data.supplier_image.url;
     creditor = myObj.results[1].data.creditor;
@@ -64,8 +75,10 @@ xmlhttp.onreadystatechange = function() {
 
   }
 };
+
 xmlhttp.open("GET", "response2.json", false);
 xmlhttp.send();
+
 
 function initMap() {
     //hier werden alle Marker mit Standorten definiert
@@ -110,7 +123,7 @@ function initMap() {
       '<div id="content">' +
       '<div id="siteNotice">' +
       "</div>" +
-      '<h1 id="firstHeading" class="firstHeading">Hier </h1>' +
+      '<h1 id="firstHeading" class="firstHeading">Hier gibts keine Rechte </h1>' +
       '<div id="bodyContent">' +
       "<p><b>Test1</b>, ist  <b>Text</b>, drinnen " +
       "test2" +
@@ -202,6 +215,8 @@ function initMap() {
       var ti = ["Eins", "Zwei", "Drei"];
 
       var ty = ["Factory", "Supplier", "Supplier"];
+
+      var n = ["Eins", "Zwei", "Drei"];
 
       for (i = 0; i < 3; i++) {
         newMarker = new google.maps.Marker({
@@ -312,6 +327,41 @@ function initMap() {
             }
         }
       }
+    });
+
+    var button = document.getElementById('button');
+
+    button.addEventListener("click", function() {
+      var i;
+      var input = document.getElementById('searchbar').value.toLowerCase();
+      
+      var eingabe = false;
+
+      for(i = 0; i < markers2.length; i++) {
+        markers2[i].setVisible(false);
+        if(n[i].toLowerCase() == input) {
+          markers2[i].setVisible(true);
+          eingabe = true;
+        }
+
+      }
+      for(i = 0; i < markers.length; i++) {
+        markers[i].setVisible(false);
+        if(name.toLowerCase() == input.toLowerCase() || country.toLowerCase() == input.toLowerCase() || place.toLowerCase() == input.toLowerCase() || zip_code == input) {
+          markers[i].setVisible(true);
+          eingabe = true;
+        }
+      }
+
+      if (eingabe == false) {
+        for (i = 0; i < markers.length; i++) {
+          markers[i].setVisible(true);
+        }
+        for(i = 0; i < markers2.length; i++) {
+          markers2[i].setVisible(true);
+        }
+      }
+      
     });
 
   }
