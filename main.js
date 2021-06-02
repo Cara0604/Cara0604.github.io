@@ -1,7 +1,7 @@
-/* Klasse Standort */
+//Klasse Standort
+class Standort {
 
-class Standort{
-  /* Konstruktor der Klasse */
+  //Konstruktor der Klasse
   constructor(la, lo, name, type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
      estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
       last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation, 
@@ -48,7 +48,7 @@ class Standort{
 
 } 
 
-/* Globale Variablen */
+//Globale Variablen
 var la;
 var lo;
 var name;
@@ -82,7 +82,7 @@ var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
 
-var testo = [];
+var auto_standort = [];
 var contentString = [];
 
 var json_length;
@@ -90,7 +90,7 @@ var json_length;
 var markers = [];
 var markers2 = [];
 
-/* Request um Daten zu holen */
+//Request, um Daten zu holen
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -98,9 +98,9 @@ xmlhttp.onreadystatechange = function() {
 
     json_length = Object.keys(myObj.results[1].data).length;
 
+    //hier wird das Feld für alle Standorte erzeugt
     for(var i = 0; i < json_length; ++i){
 
-    
     la = myObj.results[1].data[i].coordinates.latitude;
     lo = myObj.results[1].data[i].coordinates.longitude;
     name = myObj.results[1].data[i].name;
@@ -139,28 +139,28 @@ xmlhttp.onreadystatechange = function() {
       audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
       port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country);
       
-    testo.push(t);
+    auto_standort.push(t);
 
     contentString[i]=
     '<div id="content>' +
     '<div id="siteNotice">' +
     "</div>" +
-    `<h1 id="firstHeading" class="firstHeading">${ testo[i].name }</h1>` +
+    `<h1 id="firstHeading" class="firstHeading">${ auto_standort[i].name }</h1>` +
     '<div id="bodyContent">' +
-    `<p><b>- Typ: </b> ${testo[i].type} </p> `+
-    `<p><b>- Adresse: </b> ${testo[i].adress} </p> `+      
-    `<p><b>- Creditor: </b> ${testo[i].creditor} </p>` + 
-    `<p><b>- Partner seit: </b> ${testo[i].partner_since_year} </p>` + 
-    `<p><b>- Purchasing volume: </b> ${testo[i].purchasing_volume} </p>` + 
-    `<p><b>- Estimated Leverage: </b> ${testo[i].estimated_leverage} </p>` + 
-    `<p><b>- Arbeiterinnen: </b> ${testo[i].employees_female} </p>` + 
-    `<p><b>- Arbeiter: </b> ${testo[i].employees_male} </p>` + 
-    `<p><b>- Beschwerden: </b> ${testo[i].complaints} </p>` + 
-    `<p><b>- Transportart: </b> ${testo[i].mode_of_transportation} </p>` + 
-    `<p><b>- CO2-Fußabdruck: </b> ${testo[i].carbon_footprint} </p>` + 
+    `<p><b>- Typ: </b> ${auto_standort[i].type} </p> `+
+    `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+      
+    `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` + 
+    `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` + 
+    `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` + 
+    `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` + 
+    `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` + 
+    `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` + 
+    `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` + 
+    `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` + 
+    `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` + 
 
    //Bild einfügen
-   `<img src=${testo[i].bild} width="400" alt="supplier_image">`
+   `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
    "</div>" +
    "</div>";
 
@@ -174,17 +174,17 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", "response2.json", false);
 xmlhttp.send();
 
-/*testo = new Standort(la,lo,name,type,adress,bild,creditor, division,
+/*auto_standort = new Standort(la,lo,name,type,adress,bild,creditor, division,
   partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
   audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
   port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint);
-  testo.la = 3;*/
+  auto_standort.la = 3;*/
    
 
+  
 function initMap() {
-    //hier werden alle Marker mit Standorten definiert
-   
 
+    //hier werden alle Marker mit Standorten definiert
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3.5,
       center: {lat: 30.363, lng: 50.234},
@@ -200,12 +200,12 @@ function initMap() {
 
       for (i = 0; i < json_length; i++) {
         newMarker = new google.maps.Marker({
-          position: {lat: testo[i].getLa(), lng: testo[i].getLo()},
+          position: {lat: auto_standort[i].getLa(), lng: auto_standort[i].getLo()},
           map: map,
-          title: testo[i].name
+          title: auto_standort[i].name
         });
 
-        newMarker.category = testo[i].type;
+        newMarker.category = auto_standort[i].type;
 
         markers2.push(newMarker);
       }
@@ -244,7 +244,7 @@ function initMap() {
       } */
 
       
-        // Hier wird der Filter für die Produzenten gesetzt
+      // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
 
       checkbox_produzenten.addEventListener('change', function() {
@@ -266,9 +266,8 @@ function initMap() {
         
       });
 
-       // Hier wird der Filter für die Lieferanten gesetzt 
-      
-      
+
+      // Hier wird der Filter für die Lieferanten gesetzt 
       var checkbox_lieferanten = document.getElementById('checkbox-2');
 
       checkbox_lieferanten.addEventListener('change', function() {
@@ -290,34 +289,36 @@ function initMap() {
       });
 
     var button = document.getElementById('button');
-      // Hier wird die Funktionalität der Suchleiste implementiert
       
+    // Hier wird die Funktionalität der Suchleiste implementiert  
     button.addEventListener("click", function() {
       var i;
       var input = document.getElementById('searchbar').value.toLowerCase();
       var eingabe = false;
+      var anzeige = false;
 
       for(i = 0; i < markers2.length; i++) {
         markers2[i].setVisible(false);
-        if(testo[i].name.toLowerCase() == input || testo[i].country.toLowerCase() == input || testo[i].zip_code == input) {
+        if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input) {
           markers2[i].setVisible(true);
-          eingabe = true;
+          anzeige = true;
         }
-  
+        if(input === "")
+          eingabe = false;
+        else
+          eingabe = true;
       }
   
-      if (eingabe == false) {
+      if (!eingabe) {
         for(i = 0; i < markers2.length; i++) {
           markers2[i].setVisible(true);
         }
       }
-      
-      
+      //Wenn keine es keine Treffer gibt, bekommt der Benutzer eine entsprechender Rückmeldung
+      if (eingabe && !anzeige) {
+        window.alert("Keine Treffer für den gesuchten Ort gefunden!");
+      }
     });
+  
+  } //Ende der initMap Funktion
 
-  }
-  
- 
-
-  
-  

@@ -26,14 +26,14 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
 <body>
     <!-- Überschrift der Webseite -->
     <div class="container">
-        <h1 class="header_1"> Willkommen zu unserer Supply Chain</h1>
+        <h1 class="header_1"> Willkommen auf unserer Supply-Chain-Map</h1>
         <div class="uebersicht">
             <h2 class="header_2">Standortsuche:</h2>
 
             <form>
             
                     <div class="search">
-                       <input type="text" class="searchTerm" placeholder="Land, Stadt, PLZ..." id="searchbar">
+                       <input type="text" class="searchTerm" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
                        <button type="button" class="searchButton" id="button">
                          <i class="fa fa-search"></i>
                       </button>
@@ -61,7 +61,7 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     
     <!--The div element for the map -->
     <div id="map"></div>
-    <script src="klasse_Standort.js"></script>
+    <script src="klasse_Standort.js"></script> <!--brauchen wir das noch???? -->
     <script src="main.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
     <!--Suchbutton einfügen-->
