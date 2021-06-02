@@ -30,22 +30,15 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
         <div class="uebersicht">
             <h2 class="header_2">Standortsuche:</h2>
 
-            <form>
-            
+            <form id="searchForm" action="search" method="post">
                     <div class="search">
-                       <input type="text" class="searchTerm" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
-                       <button type="button" class="searchButton" id="button">
+                       <input type="search" class="searchTerm" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
+                       <button type="button" value="search" class="searchButton" id="button">
                          <i class="fa fa-search"></i>
                       </button>
                     </div>
-
             </form>
             
-        
-            <!-- <div class="">
-                <img src="">
-            </div> -->
-        
             <form class="check">
              <div class="div_check">
                   <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
@@ -67,6 +60,9 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     <!--Suchbutton einfügen-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
    
+   
+    <!--jQuery einbinden, damit das Enter funktioniert-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 </body>
 <footer>

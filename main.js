@@ -288,10 +288,13 @@ function initMap() {
         }
       });
 
-    var button = document.getElementById('button');
+    
+
+   
       
     // Hier wird die Funktionalität der Suchleiste implementiert  
-    button.addEventListener("click", function() {
+    var button = document.getElementById('button');
+    button.addEventListener("click", function foo() {
       var i;
       var input = document.getElementById('searchbar').value.toLowerCase();
       var eingabe = false;
@@ -319,6 +322,12 @@ function initMap() {
         window.alert("Keine Treffer für den gesuchten Ort gefunden!");
       }
     });
+    
+  // Enter drücken
+  $("#searchForm").submit(function () {
+    document.getElementById('button').click();
+    return false;
+  });
   
-  } //Ende der initMap Funktion
+} //Ende der initMap Funktion
 
