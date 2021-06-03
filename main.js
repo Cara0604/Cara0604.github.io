@@ -294,7 +294,7 @@ function initMap() {
       
     // Hier wird die Funktionalität der Suchleiste implementiert  
     var button = document.getElementById('button');
-    button.addEventListener("click", function foo() {
+    button.addEventListener("click", function() {
       var i;
       var input = document.getElementById('searchbar').value.toLowerCase();
       var eingabe = false;
@@ -319,7 +319,13 @@ function initMap() {
       }
       //Wenn keine es keine Treffer gibt, bekommt der Benutzer eine entsprechender Rückmeldung
       if (eingabe && !anzeige) {
-        window.alert("Keine Treffer für den gesuchten Ort gefunden!");
+        $('.alert').removeClass("hide");
+        $('.alert').addClass("show");
+        $('.alert').addClass("showAlert");
+        setTimeout(function () {
+          $('.alert').addClass("hide");
+          $('.alert').removeClass("show");
+        }, 5000); //hide ist after 5 sec
       }
     });
     
@@ -331,3 +337,7 @@ function initMap() {
   
 } //Ende der initMap Funktion
 
+$('.close-btn').click(function () {
+  $('.alert').addClass("hide");
+  $('.alert').removeClass("show");
+});

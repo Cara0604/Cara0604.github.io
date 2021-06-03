@@ -15,6 +15,13 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     <link rel="stylesheet" href="css/media.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/suche.css">
+   
+    <!-- Alert Notification-->
+    <link rel="stylesheet" href="alert_notification.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script defer src="nein.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
+
     <meta name="description" content="Awesome Supply-Chain Visualisation by Schöffel">
     <meta name="keywords" content="Supply-Chain, sustainability, caring about your customers, environmental Protection">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
@@ -24,6 +31,15 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
 </head>
 
 <body>
+    <!-- Alert Elemente-->
+    <div class="alert hide">
+        <span class="fas fa-exclamation-circle"></span>
+        <span class="msg">Warning: This is a warning alert!</span>
+        <span class="close-btn">
+            <span class="fas fa-times"></span>        
+        </span>
+    </div>
+
     <!-- Überschrift der Webseite -->
     <div class="container">
         <h1 class="header_1"> Willkommen auf unserer Supply-Chain-Map</h1>
