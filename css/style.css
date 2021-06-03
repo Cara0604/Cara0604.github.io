@@ -15,12 +15,13 @@
 	background: white;
 	text-align: center;
 	padding-top: 10px;
-	font-family: "KlavikaDisplayUltraBlack",sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 .header_2 {
 	padding: 1rem;
 	color: black;
+	font-family: 'Poppins', sans-serif;
 	
 }
 
@@ -46,30 +47,6 @@
 	padding-left: 1rem;
 	margin-left: 0.5rem;
 }
-
-/* Search button
-.button {
-	padding: 0.5rem;
-	margin: 0.5rem;
-	background: white;
-	color: black;
-	border: black;
-	border-radius: 0.8rem;
-	height: 2rem;
-	display: inline-block;
-	margin-top: 0;
-	width: 5rem;
-	cursor: pointer;
-	box-shadow: inset 0 0 7px rgb(59, 58, 58);
-    opacity: 0.9;
-}
-
-.button:hover {
-    box-shadow: 0 1px  20px rgb(116, 114, 114);
-    border: 2px solid rgb(105, 102, 102);
-    opacity: 1.0;
-    transition: 0.3s;
-} */
 
 /* Checkboxen und Text */
 .label {
@@ -106,9 +83,9 @@ input[type="checkbox"] {
 	cursor: pointer;
 }
 
-/* Sobald es gedrückt wird, erscheint es blau, hab die Farbe auf die selbe wie bei der Searchbar gemacht */
+/* Sobald es gedrückt wird, erscheint es blau, hab die Farbe auf die selbe wie bei der Searchbar gemacht, jetzt schwarz */
 input:checked[type ="checkbox"] {
-	background: #00B4CC;
+	background: black;
 }
 
 input[type="checkbox"]:after {
@@ -134,6 +111,7 @@ input:checked[type = "checkbox"]:after {
 	height: 700px;
 	width: 95%;
 	margin: auto;
+	border-color: black;
 }
 
 
@@ -152,30 +130,33 @@ body{
 	position: relative;
 	display: flex;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;800&display=swap');
   
   .searchTerm {
-	width: 100%;
-	border: 3px solid #00B4CC;
+	width: 300px;
+	height: 40px;
+	border: 3px solid black;
 	border-right: none;
 	padding: 5px;
-	height: 40px;
 	border-radius: 5px 0 0 5px;
 	outline: none;
 	color: black;
+	font-size: 15px;
+	font-family: 'Poppins', sans-serif;
   }
   
   .searchButton {
 	width: 40px;
 	height: 40px;
-	border: 1px solid #00B4CC;
-	background: #00B4CC;
+	border: 3px solid black;
+	background: black;
 	text-align: center;
 	color: #fff;
 	border-radius: 0 5px 5px 0;
 	cursor: pointer;
 	font-size: 20px;
+	font-family: 'Poppins', sans-serif;
   }
-
   /* Media Querys */
 
   @media only  screen  and (max-width:600px){
@@ -186,7 +167,6 @@ body{
 		  
 		 
 	  }
-
 	  
 	  .search{
 		  margin-top: 5rem;
