@@ -167,7 +167,6 @@ xmlhttp.onreadystatechange = function() {
 
     }
   }
-
  
 };
 
@@ -287,9 +286,6 @@ function initMap() {
             }
         }
       });
-
-    
-
    
       
     // Hier wird die Funktionalität der Suchleiste implementiert  
@@ -302,7 +298,7 @@ function initMap() {
 
       for(i = 0; i < markers2.length; i++) {
         markers2[i].setVisible(false);
-        if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input) {
+        if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input || auto_standort[i].street.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
           markers2[i].setVisible(true);
           anzeige = true;
         }
@@ -318,6 +314,8 @@ function initMap() {
         }
       }
       //Wenn keine es keine Treffer gibt, bekommt der Benutzer eine entsprechender Rückmeldung
+
+      // Kopiert von: https://www.youtube.com/watch?v=hm79I2JpwJw
       if (eingabe && !anzeige) {
         $('.alert').removeClass("hide");
         $('.alert').addClass("show");
@@ -329,11 +327,6 @@ function initMap() {
       }
     });
     
-  // Enter drücken
-  $("#searchForm").submit(function () {
-    document.getElementById('button').click();
-    return false;
-  });
   
 } //Ende der initMap Funktion
 

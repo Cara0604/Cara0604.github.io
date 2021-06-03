@@ -16,11 +16,14 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/suche.css">
     <link rel="stylesheet" href="css/alert_notification.css">
+    <link rel="stylesheet" href="css/autocomplete.css">
    
     <!-- Alert Notification-->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script defer src="nein.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
+    <script defer src="main.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
+    <script defer src="js/autocomplete.js"></script>
+    <script defer src="data.js"></script>
 
     <meta name="description" content="Awesome Supply-Chain Visualisation by Schöffel">
     <meta name="keywords" content="Supply-Chain, sustainability, caring about your customers, environmental Protection">
@@ -31,6 +34,7 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
 </head>
 
 <body>
+
     <!-- Alert Elemente-->
     <div class="alert hide">
         <span class="fas fa-exclamation-circle"></span>
@@ -46,9 +50,9 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
         <div class="uebersicht">
             <h2 class="header_2">Standortsuche:</h2>
 
-            <form id="searchForm" action="search" method="post">
-                    <div class="search">
-                       <input type="search" class="searchTerm" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
+            <form id="searchForm" autocomplete="off" action="/action_page.php">
+                    <div class="search autocomplete" style="width:300px;">
+                       <input type="text" class="searchTerm myInput" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
                        <button type="button" value="search" class="searchButton" id="button">
                          <i class="fa fa-search"></i>
                       </button>
@@ -70,12 +74,9 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     
     <!--The div element for the map -->
     <div id="map"></div>
-    <script src="klasse_Standort.js"></script> <!--brauchen wir das noch???? -->
-    <script src="main.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
     <!--Suchbutton einfügen-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
-   
    
     <!--jQuery einbinden, damit das Enter funktioniert-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
