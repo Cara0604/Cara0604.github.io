@@ -36,4 +36,4 @@ xmlhttp.send();
 autocomplete(document.querySelector('.myInput'), infos);
 
 
-//wenn input leer ist, dann soll man die Standorte wieder neuladen
+//wenn input leer ist, dann soll man die Standorte wieder neuladennn

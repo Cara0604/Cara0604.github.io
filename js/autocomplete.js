@@ -54,7 +54,7 @@ function autocomplete(inp, arr) {
             addActive(x);
         } else if(e.keyCode == 13) { //enter Funktion einbauen
             $("#searchForm").submit(function () {
-                /* document.getElementById('searchbar').value = e.; enter funktion beim autocomplete einbauen */
+                /* document.getElementById('searchbar').value = e.; enter funktion beim autocomplete einbauen; geht es */
                 document.getElementById('button').click();
                 return false;
             });
