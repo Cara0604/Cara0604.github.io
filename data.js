@@ -18,7 +18,7 @@ xmlhttp.onreadystatechange = function () {
             infos.push(myObj.results[1].data[i].place);
             infos.push(myObj.results[1].data[i].name);
         }
-        console.log(infos);
+
         for (var i = 0; i < infos.length; i++) {
             for (var j = 0; j < infos.length; j++) {
                 if ((infos[i] == infos[j]) && i != j) {
@@ -26,8 +26,6 @@ xmlhttp.onreadystatechange = function () {
                 }
             }
         }
-        console.log(infos);
-
     }
 }
 

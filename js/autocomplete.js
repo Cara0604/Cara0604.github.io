@@ -55,15 +55,12 @@ function autocomplete(inp, arr) {
             /*Zeig das ausgewählt visuell besser*/
             addActive(x);
         } else if(e.keyCode == 13) { //enter Funktion einbauen
-            
             if(currentFocus > -1) {
                 if(x) {
                     x[currentFocus].click();
                 }
             }
-
             $("#searchForm").submit(function () {
-                /* document.getElementById('searchbar').value = e.; enter funktion beim autocomplete einbauen; geht es */
                 document.getElementById('button').click();
                 return false;
             });
