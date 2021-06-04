@@ -2,14 +2,14 @@
 function autocomplete(inp, arr) {
     
     var currentFocus;
-    /*execute a function when someone writes in the text field:*/
+    /*Funktion wird ausgelöst, wenn Eingabe gestartet wird*/
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value; //value von input hinzugefügt
         closeAllLists();
         if (!val) { return false; }
         currentFocus = -1;
 
-        /*create a DIV element that will contain the items (values):*/
+        /*Erstellt ein div Element aus dem Datensatz*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
@@ -38,25 +38,23 @@ function autocomplete(inp, arr) {
             }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
+    /*Keyboardsteuerung innerhalb der Liste mit den Pfeiltasten*/
     inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-            /*If the arrow DOWN key is pressed,
-            increase the currentFocus variable:*/
+        if (e.keyCode == 40) { //down
+            /*Wenn Pfeiltaste nach unten gedrückt wird, dann geh runter*/
             currentFocus++;
-            /*and and make the current item more visible:*/
+            /*Zeig das ausgewählt visuell besser*/
             addActive(x);
         } else if (e.keyCode == 38) { //up
-            /*If the arrow UP key is pressed,
-            decrease the currentFocus variable:*/
+            /*Wenn Pfeiltaste nach oben gedrückt wird, dann geh hoch*/
             currentFocus--;
-            /*and and make the current item more visible:*/
+            /*Zeig das ausgewählt visuell besser*/
             addActive(x);
-        } else if(e.keyCode == 13) {
+        } else if(e.keyCode == 13) { //enter Funktion einbauen
             $("#searchForm").submit(function () {
-                /* document.getElementById('searchbar').value = e.; */
+                /* document.getElementById('searchbar').value = e.; enter funktion beim autocomplete einbauen */
                 document.getElementById('button').click();
                 return false;
             });

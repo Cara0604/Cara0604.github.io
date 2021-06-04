@@ -36,6 +36,3 @@ xmlhttp.send();
 autocomplete(document.querySelector('.myInput'), infos);
 
 
-/*! Bug mit dem  ersten Standort
-    enter funktion beim autocomplete einbauen
-*/
