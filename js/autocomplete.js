@@ -1,4 +1,4 @@
-//Hier wird der Inpput und die Datei übergeben */
+//Hier wird der Input und die Datei übergeben */
 function autocomplete(inp, arr) {
     
     var currentFocus;
@@ -33,6 +33,8 @@ function autocomplete(inp, arr) {
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
+                    //triggers the search button
+                    $('#button').trigger('click');
                 });
                 a.appendChild(b);
             }
@@ -53,6 +55,13 @@ function autocomplete(inp, arr) {
             /*Zeig das ausgewählt visuell besser*/
             addActive(x);
         } else if(e.keyCode == 13) { //enter Funktion einbauen
+            
+            if(currentFocus > -1) {
+                if(x) {
+                    x[currentFocus].click();
+                }
+            }
+
             $("#searchForm").submit(function () {
                 /* document.getElementById('searchbar').value = e.; enter funktion beim autocomplete einbauen; geht es */
                 document.getElementById('button').click();

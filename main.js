@@ -8,13 +8,7 @@ class Standort {
       port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition,place,country_code, country) {
 
   this.la = la;
-  this.getLa = function(){
-      return this.la;
-  }
   this.lo = lo;
-  this.getLo = function() {
-      return this.lo;
-  }
   this.name = name;
   this.type = type;
   this.adress = adress;
@@ -82,23 +76,25 @@ var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
 
+//Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
 var contentString = [];
 
 var json_length;
 
-var markers = [];
+//Feld, in dem alle Marker gespeichert werden
 var markers2 = [];
 
-//Request, um Daten zu holen
+//Request, um die Daten aus der JSON-Datei zu holen
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(this.responseText);
 
+    //Länge des Datensatzes (die Anzahl der Standorte)
     json_length = Object.keys(myObj.results[1].data).length;
 
-    //hier wird das Feld für alle Standorte erzeugt
+    //hier werden die Daten aus der JSON-Datei in Variablen gespeichert
     for(var i = 0; i < json_length; ++i){
 
     la = myObj.results[1].data[i].coordinates.latitude;
@@ -134,11 +130,12 @@ xmlhttp.onreadystatechange = function() {
     warehouse_name = myObj.results[1].data[i].warehouse_name;
     carbon_footprint = myObj.results[1].data[i].carbon_footprint;
 
+    //für jeden Standort wird ein Objekt erzeugt
     let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
       partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
       audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
       port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country);
-      
+       
     auto_standort.push(t);
 
     contentString[i]=
@@ -159,12 +156,10 @@ xmlhttp.onreadystatechange = function() {
     `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` + 
     `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` + 
 
-   //Bild einfügen
-   `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
-   "</div>" +
-   "</div>";
-
-
+    //Bild einfügen
+    `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
+    "</div>" +
+    "</div>";
     }
   }
  
@@ -183,7 +178,7 @@ xmlhttp.send();
   
 function initMap() {
 
-    //hier werden alle Marker mit Standorten definiert
+    //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3.5,
       center: {lat: 30.363, lng: 50.234},
@@ -195,20 +190,19 @@ function initMap() {
     //für jeden Standort benötigen wir einen Marker
    
 
-      //Test mit Marker-Feld
+      //Hier werden die Marker angelegt 
 
       for (i = 0; i < json_length; i++) {
         newMarker = new google.maps.Marker({
-          position: {lat: auto_standort[i].getLa(), lng: auto_standort[i].getLo()},
+          position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
           map: map,
           title: auto_standort[i].name
         });
 
-        newMarker.category = auto_standort[i].type;
-
         markers2.push(newMarker);
       }
 
+      //Hier werden die Marker "anclickbar gemacht"
       for(i = 0; i < markers2.length; i++) {
         const a = i;
         markers2[a].addListener("click", () => {
@@ -219,29 +213,6 @@ function initMap() {
         });
       }
 
-
-    //zudem benötigen wir für jeden Standort noch einen Listener
-    //dieser ist dazu da, um den Klick auf den Standort zu erkennen
-  
-
-     /*  for(var i = 0; i <= 2; ++i){
-         marker[i] = new google.maps.Marker({
-          position: jakob,
-          map,
-          title: "Jakob (hart wie ein Stein)",
-      });
-
-
-        marker[i].addListener("click", () => {
-          infowindow.setContent(contentString2);
-          infowindow.open(map, marker[i]);
-          map.setZoom(8);
-          map.setCenter(marker[i].getPosition());
-        });
-
-
-      } */
-
       
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
@@ -250,14 +221,14 @@ function initMap() {
         var i;
 
         if(this.checked) {
-          for (i = 0; i < markers2.length; i++) {
-            if(markers2[i].category === "Factory") {
+          for (i = 0; i < auto_standort.length; i++) {
+            if(auto_standort[i].type === "Factory") {
               markers2[i].setVisible(true);
             } 
           }
         } else {
-          for (i = 0; i < markers2.length; i++) {
-            if(markers2[i].category === "Factory") {
+          for (i = 0; i < auto_standort.length; i++) {
+            if(auto_standort[i].type === "Factory") {
               markers2[i].setVisible(false);
             } 
           }
@@ -273,14 +244,14 @@ function initMap() {
         var i;
 
         if(this.checked) {
-          for (i = 0; i < markers2.length; i++) {
-            if(markers2[i].category === "Supplier") {
+          for (i = 0; i < auto_standort.length; i++) {
+            if(auto_standort[i].type === "Supplier") {
               markers2[i].setVisible(true);
             } 
           }
         } else {
-            for (i = 0; i < markers2.length; i++) {
-              if(markers2[i].category === "Supplier") {
+            for (i = 0; i < auto_standort.length; i++) {
+              if(auto_standort[i].type === "Supplier") {
                 markers2[i].setVisible(false);
               } 
             }
@@ -297,17 +268,20 @@ function initMap() {
       var anzeige = false;
 
       for(i = 0; i < markers2.length; i++) {
+        //erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
         markers2[i].setVisible(false);
         if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input || auto_standort[i].street.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
           markers2[i].setVisible(true);
           anzeige = true;
+          eingabe = true;
         }
-        if(input === "")
+        /*if(input === "")
           eingabe = false;
         else
-          eingabe = true;
+          eingabe = true;*/
       }
   
+      //falls die Eingabe nicht übereinstimmt / es keine Eingabe gibt, werden alle Standorte angezeigt
       if (!eingabe) {
         for(i = 0; i < markers2.length; i++) {
           markers2[i].setVisible(true);
