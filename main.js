@@ -208,13 +208,12 @@ function initMap() {
       for(i = 0; i < markers2.length; i++) {
         const a = i;
         markers2[a].addListener("click", () => {
-          infowindow.setContent(contentString[a] );
+          infowindow.setContent(contentString[a]);
           infowindow.open(map, markers2[a]);
           map.setZoom(8);
           map.setCenter(markers2[a].getPosition());
         });
       }
-
 
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
