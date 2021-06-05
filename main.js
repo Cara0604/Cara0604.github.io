@@ -4,7 +4,7 @@ class Standort {
   //Konstruktor der Klasse
   constructor(la, lo, name, type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
      estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
-      last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation, 
+      last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
       port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition,place,country_code, country) {
 
   this.la = la;
@@ -40,7 +40,7 @@ class Standort {
   this.country = country;
   }
 
-} 
+}
 
 //Globale Variablen
 var la;
@@ -135,7 +135,7 @@ xmlhttp.onreadystatechange = function() {
       partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
       audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
       port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country);
-       
+
     auto_standort.push(t);
 
     contentString[i]=
@@ -145,16 +145,16 @@ xmlhttp.onreadystatechange = function() {
     `<h1 id="firstHeading" class="firstHeading">${ auto_standort[i].name }</h1>` +
     '<div id="bodyContent">' +
     `<p><b>- Typ: </b> ${auto_standort[i].type} </p> `+
-    `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+      
-    `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` + 
-    `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` + 
-    `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` + 
-    `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` + 
-    `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` + 
-    `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` + 
-    `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` + 
-    `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` + 
-    `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` + 
+    `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+
+    `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` +
+    `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` +
+    `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` +
+    `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` +
+    `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` +
+    `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` +
+    `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` +
+    `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` +
+    `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` +
 
     //Bild einfügen
     `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
@@ -162,7 +162,7 @@ xmlhttp.onreadystatechange = function() {
     "</div>";
     }
   }
- 
+
 };
 
 xmlhttp.open("GET", "response2.json", false);
@@ -173,9 +173,9 @@ xmlhttp.send();
   audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
   port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint);
   auto_standort.la = 3;*/
-   
 
-  
+
+
 function initMap() {
 
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
@@ -188,16 +188,27 @@ function initMap() {
     });
 
     //für jeden Standort benötigen wir einen Marker
-   
 
-      //Hier werden die Marker angelegt 
+
+      //Hier werden die Marker angelegt
 
       for (i = 0; i < json_length; i++) {
-        newMarker = new google.maps.Marker({
-          position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
-          map: map,
-          title: auto_standort[i].name
-        });
+  if (auto_standort[i].type === "Supplier") {
+    newMarker = new google.maps.Marker({
+      position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+      map: map,
+      icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+      title: auto_standort[i].name
+    });
+  }
+  else {
+    newMarker = new google.maps.Marker({
+      position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+      map: map,
+      icon: new google.maps.MarkerImage('/bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
+      title: auto_standort[i].name
+    });
+  }
 
         markers2.push(newMarker);
       }
@@ -213,7 +224,7 @@ function initMap() {
         });
       }
 
-      
+
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
 
@@ -224,20 +235,20 @@ function initMap() {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Factory") {
               markers2[i].setVisible(true);
-            } 
+            }
           }
         } else {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Factory") {
               markers2[i].setVisible(false);
-            } 
+            }
           }
         }
-        
+
       });
 
 
-      // Hier wird der Filter für die Lieferanten gesetzt 
+      // Hier wird der Filter für die Lieferanten gesetzt
       var checkbox_lieferanten = document.getElementById('checkbox-2');
 
       checkbox_lieferanten.addEventListener('change', function() {
@@ -247,19 +258,19 @@ function initMap() {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Supplier") {
               markers2[i].setVisible(true);
-            } 
+            }
           }
         } else {
             for (i = 0; i < auto_standort.length; i++) {
               if(auto_standort[i].type === "Supplier") {
                 markers2[i].setVisible(false);
-              } 
+              }
             }
         }
       });
-   
-      
-    // Hier wird die Funktionalität der Suchleiste implementiert  
+
+
+    // Hier wird die Funktionalität der Suchleiste implementiert
     var button = document.getElementById('button');
     button.addEventListener("click", function() {
       var i;
@@ -280,7 +291,7 @@ function initMap() {
         else
           eingabe = true;*/
       }
-  
+
       //falls die Eingabe nicht übereinstimmt / es keine Eingabe gibt, werden alle Standorte angezeigt
       if (!eingabe) {
         for(i = 0; i < markers2.length; i++) {
@@ -300,8 +311,8 @@ function initMap() {
         }, 5000); //hide ist after 5 sec
       }
     });
-    
-  
+
+
 } //Ende der initMap Funktion
 
 $('.close-btn').click(function () {
