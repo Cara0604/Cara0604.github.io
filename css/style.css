@@ -33,7 +33,6 @@
 .uebersicht {
 	padding: 1rem;
 	margin: 1rem;
-
 	text-align: left;
 	float: left;
 }
@@ -157,26 +156,10 @@ body{
 	font-size: 20px;
 	font-family: 'Poppins', sans-serif;
   }
+
+  
   /* Media Querys */
 
-  @media only  screen  and (max-width:600px){
-	  .uebersicht{
-		  display: flex;
-		  align-items: center;
-		
-		  
-		 
-	  }
-	  
-	  .search{
-		  margin-top: 5rem;
-		 
-	  }
-	  #map{
-		width: 100%;
-		max-height: 500px;
-	  }
-	  
-  }
+  
   
  

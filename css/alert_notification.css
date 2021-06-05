@@ -1,18 +1,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap);
 
-* {
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    box-sizing: border-box;
-    font-family: 'Roboto Mono';
-}
-
-body {
-    overflow: hidden;
-}
 
 .alert {
+    font-family: 'Roboto Mono';
+    user-select: none;
     background: #000000;
     padding: 20px 40px;
     min-width: 420px;

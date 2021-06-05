@@ -162,18 +162,10 @@ xmlhttp.onreadystatechange = function() {
     "</div>";
     }
   }
-
 };
 
 xmlhttp.open("GET", "response2.json", false);
 xmlhttp.send();
-
-/*auto_standort = new Standort(la,lo,name,type,adress,bild,creditor, division,
-  partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
-  audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
-  port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint);
-  auto_standort.la = 3;*/
-
 
 
 function initMap() {
@@ -189,31 +181,30 @@ function initMap() {
 
     //für jeden Standort benötigen wir einen Marker
 
-
       //Hier werden die Marker angelegt
-
       for (i = 0; i < json_length; i++) {
-  if (auto_standort[i].type === "Supplier") {
-    newMarker = new google.maps.Marker({
-      position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
-      map: map,
-      icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
-      title: auto_standort[i].name
-    });
-  }
-  else {
-    newMarker = new google.maps.Marker({
-      position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
-      map: map,
-      icon: new google.maps.MarkerImage('/bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
-      title: auto_standort[i].name
-    });
-  }
-
+        if (auto_standort[i].type === "Supplier") {
+           newMarker = new google.maps.Marker({
+           position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+           map: map,
+           icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+           animation: google.maps.Animation.DROP,
+           title: auto_standort[i].name
+           });
+        }
+       else {
+          newMarker = new google.maps.Marker({
+         position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+          map: map,
+          icon: new google.maps.MarkerImage('/bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
+          animation: google.maps.Animation.DROP,
+          title: auto_standort[i].name
+          });
+        }
         markers2.push(newMarker);
       }
 
-      //Hier werden die Marker "anclickbar gemacht"
+      //Hier werden die Marker anklickbar gemacht
       for(i = 0; i < markers2.length; i++) {
         const a = i;
         markers2[a].addListener("click", () => {
@@ -276,20 +267,14 @@ function initMap() {
       var i;
       var input = document.getElementById('searchbar').value.toLowerCase();
       var eingabe = false;
-      var anzeige = false;
 
       for(i = 0; i < markers2.length; i++) {
         //erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
         markers2[i].setVisible(false);
         if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input || auto_standort[i].street.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
           markers2[i].setVisible(true);
-          anzeige = true;
           eingabe = true;
         }
-        /*if(input === "")
-          eingabe = false;
-        else
-          eingabe = true;*/
       }
 
       //falls die Eingabe nicht übereinstimmt / es keine Eingabe gibt, werden alle Standorte angezeigt
@@ -297,25 +282,26 @@ function initMap() {
         for(i = 0; i < markers2.length; i++) {
           markers2[i].setVisible(true);
         }
-      }
-      //Wenn keine es keine Treffer gibt, bekommt der Benutzer eine entsprechender Rückmeldung
-
-      // Kopiert von: https://www.youtube.com/watch?v=hm79I2JpwJw
-      if (eingabe && !anzeige) {
-        $('.alert').removeClass("hide");
+        //falls die Eingabe leer ist
+        if (input === "") {
+          document.querySelector('.msg').innerHTML = "Leere Eingabe!";
+          //falls die Eingabe ungültig ist
+        } else {
+          document.querySelector('.msg').innerHTML = "Kein Ergebnis!";
+        }
         $('.alert').addClass("show");
+        $('.alert').removeClass("hide");
         $('.alert').addClass("showAlert");
         setTimeout(function () {
-          $('.alert').addClass("hide");
           $('.alert').removeClass("show");
+          $('.alert').addClass("hide");
         }, 5000); //hide ist after 5 sec
       }
     });
-
-
 } //Ende der initMap Funktion
 
+//close Alert function
 $('.close-btn').click(function () {
-  $('.alert').addClass("hide");
   $('.alert').removeClass("show");
+  $('.alert').addClass("hide");
 });
