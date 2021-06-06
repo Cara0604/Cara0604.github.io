@@ -1,0 +1,107 @@
+
+.info {
+    padding: 20px 40px;
+    min-width: 420px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border-radius: 4px;
+    border-left: 8px solid black;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-color: black;
+    background: black;
+    /*background: rgba(255, 255, 255, 0.4);*/
+    box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+}
+
+
+.info.showInfo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.info.show {
+    animation: show_slide 1s ease forwards;
+    
+}
+
+@keyframes show_slide {
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-10px);
+    }
+}
+
+
+.info.hide {
+    animation: hide_slide 1s ease forwards;
+}
+
+@keyframes hide_slide {
+    0%{
+        transform: translateX(-10px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(100%);
+    }
+}
+
+
+.info .fa-times-circle {
+    position: absolute;
+    left: 5px;
+    padding-left: 4px;
+    transform: translateY(-25%);
+    color: white;
+    font-size: 30px;
+}
+
+.info .content {
+    padding: 0 20px;
+    font-size: 18px;
+    color: lightslategray;
+    padding: 0 10px;
+    height: 50vh;
+    max-width: 800px;
+    min-height: 700px;
+}
+
+
+.close-info .fa-times-circle:hover  {
+    cursor: pointer;
+    color: red;
+}
+
+.content h1 {
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 48px;
+    text-transform: uppercase;
+    color: white;
+}
+
+
+.bodyContent{
+    /* margin: 0;
+    padding: 0; */
+    font-weight: 100;
+    color: white;
+}

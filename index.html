@@ -17,6 +17,7 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     <link rel="stylesheet" href="css/alert_notification.css">
     <link rel="stylesheet" href="css/autocomplete.css">
     <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/info_window.css">
 
     <!-- Alert Notification-->
     <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -34,6 +35,29 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
 </head>
 
 <body>
+    <!--Info Window-->
+    <div class="info hide">
+         <span class="close-info">
+            <i class="fas fa-times-circle"></i>         
+        </span>
+        <div class="content">
+            <h1 id="firstHeading"></h1> 
+            <div class="bodyContent">
+                <p id="typ"></p>
+                <p id="adresse"></p>
+                <p id="creditor"></p>
+                <p id="partner-seit"></p>
+                <p id="purchasing-volume"></p>
+                <p id="estimated-leverage"></p>
+                <p id="arbeiterinnen"></p>
+                <p id="arbeiter"></p>
+                <p id="beschwerden"></p>
+                <p id="transport"></p>
+                <p id="co2-fußabdruck"></p>
+                <img width="400" id="picture" src="" alt="supplier_image">
+            </div>
+        </div>
+    </div>
 
     <!-- Alert Elemente-->
     <div class="alert hide">

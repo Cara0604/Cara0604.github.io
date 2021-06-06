@@ -5,8 +5,9 @@ class Standort {
   constructor(la, lo, name, type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
      estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
       last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
-      port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition,place,country_code, country) {
+      port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition,place,country_code, country, hcs_id) {
 
+  this.hcs_id = hcs_id;
   this.la = la;
   this.lo = lo;
   this.name = name;
@@ -75,15 +76,17 @@ var port_coordinates_latitude;
 var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
+var hcs_id; //eineutige id
 
 //Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
 var contentString = [];
+var ids = []; //Alle Ids um zu vergleichen, ids existieren
 
 var json_length;
 
 //Feld, in dem alle Marker gespeichert werden
-var markers2 = [];
+var markers = []; //wofür den Namen markers2? es gibt nur ein markers
 
 //Request, um die Daten aus der JSON-Datei zu holen
 var xmlhttp = new XMLHttpRequest();
@@ -96,7 +99,8 @@ xmlhttp.onreadystatechange = function() {
 
     //hier werden die Daten aus der JSON-Datei in Variablen gespeichert
     for(var i = 0; i < json_length; ++i){
-
+    
+    hcs_id = myObj.results[1].data[i].hcs_id; //Versuch eine eindeutige id zu beziehen, um die Standorte zu unterscheiden; Im Konstruktor, in der Klasse als auch in der attributenliste angepasst. 
     la = myObj.results[1].data[i].coordinates.latitude;
     lo = myObj.results[1].data[i].coordinates.longitude;
     name = myObj.results[1].data[i].name;
@@ -134,34 +138,36 @@ xmlhttp.onreadystatechange = function() {
     let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
       partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
       audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
-      port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country);
+      port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
 
     auto_standort.push(t);
 
-    contentString[i]=
-    '<div id="content>' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    `<h1 id="firstHeading" class="firstHeading">${ auto_standort[i].name }</h1>` +
-    '<div id="bodyContent">' +
-    `<p><b>- Typ: </b> ${auto_standort[i].type} </p> `+
-    `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+
-    `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` +
-    `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` +
-    `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` +
-    `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` +
-    `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` +
-    `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` +
-    `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` +
-    `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` +
-    `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` +
-
-    //Bild einfügen
-    `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
-    "</div>" +
-    "</div>";
-    }
+    //ursprüngliche Daten für das InfoWindow
+    // contentString[i]=
+    //   `<div id="content">` +
+    //     `<h1 id="firstHeading" class="firstHeading">${ auto_standort[i].name }</h1>` +
+    //     `<div id="bodyContent">` +
+    //       `<p><b>- Typ: </b> ${auto_standort[i].type} </p> `+
+    //       `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+
+    //       `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` +
+    //       `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` +
+    //       `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` +
+    //       `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` +
+    //       `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` +
+    //       `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` +
+    //       `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` +
+    //       `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` +
+    //       `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` +
+    //       `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
+    //     "</div>" +
+    //   '</div>';
   }
+
+  //Alle ids in einem Feld speichern
+  for (var i = 0; i < json_length; ++i) {
+    ids[i] = myObj.results[1].data[i].hcs_id;
+  }
+}
 };
 
 xmlhttp.open("GET", "response2.json", false);
@@ -180,12 +186,12 @@ function initMap() {
     });
 
     //für jeden Standort benötigen wir einen Marker
-
       //Hier werden die Marker angelegt
+
       for (i = 0; i < json_length; i++) {
         if (auto_standort[i].type === "Supplier") {
            newMarker = new google.maps.Marker({
-           position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+            position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
            map: map,
            icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
            animation: google.maps.Animation.DROP,
@@ -201,19 +207,55 @@ function initMap() {
           title: auto_standort[i].name
           });
         }
-        markers2.push(newMarker);
+        markers.push(newMarker);
       }
 
-      //Hier werden die Marker anklickbar gemacht
-      for(i = 0; i < markers2.length; i++) {
-        const a = i;
-        markers2[a].addListener("click", () => {
-          infowindow.setContent(contentString[a]);
-          infowindow.open(map, markers2[a]);
+      //Es funktioniert, wenn man auf einen POI drückt, jedoch wird durch das hochzählen der Zählervariable in ln. 233 jedes Mal das InfoWindow desselben POIs überschrieben => Man bekommt immer ein anderes Fenster. Ich habe versucht mithilfe eines bestimmten eindeutigen id (hcs_id) zu vergleichen, welches POI aufgerufen wurde, doch es hat nicht wirklich funktioniert. Das infoWindow funktioniert simultan zur Alertfunktion;
+      //Es muss einen Weg geben herauszufinden, welches POI gedrückt worden ist, um damit den richtigen Index einzusetzen und damit das richtige InfoWindow zu bekommen. Bei dem Erzfeind (Jack Wolfskin) funktioniert es ja auch!
+
+      //Wäre nice noch die Fensterbreite anzupassen, damit es durch die Benachrichtungen nicht soweit nach links verschwindet (kann ich auch selber nächste Woche anschauen)
+      var i = 0;
+      markers.forEach(loop => {
+        loop.addListener("click", (event) =>  {
+          
+          console.log(i);
+          document.querySelector('#firstHeading').textContent = "Standort: " + auto_standort[i].name;
+          document.querySelector('#typ').textContent = "Art: " + auto_standort[i].type;
+          document.querySelector('#adresse').textContent = "Adresse: " + auto_standort[i].adress;
+          document.querySelector('#creditor').textContent = "Creditor: " + auto_standort[i].creditor;
+          document.querySelector('#partner-seit').textContent = "Partner seit: " + auto_standort[i].partner_since_year;
+          document.querySelector('#purchasing-volume').textContent = "Purchasing Volume: " + auto_standort[i].purchasing_volume;
+          document.querySelector('#estimated-leverage').textContent = "Estimated Leverage: " + auto_standort[i].estimated_leverage;
+          document.querySelector('#arbeiterinnen').textContent = "Arbeiterinnen: " + auto_standort[i].employees_female;
+          document.querySelector('#arbeiter').textContent = "Arbeiter: " + auto_standort[i].employees_male;
+          document.querySelector('#beschwerden').textContent = "Beschwerden" + auto_standort[i].complaints;
+          document.querySelector('#transport').textContent = "Transport: " + auto_standort[i].mode_of_transportation;
+          document.querySelector('#co2-fußabdruck').textContent = "CO2-Fußabdruck:" + auto_standort[i].carbon_footprint;
+          document.querySelector('#picture').src =auto_standort[i].bild;
+          ++i;
+
+          $('.info').addClass("show");
+          $('.info').removeClass("hide");
+          $('.info').addClass("showInfo");
           map.setZoom(8);
-          map.setCenter(markers2[a].getPosition());
+          map.setCenter(loop.getPosition());
+
+          if (i == markers.length) {
+            i = 0;
+          }
         });
-      }
+      });
+      
+      // //Hier werden die Marker anklickbar gemacht
+      // for(i = 0; i < markers2.length; i++) {
+      //   const a = i;
+      //   markers2[a].addListener("click", () => {
+      //     infowindow.setContent(contentString[a]);
+      //     infowindow.open(map, markers2[a]);
+      //     map.setZoom(8);
+      //     map.setCenter(markers2[a].getPosition());
+      //   });
+      // }
 
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
@@ -224,13 +266,13 @@ function initMap() {
         if(this.checked) {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Factory") {
-              markers2[i].setVisible(true);
+              markers[i].setVisible(true);
             }
           }
         } else {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Factory") {
-              markers2[i].setVisible(false);
+              markers[i].setVisible(false);
             }
           }
         }
@@ -247,13 +289,13 @@ function initMap() {
         if(this.checked) {
           for (i = 0; i < auto_standort.length; i++) {
             if(auto_standort[i].type === "Supplier") {
-              markers2[i].setVisible(true);
+              markers[i].setVisible(true);
             }
           }
         } else {
             for (i = 0; i < auto_standort.length; i++) {
               if(auto_standort[i].type === "Supplier") {
-                markers2[i].setVisible(false);
+                markers[i].setVisible(false);
               }
             }
         }
@@ -267,19 +309,19 @@ function initMap() {
       var input = document.getElementById('searchbar').value.toLowerCase();
       var eingabe = false;
 
-      for(i = 0; i < markers2.length; i++) {
+      for(i = 0; i < markers.length; i++) {
         //erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
-        markers2[i].setVisible(false);
+        markers[i].setVisible(false);
         if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input || auto_standort[i].street.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
-          markers2[i].setVisible(true);
+          markers[i].setVisible(true);
           eingabe = true;
         }
       }
 
       //falls die Eingabe nicht übereinstimmt / es keine Eingabe gibt, werden alle Standorte angezeigt
       if (!eingabe) {
-        for(i = 0; i < markers2.length; i++) {
-          markers2[i].setVisible(true);
+        for(i = 0; i < markers.length; i++) {
+          markers[i].setVisible(true);
         }
         //falls die Eingabe leer ist
         if (input === "") {
@@ -294,6 +336,7 @@ function initMap() {
         setTimeout(function () {
           $('.alert').removeClass("show");
           $('.alert').addClass("hide");
+        setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
         }, 5000); //hide ist after 5 sec
       }
     });
@@ -303,4 +346,13 @@ function initMap() {
 $('.close-btn').click(function () {
   $('.alert').removeClass("show");
   $('.alert').addClass("hide");
+  setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
+});
+
+
+//close Info function
+$('.close-info').click(function () {
+  $('.info').removeClass("show");
+  $('.info').addClass("hide");
+  setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
 });

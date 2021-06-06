@@ -801,7 +801,7 @@
             "alternate_languages": [],
             "data": [
                 {
-                    "hcs_id": 1234,
+                    "hcs_id": 12343,
                     "fwf_id": 5309,
                     "type": "Supplier",
                     "division": "SPBKL",
@@ -852,7 +852,7 @@
                     "carbon_footprint": "0,000318236816887239"
                 },
                 {
-                    "hcs_id": 1234,
+                    "hcs_id": 124,
                     "fwf_id": 5309,
                     "type": "Supplier",
                     "division": "SPBKL",
@@ -903,7 +903,7 @@
                     "carbon_footprint": "0,000318236816887239"
                 },
                 {
-                    "hcs_id": 1234,
+                    "hcs_id": 134,
                     "fwf_id": 5309,
                     "type": "Factory",
                     "division": "SPBKL",
@@ -954,7 +954,7 @@
                     "carbon_footprint": "0,000318236816887239"
                 },
                 {
-                    "hcs_id": 1234,
+                    "hcs_id": 10234,
                     "fwf_id": 5309,
                     "type": "Factory",
                     "division": "SPBKL",
@@ -1005,7 +1005,7 @@
                     "carbon_footprint": "0,000318236816887239"
                 },
                 {
-                    "hcs_id": 1234,
+                    "hcs_id": 123446,
                     "fwf_id": 5309,
                     "type": "Supplier",
                     "division": "SPBKL",
