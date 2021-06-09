@@ -173,7 +173,6 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", "response2.json", false);
 xmlhttp.send();
 
-
 function initMap() {
 
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
@@ -234,11 +233,13 @@ function initMap() {
           document.querySelector('#picture').src =auto_standort[i].bild;
           ++i;
 
+          
           $('.info').addClass("show");
           $('.info').removeClass("hide");
           $('.info').addClass("showInfo");
-          map.setZoom(8);
           map.setCenter(loop.getPosition());
+          map.setZoom(8);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
 
           if (i == markers.length) {
             i = 0;
@@ -276,7 +277,6 @@ function initMap() {
             }
           }
         }
-
       });
 
 
@@ -330,6 +330,8 @@ function initMap() {
         } else {
           document.querySelector('.msg').innerHTML = "Kein Ergebnis!";
         }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         $('.alert').addClass("show");
         $('.alert').removeClass("hide");
         $('.alert').addClass("showAlert");
@@ -340,6 +342,14 @@ function initMap() {
         }, 5000); //hide ist after 5 sec
       }
     });
+
+    //close Info function
+  $('.close-info').click(function () {
+    $('.info').removeClass("show");
+    $('.info').addClass("hide");
+    setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
+    map.setZoom(5);
+  });
 } //Ende der initMap Funktion
 
 //close Alert function
@@ -350,9 +360,3 @@ $('.close-btn').click(function () {
 });
 
 
-//close Info function
-$('.close-info').click(function () {
-  $('.info').removeClass("show");
-  $('.info').addClass("hide");
-  setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
-});
