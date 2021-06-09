@@ -122,16 +122,29 @@ input[type="text"]:checked {
 body{
 	background: white;
 	font-family: 'Arial', sans-serif;
-  }
+	overflow-x: hidden;
+}
   
-  .search {
+.search {
 	width: 100%;
 	position: relative;
 	display: flex;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;800&display=swap');
+	transition: 300ms;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
+}
+
+.search:hover {
+	box-shadow: 0px 5px 30px rgba(0, 0, 0, .25);
+	transform: scale(1.1);
+}
+
+.searchTerm:current {
+	transform: scale(1.1);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;800&display=swap');
   
-  .searchTerm {
+.searchTerm {
 	width: 160%;
 	height: 40px;
 	border: 3px solid black;
@@ -142,9 +155,9 @@ body{
 	color: black;
 	font-size: 15px;
 	font-family: 'Poppins', sans-serif;
-  }
+}
   
-  .searchButton {
+.searchButton {
 	width: 60px;
 	height: 40px;
 	border: 3px solid black;
@@ -155,4 +168,6 @@ body{
 	cursor: pointer;
 	font-size: 20px;
 	font-family: 'Poppins', sans-serif;
-  }
+}
+
+
