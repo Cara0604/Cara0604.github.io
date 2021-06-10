@@ -177,7 +177,7 @@ function initMap() {
            newMarker = new google.maps.Marker({
             position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
            map: map,
-           icon: new google.maps.MarkerImage('/bilder/fabrik.svg', null, null, null, new google.maps.Size(30,30)),
+           icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
            animation: google.maps.Animation.DROP,
            title: auto_standort[0].name
            });
@@ -186,7 +186,7 @@ function initMap() {
           newMarker = new google.maps.Marker({
          position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
           map: map,
-          icon: new google.maps.MarkerImage('/bilder/nahmaschine.svg', null, null, null, new google.maps.Size(30,30)),
+          icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
           title: auto_standort[0].name
           });
