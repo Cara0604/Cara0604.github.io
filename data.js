@@ -12,8 +12,6 @@ xmlhttp.onreadystatechange = function () {
         var a = 0;
 
         for (var i = 0; i < json_length; ++i) {
-            infos.push(myObj.results[1].data[i].street);
-            infos.push(myObj.results[1].data[i].zip_code);
             infos.push(myObj.results[1].data[i].country);
             infos.push(myObj.results[1].data[i].place);
             infos.push(myObj.results[1].data[i].name);

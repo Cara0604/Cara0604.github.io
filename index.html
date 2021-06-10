@@ -3,12 +3,12 @@
 
 <!-- Test zum automatischen Laden der .json Datei -->
 <script>
-fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi')
-     .then(res => res.json())
-     .then((out) => {
-        console.log('Output: ', out);
- }).catch(err => console.error(err));
- </script>
+    fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi')
+        .then(res => res.json())
+        .then((out) => {
+            console.log('Output: ', out);
+        }).catch(err => console.error(err));
+</script>
 
 <head>
     <meta charset="utf-8">
@@ -31,31 +31,34 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
     <meta name="keywords" content="Supply-Chain, sustainability, caring about your customers, environmental Protection">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <title>Supply-Chain Übersicht</title>
 </head>
 
 <body>
     <!--Info Window-->
     <div class="info hide">
-         <span class="close-info">
-            <i class="fas fa-times-circle"></i>         
+        <span class="close-info">
+            <i class="fas fa-times-circle"></i>
         </span>
         <div class="content">
-            <h1 id="firstHeading"></h1> 
+            <h1>Standort: <span id="firstHeading"></span></h1>
             <div class="bodyContent">
-                <p id="typ"></p>
-                <p id="adresse"></p>
-                <p id="creditor"></p>
-                <p id="partner-seit"></p>
-                <p id="purchasing-volume"></p>
-                <p id="estimated-leverage"></p>
-                <p id="arbeiterinnen"></p>
-                <p id="arbeiter"></p>
-                <p id="beschwerden"></p>
-                <p id="transport"></p>
-                <p id="co2-fußabdruck"></p>
+                <p>Typ: <span id="typ"></span></p>
+                <p>Adresse: <span id="adresse"></span></p>
+                <p>Creditor: <span id="creditor"></span></p>
+                <p>Partner-seit: <span id="partner-seit"></span></p>
+                <p> Purchasing-volume: <span id="purchasing-volume"></span></p>
+                <p>Estimated-leverage: <span id="estimated-leverage"></span></p>
+                <p>Arbeiterinnen: <span id="arbeiterinnen"></span></p>
+                <p>Arbeiter: <span id="arbeiter"></span></p>
+                <p>Beschwerden: <span id="beschwerden"></span></p>
+                <p class="ALLESMUSSRAUS">Transport: <span id="transport"></span></p>
+                <p class="ALLESMUSSRAUS">Co2-Fußabdruck: <span id="co2-fußabdruck"></span></p>
                 <img width="400" id="picture" src="" alt="supplier_image">
+                <p id="more">Weitere Informationen finden sie <a target="_blank" href="https://www.youtube.com/watch?v=xvFZjo5PgG0">hier</a></p>
             </div>
         </div>
     </div>
@@ -65,7 +68,7 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
         <span class="fas fa-exclamation-circle"></span>
         <span class="msg">Kein Ergebnis gefunden!</span>
         <span class="close-btn">
-            <span class="fas fa-times"></span>        
+            <span class="fas fa-times"></span>
         </span>
     </div>
 
@@ -76,36 +79,41 @@ fetch('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIA
             <h2 class="header_2">Standortsuche:</h2>
 
             <form id="searchForm" autocomplete="off" action="/action_page.php">
-                    <div class="search autocomplete">
-                       <input type="text" class="searchTerm myInput" placeholder="Fabrikname, Land, PLZ..." id="searchbar">
-                       <button type="button" value="search" class="searchButton" id="button">
-                         <i class="fa fa-search"></i>
-                      </button>
-                    </div>
+                <div class="search autocomplete">
+                    <input type="text" class="searchTerm myInput" placeholder="Name, Land, Stadt"
+                        id="searchbar">
+                    <button type="button" value="search" class="searchButton" id="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
             </form>
-            
+
             <form class="check">
-             <div class="div_check">
-                  <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
-                 <label class="label" for="checkbox-2">Lieferanten</label>
-             </div>
-             <div class="div_check">
-                    <input type="checkbox"  id="checkbox-1" name="Produzenten"checked>
+                <div class="div_check">
+                    <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
+                    <label class="label" for="checkbox-2">Lieferanten</label>
+                </div>
+                <div class="div_check">
+                    <input type="checkbox" id="checkbox-1" name="Produzenten" checked>
                     <label class="label" for="checkbox-1">Produzenten</label>
-            </div>
+                </div>
             </form>
         </div>
     </div>
-    
+
     <!--The div element for the map -->
     <div id="map">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
-    <!--Suchbutton einfügen-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
-   
-    <!--jQuery einbinden, damit das Enter funktioniert-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-</div>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap"
+            type="text/javascript"></script>
+        <!--Suchbutton einfügen-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+            crossorigin="anonymous"></script>
+
+        <!--jQuery einbinden, damit das Enter funktioniert-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    </div>
 
 </body>
 <footer>
