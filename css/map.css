@@ -2,10 +2,4 @@
     border: currentColor 5px solid;
     box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.25); /*letzer Wert beschreibt, ab wann die staubwolke beginnt*/
     transition: 300ms;
-
-}
-
-#map:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 20px 70px 0px rgba(0, 0, 0, 0.25);
 }
