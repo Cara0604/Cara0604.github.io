@@ -1,7 +1,6 @@
 //Klasse Standort
 class Standort {
 
-
   //Konstruktor der Klasse
   constructor(la, lo, name, type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
      estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
@@ -41,6 +40,7 @@ class Standort {
   this.country_code = country_code;
   this.country = country;
   }
+
 }
 
 //Globale Variablen
@@ -95,23 +95,23 @@ xmlhttp.onreadystatechange = function() {
     var myObj = JSON.parse(this.responseText);
 
     //Länge des Datensatzes (die Anzahl der Standorte)
-    json_length = Object.keys(myObj.data).length;
+    json_length = Object.keys(myObj.results[1].data).length;
 
     //hier werden die Daten aus der JSON-Datei in Variablen gespeichert
     for(var i = 0; i < json_length; ++i){
     
-    hcs_id = myObj.data[i].hcs_id; //Versuch eine eindeutige id zu beziehen, um die Standorte zu unterscheiden; Im Konstruktor, in der Klasse als auch in der attributenliste angepasst. 
-    la = myObj.data[i].coordinates.latitude;
-    lo = myObj.data[i].coordinates.longitude;
-    name = myObj.data[i].name;
+    hcs_id = myObj.results[1].data[i].hcs_id; //Versuch eine eindeutige id zu beziehen, um die Standorte zu unterscheiden; Im Konstruktor, in der Klasse als auch in der attributenliste angepasst. 
+    la = myObj.results[1].data[i].coordinates.latitude;
+    lo = myObj.results[1].data[i].coordinates.longitude;
+    name = myObj.results[1].data[i].name;
     type = myObj.results[1].data[i].type;
-    /*street = myObj.results[1].data[i].street;
+    street = myObj.results[1].data[i].street;
     street_addition = myObj.results[1].data[i].street_addition;
     zip_code = myObj.results[1].data[i].zip_code;
     place = myObj.results[1].data[i].place;
     country_code = myObj.results[1].data[i].country_code;
     country = myObj.results[1].data[i].country;
-    adress = myObj.results[1].data[i].country + ", " +myObj.results[1].data[i].place;
+    adress = myObj.results[1].data[i].street + " <p>" +  myObj.results[1].data[i].zip_code + " ," + myObj.results[1].data[i].place + "<p>" + myObj.results[1].data[i].country_code + " ," + myObj.results[1].data[i].country;
     bild = myObj.results[1].data[i].supplier_image.url;
     creditor = myObj.results[1].data[i].creditor;
     division = myObj.results[1].data[i].devision;
@@ -132,7 +132,7 @@ xmlhttp.onreadystatechange = function() {
     port_coordinates_latitude = myObj.results[1].data[i].port_coordinates_latitude;
     port_coordinates_longitude = myObj.results[1].data[i].port_coordinates_longitude;
     warehouse_name = myObj.results[1].data[i].warehouse_name;
-    carbon_footprint = myObj.results[1].data[i].carbon_footprint;*/
+    carbon_footprint = myObj.results[1].data[i].carbon_footprint;
 
     //für jeden Standort wird ein Objekt erzeugt
     let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
@@ -141,6 +141,26 @@ xmlhttp.onreadystatechange = function() {
       port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
 
     auto_standort.push(t);
+
+    //ursprüngliche Daten für das InfoWindow
+    // contentString[i]=
+    //   `<div id="content">` +
+    //     `<h1 id="firstHeading" class="firstHeading">${ auto_standort[i].name }</h1>` +
+    //     `<div id="bodyContent">` +
+    //       `<p><b>- Typ: </b> ${auto_standort[i].type} </p> `+
+    //       `<p><b>- Adresse: </b> ${auto_standort[i].adress} </p> `+
+    //       `<p><b>- Creditor: </b> ${auto_standort[i].creditor} </p>` +
+    //       `<p><b>- Partner seit: </b> ${auto_standort[i].partner_since_year} </p>` +
+    //       `<p><b>- Purchasing volume: </b> ${auto_standort[i].purchasing_volume} </p>` +
+    //       `<p><b>- Estimated Leverage: </b> ${auto_standort[i].estimated_leverage} </p>` +
+    //       `<p><b>- Arbeiterinnen: </b> ${auto_standort[i].employees_female} </p>` +
+    //       `<p><b>- Arbeiter: </b> ${auto_standort[i].employees_male} </p>` +
+    //       `<p><b>- Beschwerden: </b> ${auto_standort[i].complaints} </p>` +
+    //       `<p><b>- Transportart: </b> ${auto_standort[i].mode_of_transportation} </p>` +
+    //       `<p><b>- CO2-Fußabdruck: </b> ${auto_standort[i].carbon_footprint} </p>` +
+    //       `<img src=${auto_standort[i].bild} width="400" alt="supplier_image">`
+    //     "</div>" +
+    //   '</div>';
   }
 
   //Alle ids in einem Feld speichern
@@ -157,7 +177,7 @@ function initMap() {
 
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
+      zoom: 3.5,
       center: {lat: 30.363, lng: 50.234},
     });
 
@@ -172,7 +192,7 @@ function initMap() {
            newMarker = new google.maps.Marker({
             position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
            map: map,
-           icon: new google.maps.MarkerImage('/bilder/fabrik.svg', null, null, null, new google.maps.Size(30,30)),
+           icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
            animation: google.maps.Animation.DROP,
            title: auto_standort[i].name
            });
@@ -181,7 +201,7 @@ function initMap() {
           newMarker = new google.maps.Marker({
          position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
           map: map,
-          icon: new google.maps.MarkerImage('/bilder/nahmaschine.svg', null, null, null, new google.maps.Size(30,30)),
+          icon: new google.maps.MarkerImage('/bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
           title: auto_standort[i].name
           });
@@ -195,24 +215,24 @@ function initMap() {
       //Wäre nice noch die Fensterbreite anzupassen, damit es durch die Benachrichtungen nicht soweit nach links verschwindet (kann ich auch selber nächste Woche anschauen)
       var i = 0;
       markers.forEach(loop => {
-        loop.addListener("click", (event) =>  { 
-          document.querySelector('#firstHeading').textContent = auto_standort[i].name;
-          document.querySelector('#typ').textContent = auto_standort[i].type;
-          document.querySelector('#adresse').textContent = auto_standort[i].adress;
-          document.querySelector('#creditor').textContent = auto_standort[i].creditor;
-          document.querySelector('#partner-seit').textContent = auto_standort[i].partner_since_year;
-          document.querySelector('#purchasing-volume').textContent = auto_standort[i].purchasing_volume;
-          document.querySelector('#estimated-leverage').textContent = auto_standort[i].estimated_leverage;
-          document.querySelector('#arbeiterinnen').textContent = auto_standort[i].employees_female;
-          document.querySelector('#arbeiter').textContent = auto_standort[i].employees_male;
-          document.querySelector('#beschwerden').textContent = auto_standort[i].complaints;
+        loop.addListener("click", (event) =>  {
+          
+          console.log(i);
+          document.querySelector('#firstHeading').textContent = "Standort: " + auto_standort[i].name;
+          document.querySelector('#typ').textContent = "Art: " + auto_standort[i].type;
+          document.querySelector('#adresse').textContent = "Adresse: " + auto_standort[i].adress;
+          document.querySelector('#creditor').textContent = "Creditor: " + auto_standort[i].creditor;
+          document.querySelector('#partner-seit').textContent = "Partner seit: " + auto_standort[i].partner_since_year;
+          document.querySelector('#purchasing-volume').textContent = "Purchasing Volume: " + auto_standort[i].purchasing_volume;
+          document.querySelector('#estimated-leverage').textContent = "Estimated Leverage: " + auto_standort[i].estimated_leverage;
+          document.querySelector('#arbeiterinnen').textContent = "Arbeiterinnen: " + auto_standort[i].employees_female;
+          document.querySelector('#arbeiter').textContent = "Arbeiter: " + auto_standort[i].employees_male;
+          document.querySelector('#beschwerden').textContent = "Beschwerden" + auto_standort[i].complaints;
+          document.querySelector('#transport').textContent = "Transport: " + auto_standort[i].mode_of_transportation;
+          document.querySelector('#co2-fußabdruck').textContent = "CO2-Fußabdruck:" + auto_standort[i].carbon_footprint;
           document.querySelector('#picture').src =auto_standort[i].bild;
-          document.querySelector('.ALLESMUSSRAUS').textContent= "";
           ++i;
-          
-          
-          //document.querySelector('#transport').textContent = "Transport: " + auto_standort[i].mode_of_transportation;   Falls dies geschwünscht ist kann man es wieder hinzufügen
-          //document.querySelector('#co2-fußabdruck').textContent = "CO2-Fußabdruck:" + auto_standort[i].carbon_footprint;
+
           
           $('.info').addClass("show");
           $('.info').removeClass("hide");
@@ -292,7 +312,7 @@ function initMap() {
       for(i = 0; i < markers.length; i++) {
         //erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
         markers[i].setVisible(false);
-        if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
+        if(auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].zip_code == input || auto_standort[i].street.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
           markers[i].setVisible(true);
           eingabe = true;
         }
@@ -328,8 +348,8 @@ function initMap() {
     $('.info').removeClass("show");
     $('.info').addClass("hide");
     setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
-    map.setZoom(4);
-  })
+    map.setZoom(5);
+  });
 } //Ende der initMap Funktion
 
 //close Alert function
@@ -338,5 +358,3 @@ $('.close-btn').click(function () {
   $('.alert').addClass("hide");
   setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
 });
-
-
