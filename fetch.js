@@ -1,5 +1,5 @@
 //OPTION 1:
-$.getJSON('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D', function(data) {
+$.getJSON('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27', function(data) {
     // Data ist der Name der Variable, in der das Ergebnis gespeichert werden soll
 });
 
@@ -18,3 +18,6 @@ fetch(url)
   console.log('Das ist die .json! ', out);
 })
 .catch(err => { throw err });
+
+
+url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27';
