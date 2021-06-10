@@ -158,8 +158,6 @@ xmlhttp.send();
 
 function initMap() {
 
-  console.log(auto_standort[0].name);
-
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -184,12 +182,12 @@ function initMap() {
         }
        else {
           newMarker = new google.maps.Marker({
-         position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
+            position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
           map: map,
-          icon: new google.maps.MarkerImage('/bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
-          animation: google.maps.Animation.DROP,
-          title: auto_standort[0].name
-          });
+           icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+           animation: google.maps.Animation.DROP,
+           title: auto_standort[0].name
+           });
         }
         markers.push(newMarker);
       //}
@@ -198,9 +196,18 @@ function initMap() {
       //Es muss einen Weg geben herauszufinden, welches POI gedrückt worden ist, um damit den richtigen Index einzusetzen und damit das richtige InfoWindow zu bekommen. Bei dem Erzfeind (Jack Wolfskin) funktioniert es ja auch!
 
       //Wäre nice noch die Fensterbreite anzupassen, damit es durch die Benachrichtungen nicht soweit nach links verschwindet (kann ich auch selber nächste Woche anschauen)
+      //wir müssen eine id für den index finden
+
       var i = 0;
       markers.forEach(loop => {
         loop.addListener("click", (event) =>  {
+// möglicherweise funktioniert es, wenn wir abrufen, welcher Standort dieser marker hat, aber auf diesen muss man auch erstmal zugreifen
+          // for (var a = 0; a < auto_standort.length; ++a) {
+          //   if (marker.position.lng())
+          // }
+          console.log(markers[0].position.lng());
+          console.log(markers);
+
           document.querySelector('#firstHeading').textContent = auto_standort[i].name;
           document.querySelector('#typ').textContent = auto_standort[i].type;
           document.querySelector('#adresse').textContent = auto_standort[i].adress;
