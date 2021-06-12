@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <title>Supply-Chain Übersicht</title>
+    <title>Supply-Chain Overview</title>
 </head>
 
 <body>
@@ -46,21 +46,21 @@
             <i class="fas fa-times-circle"></i>
         </span>
         <div class="content">
-            <h1>Standort: <span id="firstHeading"></span></h1>
+            <h1>Location: <span id="firstHeading"></span></h1>
             <div class="bodyContent">
-                <p>Typ: <span id="typ"></span></p>
-                <p>Adresse: <span id="adresse"></span></p>
+                <p>Type: <span id="typ"></span></p>
+                <p>Adress: <span id="adresse"></span></p>
                 <p>Creditor: <span id="creditor"></span></p>
-                <p>Partner-seit: <span id="partner-seit"></span></p>
+                <p>Partner-since: <span id="partner-seit"></span></p>
                 <p> Purchasing-volume: <span id="purchasing-volume"></span></p>
                 <p>Estimated-leverage: <span id="estimated-leverage"></span></p>
-                <p>Arbeiterinnen: <span id="arbeiterinnen"></span></p>
-                <p>Arbeiter: <span id="arbeiter"></span></p>
-                <p>Beschwerden: <span id="beschwerden"></span></p>
+                <p>Female Workers: <span id="arbeiterinnen"></span></p>
+                <p>Male workers: <span id="arbeiter"></span></p>
+                <p>Complaints: <span id="beschwerden"></span></p>
                 <p class="ALLESMUSSRAUS">Transport: <span id="transport"></span></p>
                 <p class="ALLESMUSSRAUS">Co2-Fußabdruck: <span id="co2-fußabdruck"></span></p>
                 <img width="400" id="picture" src="" alt="supplier_image">
-                <p id="more">Weitere Informationen finden sie <a target="_blank" href="https://www.youtube.com/watch?v=xvFZjo5PgG0">hier</a></p>
+                <p id="more">For more information please press <a target="_blank" href="https://www.youtube.com/watch?v=xvFZjo5PgG0">here</a></p>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
     <!-- Alert Elemente-->
     <div class="alert hide">
         <span class="fas fa-exclamation-circle"></span>
-        <span class="msg">Kein Ergebnis gefunden!</span>
+        <span class="msg">No Results Found</span>
         <span class="close-btn">
             <span class="fas fa-times"></span>
         </span>
@@ -76,9 +76,9 @@
 
     <!-- Überschrift der Webseite -->
     <div class="container">
-        <h1 class="header_1"> Willkommen auf unserer Supply-Chain-Map</h1>
+        <h1 class="header_1"> Welcome To Our Supply Chain/h1>
         <div class="uebersicht">
-            <h2 class="header_2">Standortsuche:</h2>
+            <h2 class="header_2">Location Search</h2>
 
             <form id="searchForm" autocomplete="off" action="/action_page.php">
                 <div class="search autocomplete">
@@ -93,11 +93,11 @@
             <form class="check">
                 <div class="div_check">
                     <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
-                    <label class="label" for="checkbox-2">Lieferanten</label>
+                    <label class="label" for="checkbox-2">Supplier</label>
                 </div>
                 <div class="div_check">
                     <input type="checkbox" id="checkbox-1" name="Produzenten" checked>
-                    <label class="label" for="checkbox-1">Produzenten</label>
+                    <label class="label" for="checkbox-1">Producer</label>
                 </div>
             </form>
         </div>
