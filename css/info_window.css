@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap');
 
 .info {
-    padding: 20px 40px;
-    min-width: 420px;
+    min-width: 620px;
     position: absolute;
     right: 0;
     top: 10px;
@@ -15,7 +14,7 @@
     z-index: 1;
     border-color: black;
     background: black;
-    /*background: rgba(255, 255, 255, 0.4);*/
+    /* background: rgba(255, 255, 255, 0.4); */
     box-shadow: 0 15px 20px rgba(0,0,0,0.2);
 }
 
@@ -64,21 +63,24 @@
     }
 }
 
+/* bearbeitet die Größe des Schließbuttons + Position*/
 .info .fa-times-circle {
     position: absolute;
-    left: 5px;
-    padding-left: 4px;
-    transform: translateY(-25%);
+    transform: translateY(20%);
     color: white;
-    font-size: 30px;
+    font-size: 27px;
 }
 
+/* Position des Buttons */
+.info .close-info {
+    position: relative;
+    transform: translateY(-30%);
+    cursor: pointer;
+}
+
+/* bearbeitet den Inhalt in der Box */
 .info .content {
-    padding: 0 20px;
-    font-size: 18px;
-    color: lightslategray;
-    padding: 0 10px;
-    height: 50vh;
+    padding: 5% 4px 5% 5%;
     max-width: 800px;
     min-height: 600px;
 }
@@ -88,24 +90,19 @@
     color: rgb(139, 134, 134);
 }
 
-.content h1 {
-    margin: 0 0 20px;
-    padding: 0;
+#firstHeading, .info h1 {
+    color: white;
+    margin: 0 0 10px;
     font-size: 40px;
     text-transform: uppercase;
-    color: white;
     text-decoration: underline;
     font-family: 'Poppins', sans-serif;
-
+    letter-spacing: 5px;
 }
-
 
 .bodyContent{
     color:lightgrey;
     font-weight: 100;
-    font-family: 'Playfair Display',
-    serif;
-}
-#hallo {
-    color: red;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 4px;
 }

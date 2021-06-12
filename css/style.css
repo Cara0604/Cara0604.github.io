@@ -122,7 +122,11 @@ input[type="text"]:checked {
 body{
 	background: white;
 	font-family: 'Arial', sans-serif;
+}
+
+#wrapper {
 	overflow-x: hidden;
+	position: relative;
 }
   
 .search {

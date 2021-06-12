@@ -60,6 +60,7 @@
     }
 }
 
+/* Ausrufezeichen bearbeiten */
 .alert .fa-exclamation-circle{
     position: absolute;
     left: 20px;
@@ -88,6 +89,7 @@
 .alert .close-btn:hover{
   background: #645e5e;
 }
+
 .alert .close-btn .fas{
   color: #645e5e;
   font-size: 22px;
