@@ -8,14 +8,13 @@
     top: 10px;
     border-radius: 4px;
     border-left: 8px solid black;
-    overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: 100000;
     border-color: black;
     background: black;
     /* background: rgba(255, 255, 255, 0.4); */
-    box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
 
 .info.showInfo {
@@ -25,41 +24,35 @@
 
 
 .info.show {
-    animation: show_slide 1s ease forwards;
-    
+    animation: showInfo 1s ease forwards;
 }
 
-@keyframes show_slide {
-    0%{
+@keyframes showInfo {
+    0% {
         transform: translateX(100%);
     }
-    40%{
+
+    40% {
         transform: translateX(-10%);
     }
-    80%{
-        transform: translateX(0%);
-    }
-    100%{
+
+    100% {
         transform: translateX(-10px);
     }
 }
 
 .info.hide {
-    animation: hide_slide 1s ease forwards;
+    animation: hideInfo 1s ease forwards;
 }
 
-@keyframes hide_slide {
-    0%{
-        transform: translateX(-10px);
+@keyframes hideInfo {
+
+    40% {
+        transform: translateY(-10%);
     }
-    40%{
-        transform: translateX(0%);
-    }
-    80%{
-        transform: translateX(-10%);
-    }
-    100%{
-        transform: translateX(100%);
+
+    100% {
+        transform: translateY(200%);
     }
 }
 
@@ -81,17 +74,18 @@
 /* bearbeitet den Inhalt in der Box */
 .info .content {
     padding: 5% 4px 5% 5%;
-    max-width: 800px;
+    max-width: 600px;
     min-height: 600px;
 }
 
-.close-info .fa-times-circle:hover  {
+.close-info .fa-times-circle:hover {
     cursor: pointer;
     color: rgb(139, 134, 134);
 }
 
-#firstHeading, .info h1 {
-    color: white;
+#firstHeading,
+.info h1 {
+    color: rgb(255, 255, 255);
     margin: 0 0 10px;
     font-size: 40px;
     text-transform: uppercase;
@@ -100,9 +94,30 @@
     letter-spacing: 5px;
 }
 
-.bodyContent{
-    color:lightgrey;
+.bodyContent {
+    color: rgb(253, 253, 253);
     font-weight: 100;
     font-family: 'Playfair Display', serif;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.bodyContent span {
+    color: rgb(187, 180, 180);
+    font-family: 'Anton', sans-serif;
+    letter-spacing: normal;
+}
+
+#picture {
+    position: relative;
+    width: 100%;
+    border: 5px rgb(255, 255, 255) ridge;
+    margin: auto;
+    margin-top: 18px;
+    margin-bottom: 3px;
+}
+
+.bodyContent a {
+    color: rgb(146, 246, 250);
 }

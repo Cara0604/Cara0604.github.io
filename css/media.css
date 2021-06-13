@@ -15,24 +15,20 @@
     width:100%;
     min-width: 100%;
     min-height: 100%;
-    z-index: 1;
+    z-index: 1000000000;
   }
 
   .info.show {
-    animation: mediaShow_slide 1s ease forwards;
+    animation: mediaShowInfo 1s ease forwards;
   }
 
-  @keyframes mediaShow_slide {
+  @keyframes mediaShowInfo {
     0% {
       transform: translateX(100%);
     }
 
     40% {
       transform: translateX(-10%);
-    }
-
-    80% {
-      transform: translateX(0%);
     }
 
     100% {
@@ -41,24 +37,16 @@
   }
 
   .info.hide {
-    animation: mediaHide_slide 1s ease forwards;
+    animation: mediaHideInfo 1s ease forwards;
   }
 
-  @keyframes mediaHide_slide {
-    0% {
-      transform: translateX(0px);
-    }
-
+  @keyframes mediaHideInfo {
     40% {
-      transform: translateX(0%);
-    }
-
-    80% {
-      transform: translateX(-10%);
+      transform: translateY(-10%);
     }
 
     100% {
-      transform: translateX(100%);
+      transform: translateY(200%);
     }
   }
 
@@ -73,5 +61,5 @@
 }
 
 /* Wir bräuchten noch eine navbar, damit man das infor window besser an den oberen seitenrand anpassen kann */
-/* Bug entdeckt: Wenn man auf die Suchleiste tippt und anschließend auf ein Icon, dann ist die Suchleiste oberhalb des infowindows */
+
 /* Sobald das Fenster die Breite 1160 erreicht, verschiebt die Suchleiste nach unten*/

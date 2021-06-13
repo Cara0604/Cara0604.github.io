@@ -29,7 +29,5 @@ xmlhttp.onreadystatechange = function () {
 
 xmlhttp.open("GET", ('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27'), false);
 xmlhttp.send();
+
 autocomplete(document.querySelector('.myInput'), infos);
-
-
-//wenn input leer ist, dann soll man die Standorte wieder neuladennn

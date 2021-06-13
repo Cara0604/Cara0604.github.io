@@ -6,6 +6,7 @@ function autocomplete(inp, arr) {
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value; //value von input hinzugefügt
         closeAllLists();
+
         if (!val) { return false; }
         currentFocus = -1;
 
@@ -64,6 +65,9 @@ function autocomplete(inp, arr) {
                 document.getElementById('button').click();
                 return false;
             });
+            $('.info').removeClass("show");
+            $('.info').addClass("hide");
+            setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
         }
     })
     function addActive(x) {
@@ -75,12 +79,14 @@ function autocomplete(inp, arr) {
         if (currentFocus < 0) currentFocus = (x.length - 1);
         /*add class "autocomplete-active":*/
         x[currentFocus].classList.add("autocomplete-active");
+        
     }
     function removeActive(x) {
         /*a function to remove the "active" class from all autocomplete items:*/
         for (var i = 0; i < x.length; i++) {
             x[i].classList.remove("autocomplete-active");
         }
+        
     }
     function closeAllLists(elmnt) {
         /*close all autocomplete lists in the document,
@@ -91,9 +97,17 @@ function autocomplete(inp, arr) {
                 x[i].parentNode.removeChild(x[i]);
             }
         }
+        
     }
     /*execute a function when someone clicks in the document:*/
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
+    });
+
+    var button = document.querySelector('.search');
+    button.addEventListener("click", () => {
+        $('.info').removeClass("show");
+        $('.info').addClass("hide");
+        setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
     });
 }

@@ -85,76 +85,95 @@ var ids = []; //Alle Ids um zu vergleichen, ids existieren
 var json_length;
 
 //Feld, in dem alle Marker gespeichert werden
-var markers = []; //wofür den Namen markers2? es gibt nur ein markers
+var markers = []; 
 
 //Request, um die Daten aus der JSON-Datei zu holen
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
+
+var abfrage;
+
+var abfrage = new XMLHttpRequest();
+abfrage.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    var myObj = JSON.parse(this.responseText);
+    var myObj = JSON.parse(abfrage.responseText);
 
     console.log(myObj.results[0].data.coordinates);
+    console.log(abfrage);
+
 
     //Länge des Datensatzes (die Anzahl der Standorte)
+    json_length = Object.keys(myObj.results).length;
+
     //json_length = Object.keys(myObj.results[0].data).length;
-    //console.log(json_length);
+
 
     //hier werden die Daten aus der JSON-Datei in Variablen gespeichert
-    //for(var i = 0; i < json_length; ++i){
+    for (var i = 0; i < json_length; ++i){
 
-    hcs_id = myObj.results[0].data.hcs_id; //Versuch eine eindeutige id zu beziehen, um die Standorte zu unterscheiden; Im Konstruktor, in der Klasse als auch in der attributenliste angepasst.
-    la = myObj.results[0].data.coordinates.latitude;
-    lo = myObj.results[0].data.coordinates.longitude;
-    name = myObj.results[0].data.name;
-    type = myObj.results[0].data.type;
-    street = myObj.results[0].data.street;
-    street_addition = myObj.results[0].data.street_addition;
-    zip_code = myObj.results[0].data.zip_code;
-    place = myObj.results[0].data.place;
-    country_code = myObj.results[0].data.country_code;
-    country = myObj.results[0].data.country;
-    adress = myObj.results[0].data.country + ", " +myObj.results[0].data.place;
-    bild = myObj.results[0].data.supplier_image.url;
-    creditor = myObj.results[0].data.creditor;
-    division = myObj.results[0].data.devision;
-    partner_since_year = myObj.results[0].data.partner_since_year;
-    purchasing_volume = myObj.results[0].data.purchasing_volume;
-    estimated_leverage = myObj.results[0].data.estimated_leverage;
-    employees_female = myObj.results[0].data.emloyees_female;
-    employees_male = myObj.results[0].data.employees_male;
-    audit_type = myObj.results[0].data.audit_type;
-    fair_wear_audit = myObj.results[0].data.fair_wear_audit;
-    last_fair_wear_training = myObj.results[0].data.last_fair_wear_training;
-    bsci_id = myObj.results[0].data.bsci_id;
-    wrap_id = myObj.results[0].data.wrap_id;
-    complaints = myObj.results[0].data.complaints;
-    certificates = myObj.results[0].data.certificates;
-    mode_of_transportation = myObj.results[0].data.mode_of_transportation;
-    port_name = myObj.results[0].data.port_name;
-    port_coordinates_latitude = myObj.results[0].data.port_coordinates_latitude;
-    port_coordinates_longitude = myObj.results[0].data.port_coordinates_longitude;
-    warehouse_name = myObj.results[0].data.warehouse_name;
-    carbon_footprint = myObj.results[0].data.carbon_footprint;
+      la = myObj.results[i].data.coordinates.latitude;
+      lo = myObj.results[i].data.coordinates.longitude;
+      name = myObj.results[i].data.name;
+      type = myObj.results[i].data.type;
+      street = myObj.results[i].data.street;
+      street_addition = myObj.results[i].data.street_addition;
+      zip_code = myObj.results[i].data.zip_code;
+      place = myObj.results[i].data.place;
+      country_code = myObj.results[i].data.country_code;
+      country = myObj.results[i].data.country;
+      adress = myObj.results[i].data.country + ", " + myObj.results[i].data.place;
+      bild = myObj.results[i].data.supplier_image.url;
+      creditor = myObj.results[i].data.creditor;
+      division = myObj.results[i].data.devision;
+      partner_since_year = myObj.results[i].data.partner_since_year;
+      purchasing_volume = myObj.results[i].data.purchasing_volume;
+      estimated_leverage = myObj.results[i].data.estimated_leverage;
+      employees_female = myObj.results[i].data.emloyees_female;
+      employees_male = myObj.results[i].data.employees_male;
+      audit_type = myObj.results[i].data.audit_type;
+      fair_wear_audit = myObj.results[i].data.fair_wear_audit;
+      last_fair_wear_training = myObj.results[i].data.last_fair_wear_training;
+      bsci_id = myObj.results[i].data.bsci_id;
+      wrap_id = myObj.results[i].data.wrap_id;
+      complaints = myObj.results[i].data.complaints;
+      certificates = myObj.results[i].data.certificates;
+      mode_of_transportation = myObj.results[i].data.mode_of_transportation;
+      port_name = myObj.results[i].data.port_name;
+      port_coordinates_latitude = myObj.results[i].data.port_coordinates_latitude;
+      port_coordinates_longitude = myObj.results[i].data.port_coordinates_longitude;
+      warehouse_name = myObj.results[i].data.warehouse_name;
+      carbon_footprint = myObj.results[i].data.carbon_footprint;
 
-    //für jeden Standort wird ein Objekt erzeugt
-    let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
-      partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
-      audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
-      port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
+      //für jeden Standort wird ein Objekt erzeugt
+      let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
+        partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
+        audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
+        port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
 
-    auto_standort.push(t);
-  //}
-
-  //Alle ids in einem Feld speichern
-  //for (var i = 0; i < json_length; ++i) {
-    ids[0] = myObj.results[0].data.hcs_id;
-  //}
+      auto_standort.push(t);
+    }
+  }
 }
-};
 
-xmlhttp.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27', false);
-xmlhttp.send();
 
+abfrage.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27', false);
+// abfrage.open("GET", "response2.json", false);
+abfrage.send();
+
+
+// $.ajax( {
+//   async: true,
+//   url: "https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27",
+//   context: abfrage.body,
+//   success: function() {
+//       $(this).addClass("done");
+//   }
+// });
+
+
+/*$.ajax({
+  dataType: "json",
+  url: 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27',
+});
+*/
 
 function initMap() {
 
@@ -162,122 +181,69 @@ function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: {lat: 30.363, lng: 50.234},
+      restriction: {
+        latLngBounds: {
+          north: 85,
+          south: -85,
+          west: -180,
+          east: 180
+        }
+      },
     });
+    map.setOptions({ minZoom: 2.5});
 
+    //Marker anlegen
     const infowindow = new google.maps.InfoWindow({
     });
 
-    //für jeden Standort benötigen wir einen Marker
-      //Hier werden die Marker angelegt
-
-      //for (i = 0; i < json_length; i++) {
-        //const a = i;
-        if (auto_standort[0].type === "Supplier") {
+      for (var i = 0; i < json_length; i++) {
+        const a = i;
+        if (auto_standort[i].type === "Supplier") {
            newMarker = new google.maps.Marker({
-            position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
+            position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
            map: map,
-           icon: new google.maps.MarkerImage('../bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+           icon: new google.maps.MarkerImage('bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
            animation: google.maps.Animation.DROP,
-           title: auto_standort[0].name
+           title: auto_standort[i].name
            });
         }
        else {
           newMarker = new google.maps.Marker({
-            position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
+            position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
           map: map,
-          icon: new google.maps.MarkerImage('../bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+          icon: new google.maps.MarkerImage('bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
-          title: auto_standort[0].name
+          title: auto_standort[i].name
           });
         }
 
-        //ab hier die 0 durch das a ersetzen
-        newMarker.addListener("click", (event) => {
-          document.querySelector('#firstHeading').textContent = auto_standort[0].name;
-          document.querySelector('#typ').textContent = auto_standort[0].type;
-          document.querySelector('#adresse').textContent = auto_standort[0].adress;
-          document.querySelector('#creditor').textContent = auto_standort[0].creditor;
-          document.querySelector('#partner-seit').textContent = auto_standort[0].partner_since_year;
-          document.querySelector('#purchasing-volume').textContent = auto_standort[0].purchasing_volume;
-          document.querySelector('#estimated-leverage').textContent = auto_standort[0].estimated_leverage;
-          document.querySelector('#arbeiterinnen').textContent = auto_standort[0].employees_female;
-          document.querySelector('#arbeiter').textContent = auto_standort[0].employees_male;
-          document.querySelector('#beschwerden').textContent = auto_standort[0].complaints;
-          document.querySelector('#picture').src =auto_standort[0].bild;
-          document.querySelector('.ALLESMUSSRAUS').textContent= "";
+        newMarker.addListener("click", () => {
+
+          document.querySelector('#firstHeading').textContent = auto_standort[a].name;
+          document.querySelector('#typ').textContent = auto_standort[a].type;
+          document.querySelector('#adresse').textContent = auto_standort[a].adress;
+          document.querySelector('#creditor').textContent = auto_standort[a].creditor;
+          document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
+          document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
+          document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;
+          document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
+          document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
+          document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
+          // document.querySelector('#transport').src =auto_standort[a].mode_of_transportation;           Bei Bedarf aktivierbar
+          // document.querySelector('#co2-Fußabdruck').src =auto_standort[a].carbon_footprint;
+          document.querySelector('#picture').src =auto_standort[a].bild;
 
           $('.info').addClass("show");
           $('.info').removeClass("hide");
           $('.info').addClass("showInfo");
-          map.setCenter({lat: auto_standort[0].la, lng: auto_standort[0].lo});
+          map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
           map.setZoom(8);
           window.scrollTo({ top: 0, behavior: 'smooth' });
-
-          /*if (i == markers.length) {
-            i = 0;
-          }*/
         });
-  
+
         markers.push(newMarker);
-      //}
+      }
 
-      //Es funktioniert, wenn man auf einen POI drückt, jedoch wird durch das hochzählen der Zählervariable in ln. 233 jedes Mal das InfoWindow desselben POIs überschrieben => Man bekommt immer ein anderes Fenster. Ich habe versucht mithilfe eines bestimmten eindeutigen id (hcs_id) zu vergleichen, welches POI aufgerufen wurde, doch es hat nicht wirklich funktioniert. Das infoWindow funktioniert simultan zur Alertfunktion;
-      //Es muss einen Weg geben herauszufinden, welches POI gedrückt worden ist, um damit den richtigen Index einzusetzen und damit das richtige InfoWindow zu bekommen. Bei dem Erzfeind (Jack Wolfskin) funktioniert es ja auch!
-
-      //Wäre nice noch die Fensterbreite anzupassen, damit es durch die Benachrichtungen nicht soweit nach links verschwindet (kann ich auch selber nächste Woche anschauen)
-      //wir müssen eine id für den index finden
-
-     /* var i = 0;
-      markers.forEach(loop => {
-        loop.addListener("click", (event) =>  {
-// möglicherweise funktioniert es, wenn wir abrufen, welcher Standort dieser marker hat, aber auf diesen muss man auch erstmal zugreifen
-          // for (var a = 0; a < auto_standort.length; ++a) {
-          //   if (marker.position.lng())
-          // }
-          console.log(markers[0].position.lng());
-          console.log(markers);
-
-          document.querySelector('#firstHeading').textContent = auto_standort[i].name;
-          document.querySelector('#typ').textContent = auto_standort[i].type;
-          document.querySelector('#adresse').textContent = auto_standort[i].adress;
-          document.querySelector('#creditor').textContent = auto_standort[i].creditor;
-          document.querySelector('#partner-seit').textContent = auto_standort[i].partner_since_year;
-          document.querySelector('#purchasing-volume').textContent = auto_standort[i].purchasing_volume;
-          document.querySelector('#estimated-leverage').textContent = auto_standort[i].estimated_leverage;
-          document.querySelector('#arbeiterinnen').textContent = auto_standort[i].employees_female;
-          document.querySelector('#arbeiter').textContent = auto_standort[i].employees_male;
-          document.querySelector('#beschwerden').textContent = auto_standort[i].complaints;
-          document.querySelector('#picture').src =auto_standort[i].bild;
-          document.querySelector('.ALLESMUSSRAUS').textContent= "";
-          ++i;
-
-
-          //document.querySelector('#transport').textContent = "Transport: " + auto_standort[i].mode_of_transportation;   Falls dies geschwünscht ist kann man es wieder hinzufügen
-          //document.querySelector('#co2-fußabdruck').textContent = "CO2-Fußabdruck:" + auto_standort[i].carbon_footprint;
-
-          $('.info').addClass("show");
-          $('.info').removeClass("hide");
-          $('.info').addClass("showInfo");
-          map.setCenter(loop.getPosition());
-          map.setZoom(8);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-
-          if (i == markers.length) {
-            i = 0;
-          }
-        });
-      });*/
-
-      // //Hier werden die Marker anklickbar gemacht
-      // for(i = 0; i < markers2.length; i++) {
-      //   const a = i;
-      //   markers2[a].addListener("click", () => {
-      //     infowindow.setContent(contentString[a]);
-      //     infowindow.open(map, markers2[a]);
-      //     map.setZoom(8);
-      //     map.setCenter(markers2[a].getPosition());
-      //   });
-      // }
 
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
@@ -322,7 +288,6 @@ function initMap() {
         }
       });
 
-
     // Hier wird die Funktionalität der Suchleiste implementiert
     var button = document.getElementById('button');
     button.addEventListener("click", function() {
@@ -340,17 +305,12 @@ function initMap() {
       }
 
       //falls die Eingabe nicht übereinstimmt / es keine Eingabe gibt, werden alle Standorte angezeigt
-      if (!eingabe) {
+      if (!eingabe && input != "") {
         for(i = 0; i < markers.length; i++) {
-          markers[i].setVisible(true);
+          markers[i].setVisible(false);
         }
-        //falls die Eingabe leer ist
-        if (input === "") {
-          document.querySelector('.msg').innerHTML = "Leere Eingabe!";
-          //falls die Eingabe ungültig ist
-        } else {
-          document.querySelector('.msg').innerHTML = "Kein Ergebnis!";
-        }
+
+        document.querySelector('.msg').innerHTML = "Kein Ergebnis!";
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $('.alert').addClass("show");
@@ -360,8 +320,22 @@ function initMap() {
           $('.alert').removeClass("show");
           $('.alert').addClass("hide");
         setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
-        }, 5000); //hide ist after 5 sec
+        }, 3000); //hide ist after 3 sec
+      } else if (input === "") {
+        for(i = 0; i < markers.length; i++) {
+          markers[i].setVisible(true);
+        }
+
+        $('.alert').removeClass("show");
+          $('.alert').addClass("hide");
+          setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
+      } else if (eingabe) {
+          $('.alert').removeClass("show");
+          $('.alert').addClass("hide");
+          setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
       }
+
+      
     });
 
     //close Info function
@@ -370,7 +344,11 @@ function initMap() {
     $('.info').addClass("hide");
     setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
     map.setZoom(4);
+    document.getElementById('map').scrollIntoView({
+    behavior: 'smooth'
+    });
   })
+  
 } //Ende der initMap Funktion
 
 //close Alert function
@@ -378,4 +356,5 @@ $('.close-btn').click(function () {
   $('.alert').removeClass("show");
   $('.alert').addClass("hide");
   setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
+  
 });
