@@ -171,11 +171,12 @@ function initMap() {
       //Hier werden die Marker angelegt
 
       //for (i = 0; i < json_length; i++) {
+        //const a = i;
         if (auto_standort[0].type === "Supplier") {
            newMarker = new google.maps.Marker({
             position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
            map: map,
-           icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+           icon: new google.maps.MarkerImage('../bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
            animation: google.maps.Animation.DROP,
            title: auto_standort[0].name
            });
@@ -184,11 +185,39 @@ function initMap() {
           newMarker = new google.maps.Marker({
             position: {lat: auto_standort[0].la, lng: auto_standort[0].lo},
           map: map,
-          icon: new google.maps.MarkerImage('/bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+          icon: new google.maps.MarkerImage('../bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
           title: auto_standort[0].name
           });
         }
+
+        //ab hier die 0 durch das a ersetzen
+        newMarker.addListener("click", (event) => {
+          document.querySelector('#firstHeading').textContent = auto_standort[0].name;
+          document.querySelector('#typ').textContent = auto_standort[0].type;
+          document.querySelector('#adresse').textContent = auto_standort[0].adress;
+          document.querySelector('#creditor').textContent = auto_standort[0].creditor;
+          document.querySelector('#partner-seit').textContent = auto_standort[0].partner_since_year;
+          document.querySelector('#purchasing-volume').textContent = auto_standort[0].purchasing_volume;
+          document.querySelector('#estimated-leverage').textContent = auto_standort[0].estimated_leverage;
+          document.querySelector('#arbeiterinnen').textContent = auto_standort[0].employees_female;
+          document.querySelector('#arbeiter').textContent = auto_standort[0].employees_male;
+          document.querySelector('#beschwerden').textContent = auto_standort[0].complaints;
+          document.querySelector('#picture').src =auto_standort[0].bild;
+          document.querySelector('.ALLESMUSSRAUS').textContent= "";
+
+          $('.info').addClass("show");
+          $('.info').removeClass("hide");
+          $('.info').addClass("showInfo");
+          map.setCenter({lat: auto_standort[0].la, lng: auto_standort[0].lo});
+          map.setZoom(8);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          /*if (i == markers.length) {
+            i = 0;
+          }*/
+        });
+  
         markers.push(newMarker);
       //}
 
@@ -198,7 +227,7 @@ function initMap() {
       //Wäre nice noch die Fensterbreite anzupassen, damit es durch die Benachrichtungen nicht soweit nach links verschwindet (kann ich auch selber nächste Woche anschauen)
       //wir müssen eine id für den index finden
 
-      var i = 0;
+     /* var i = 0;
       markers.forEach(loop => {
         loop.addListener("click", (event) =>  {
 // möglicherweise funktioniert es, wenn wir abrufen, welcher Standort dieser marker hat, aber auf diesen muss man auch erstmal zugreifen
@@ -237,7 +266,7 @@ function initMap() {
             i = 0;
           }
         });
-      });
+      });*/
 
       // //Hier werden die Marker anklickbar gemacht
       // for(i = 0; i < markers2.length; i++) {
