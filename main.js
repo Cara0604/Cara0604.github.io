@@ -209,11 +209,19 @@ function initMap() {
            title: auto_standort[i].name
            });
         }
-       else {
+       else if (auto_standort[i].unit_type === "Produktionsstätte") {
           newMarker = new google.maps.Marker({
             position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
           map: map,
           icon: new google.maps.MarkerImage('bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
+          animation: google.maps.Animation.DROP,
+          title: auto_standort[i].name
+          });
+        } else {
+          newMarker = new google.maps.Marker({
+            position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
+          map: map,
+          //icon: new google.maps.MarkerImage('bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
           title: auto_standort[i].name
           });
@@ -222,18 +230,42 @@ function initMap() {
         newMarker.addListener("click", () => {
 
           document.querySelector('#firstHeading').textContent = auto_standort[a].name;
-          document.querySelector('#typ').textContent = auto_standort[a].type;
+          document.querySelector('#typ').textContent = auto_standort[a].unit_type;
           document.querySelector('#adresse').textContent = auto_standort[a].adress;
           document.querySelector('#creditor').textContent = auto_standort[a].creditor;
-          document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
-          document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
-          document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;
-          document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
-          document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
-          document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
+
+          if (auto_standort[a].partner_since_year != null) {
+            document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
+          } 
+
+          if (auto_standort[a].purchasing_volume != null) {
+            document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
+          }
+
+          if (auto_standort[a].estimated_leverage != null) {
+            document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;
+            
+          }
+
+          if (auto_standort[a].employees_female != null) {
+            document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
+          }
+
+          if (auto_standort[a].employees_male != null) {
+            document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
+          }
+
+          if (auto_standort[a].complaints != null) {
+            document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
+          }
+// Wenn das für src null eingesetzt  (bzw undefined) tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
+          if (auto_standort[a].supplier_image != null) {
+            document.querySelector('#picture').src =auto_standort[a].supplier_image;
+          }
+
+          
           // document.querySelector('#transport').src =auto_standort[a].mode_of_transportation;           Bei Bedarf aktivierbar
           // document.querySelector('#co2-Fußabdruck').src =auto_standort[a].carbon_footprint;
-          document.querySelector('#picture').src =auto_standort[a].bild;
 
           $('.info').addClass("show");
           $('.info').removeClass("hide");
@@ -241,6 +273,7 @@ function initMap() {
           map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
           map.setZoom(8);
           window.scrollTo({ top: 0, behavior: 'smooth' });
+          $('.container').addClass("active");
         });
 
         markers.push(newMarker);
@@ -349,6 +382,7 @@ function initMap() {
     document.getElementById('map').scrollIntoView({
     behavior: 'smooth'
     });
+    $('.container').removeClass("active");
   })
   
 } //Ende der initMap Funktion
@@ -358,5 +392,4 @@ $('.close-btn').click(function () {
   $('.alert').removeClass("show");
   $('.alert').addClass("hide");
   setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
-  
 });

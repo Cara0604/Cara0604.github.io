@@ -65,9 +65,13 @@ function autocomplete(inp, arr) {
                 document.getElementById('button').click();
                 return false;
             });
-            $('.info').removeClass("show");
-            $('.info').addClass("hide");
-            setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
+
+            //womöglich sind diese unnötig geworden
+            // $('.info').removeClass("show");
+            // $('.info').addClass("hide");
+            // setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
+            // $('.container').removeClass("active");
+            
         }
     })
     function addActive(x) {
@@ -109,5 +113,7 @@ function autocomplete(inp, arr) {
         $('.info').removeClass("show");
         $('.info').addClass("hide");
         setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
+        $('.container').removeClass("active");
+
     });
 }

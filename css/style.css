@@ -116,9 +116,16 @@ body{
 	font-family: 'Arial', sans-serif;
 }
 
-#wrapper {
+.wrapper {
 	overflow: hidden;
 	position: relative;
+}
+
+.container#blur.active {
+	filter: blur(20px);
+	pointer-events: none;
+	user-select: none;
+	transition: 0.5s;
 }
   
 .search {
