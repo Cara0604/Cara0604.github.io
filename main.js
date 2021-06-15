@@ -2,7 +2,7 @@
 class Standort {
 
   //Konstruktor der Klasse
-  constructor(la, lo, name, type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
+  constructor(la, lo, name, unit_type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
      estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
       last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
       port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition,place,country_code, country, hcs_id) {
@@ -11,7 +11,7 @@ class Standort {
   this.la = la;
   this.lo = lo;
   this.name = name;
-  this.type = type;
+  this.unit_type = unit_type;
   this.adress = adress;
   this.bild = bild;
   this.creditor = creditor;
@@ -46,7 +46,7 @@ class Standort {
 var la;
 var lo;
 var name;
-var type;
+var unit_type;
 var street;
 var street_addition;
 var zip_code;
@@ -96,10 +96,6 @@ abfrage.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(abfrage.responseText);
 
-    console.log(myObj.results[0].data.coordinates);
-    console.log(abfrage);
-
-
     //Länge des Datensatzes (die Anzahl der Standorte)
     json_length = Object.keys(myObj.results).length;
 
@@ -111,10 +107,11 @@ abfrage.onreadystatechange = function() {
     for (var i = 0; i < json_length; ++i){
 
       if (myObj.results[i].type === "supply_chain_unit") {
+
         la = myObj.results[i].data.coordinates.latitude;
         lo = myObj.results[i].data.coordinates.longitude;
         name = myObj.results[i].data.name;
-        type = myObj.results[i].data.type;
+        unit_type = myObj.results[i].data.unit_type;
         street = myObj.results[i].data.street;
         street_addition = myObj.results[i].data.street_addition;
         zip_code = myObj.results[i].data.zip_code;
@@ -145,7 +142,7 @@ abfrage.onreadystatechange = function() {
         carbon_footprint = myObj.results[i].data.carbon_footprint;
 
       //für jeden Standort wird ein Objekt erzeugt
-        let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
+        let t = new Standort(la,lo,name,unit_type,adress,bild,creditor, division,
         partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
         audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
         port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
@@ -156,6 +153,7 @@ abfrage.onreadystatechange = function() {
     }
   }
 }
+      console.log(auto_standort);
 
 
 abfrage.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMienhEAACAAmGUm', false);
@@ -200,9 +198,9 @@ function initMap() {
     const infowindow = new google.maps.InfoWindow({
     });
 
-      for (var i = 0; i < json_length; i++) {
+      for (var i = 0; i < auto_standort.length; i++) {
         const a = i;
-        if (auto_standort[i].type === "Supplier") {
+        if (auto_standort[i].unit_type === "Material Lieferant") {
            newMarker = new google.maps.Marker({
             position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
            map: map,
@@ -215,7 +213,7 @@ function initMap() {
           newMarker = new google.maps.Marker({
             position: {lat: auto_standort[i].la, lng: auto_standort[i].lo},
           map: map,
-          icon: new google.maps.MarkerImage('bilder/marker_black.svg', null, null, null, new google.maps.Size(30,30)),
+          icon: new google.maps.MarkerImage('bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
           animation: google.maps.Animation.DROP,
           title: auto_standort[i].name
           });
