@@ -105,56 +105,60 @@ abfrage.onreadystatechange = function() {
 
     //json_length = Object.keys(myObj.results[0].data).length;
 
+      console.log(myObj);
 
     //hier werden die Daten aus der JSON-Datei in Variablen gespeichert
     for (var i = 0; i < json_length; ++i){
 
-      la = myObj.results[i].data.coordinates.latitude;
-      lo = myObj.results[i].data.coordinates.longitude;
-      name = myObj.results[i].data.name;
-      type = myObj.results[i].data.type;
-      street = myObj.results[i].data.street;
-      street_addition = myObj.results[i].data.street_addition;
-      zip_code = myObj.results[i].data.zip_code;
-      place = myObj.results[i].data.place;
-      country_code = myObj.results[i].data.country_code;
-      country = myObj.results[i].data.country;
-      adress = myObj.results[i].data.country + ", " + myObj.results[i].data.place;
-      bild = myObj.results[i].data.supplier_image.url;
-      creditor = myObj.results[i].data.creditor;
-      division = myObj.results[i].data.devision;
-      partner_since_year = myObj.results[i].data.partner_since_year;
-      purchasing_volume = myObj.results[i].data.purchasing_volume;
-      estimated_leverage = myObj.results[i].data.estimated_leverage;
-      employees_female = myObj.results[i].data.emloyees_female;
-      employees_male = myObj.results[i].data.employees_male;
-      audit_type = myObj.results[i].data.audit_type;
-      fair_wear_audit = myObj.results[i].data.fair_wear_audit;
-      last_fair_wear_training = myObj.results[i].data.last_fair_wear_training;
-      bsci_id = myObj.results[i].data.bsci_id;
-      wrap_id = myObj.results[i].data.wrap_id;
-      complaints = myObj.results[i].data.complaints;
-      certificates = myObj.results[i].data.certificates;
-      mode_of_transportation = myObj.results[i].data.mode_of_transportation;
-      port_name = myObj.results[i].data.port_name;
-      port_coordinates_latitude = myObj.results[i].data.port_coordinates_latitude;
-      port_coordinates_longitude = myObj.results[i].data.port_coordinates_longitude;
-      warehouse_name = myObj.results[i].data.warehouse_name;
-      carbon_footprint = myObj.results[i].data.carbon_footprint;
+      if (myObj.results[i].type === "supply_chain_unit") {
+        la = myObj.results[i].data.coordinates.latitude;
+        lo = myObj.results[i].data.coordinates.longitude;
+        name = myObj.results[i].data.name;
+        type = myObj.results[i].data.type;
+        street = myObj.results[i].data.street;
+        street_addition = myObj.results[i].data.street_addition;
+        zip_code = myObj.results[i].data.zip_code;
+        place = myObj.results[i].data.place;
+        country_code = myObj.results[i].data.country_code;
+        country = myObj.results[i].data.country;
+        adress = myObj.results[i].data.country + ", " + myObj.results[i].data.place;
+        bild = myObj.results[i].data.supplier_image.url;
+        creditor = myObj.results[i].data.creditor;
+        division = myObj.results[i].data.devision;
+        partner_since_year = myObj.results[i].data.partner_since_year;
+        purchasing_volume = myObj.results[i].data.purchasing_volume;
+        estimated_leverage = myObj.results[i].data.estimated_leverage;
+        employees_female = myObj.results[i].data.emloyees_female;
+        employees_male = myObj.results[i].data.employees_male;
+        audit_type = myObj.results[i].data.audit_type;
+        fair_wear_audit = myObj.results[i].data.fair_wear_audit;
+        last_fair_wear_training = myObj.results[i].data.last_fair_wear_training;
+        bsci_id = myObj.results[i].data.bsci_id;
+        wrap_id = myObj.results[i].data.wrap_id;
+        complaints = myObj.results[i].data.complaints;
+        certificates = myObj.results[i].data.certificates;
+        mode_of_transportation = myObj.results[i].data.mode_of_transportation;
+        port_name = myObj.results[i].data.port_name;
+        port_coordinates_latitude = myObj.results[i].data.port_coordinates_latitude;
+        port_coordinates_longitude = myObj.results[i].data.port_coordinates_longitude;
+        warehouse_name = myObj.results[i].data.warehouse_name;
+        carbon_footprint = myObj.results[i].data.carbon_footprint;
 
       //für jeden Standort wird ein Objekt erzeugt
-      let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
+        let t = new Standort(la,lo,name,type,adress,bild,creditor, division,
         partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
         audit_type,fair_wear_audit, last_fair_wear_training,bsci_id,wrap_id,complaints,certificates,mode_of_transportation,
         port_name,port_coordinates_latitude,port_coordinates_longitude,warehouse_name,carbon_footprint, street, street_addition,place,country_code, country, hcs_id);
 
       auto_standort.push(t);
+      console.log(myObj.results[i].type);
+      }
     }
   }
 }
 
 
-abfrage.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27', false);
+abfrage.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMienhEAACAAmGUm', false);
 // abfrage.open("GET", "response2.json", false);
 abfrage.send();
 
