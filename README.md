@@ -1,14 +1,5 @@
 # PSWI
-
-PPPPPP          
-PPP   PP      
-PPP     PP
-PP    PP
-PPPPPP
-PP
-PP              
-PP              
-
+       
 Projekt für Schöffel zur Abblidung deren Supply-Chain-Map
 
 Funktionsumfang:
