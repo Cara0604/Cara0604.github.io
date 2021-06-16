@@ -122,7 +122,7 @@ body{
 }
 
 .container#blur.active {
-	filter: blur(20px);
+	filter: blur(13px);
 	pointer-events: none;
 	user-select: none;
 	transition: 0.5s;

@@ -140,7 +140,7 @@ abfrage.onreadystatechange = function() {
         port_coordinates_longitude = myObj.results[i].data.port_coordinates_longitude;
         warehouse_name = myObj.results[i].data.warehouse_name;
         carbon_footprint = myObj.results[i].data.carbon_footprint;
-
+        
       //für jeden Standort wird ein Objekt erzeugt
         let t = new Standort(la,lo,name,unit_type,adress,bild,creditor, division,
         partner_since_year,purchasing_volume,estimated_leverage,employees_female,employees_male,
@@ -234,33 +234,47 @@ function initMap() {
           document.querySelector('#adresse').textContent = auto_standort[a].adress;
           document.querySelector('#creditor').textContent = auto_standort[a].creditor;
 
-          if (auto_standort[a].partner_since_year != null) {
+          
+          if (auto_standort[a].partner_since_year == null) {
+            document.querySelector('#partner-seitP').textContent = "";
+          } else {
             document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
-          } 
+          }
 
-          if (auto_standort[a].purchasing_volume != null) {
+          if (auto_standort[a].purchasing_volume == null) {
+            document.querySelector('#purchasing-volumeP').textContent = "";
+          } else {
             document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
           }
 
-          if (auto_standort[a].estimated_leverage != null) {
-            document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;
-            
+          if (auto_standort[a].estimated_leverage == null || auto_standort[a].estimated_leverage == "") {
+            document.querySelector('#estimated-leverageP').textContent = "";
+          } else {
+            document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;  
           }
-
-          if (auto_standort[a].employees_female != null) {
+          
+          if (auto_standort[a].employees_female == null) {
+            document.querySelector('#arbeiterinnenP').textContent = "";
+          } else {
             document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
           }
 
-          if (auto_standort[a].employees_male != null) {
+          
+          if (auto_standort[a].employees_male == null) {
+            document.querySelector('#arbeiterP').textContent = "";
+          } else {
             document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
           }
-
-          if (auto_standort[a].complaints != null) {
+          
+          if (auto_standort[a].complaints == null) {
+            document.querySelector('#beschwerdenP').textContent = "";
+          } else {
             document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
           }
-// Wenn das für src null eingesetzt  (bzw undefined) tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
+
+          // Wenn das für src null eingesetzt  (bzw undefined) tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
           if (auto_standort[a].supplier_image != null) {
-            document.querySelector('#picture').src =auto_standort[a].supplier_image;
+            document.querySelector('#picture').src = auto_standort[a].supplier_image;
           }
 
           
@@ -279,6 +293,7 @@ function initMap() {
         markers.push(newMarker);
       }
 
+      console.log(auto_standort);
 
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
@@ -288,19 +303,18 @@ function initMap() {
 
         if(this.checked) {
           for (i = 0; i < auto_standort.length; i++) {
-            if(auto_standort[i].type === "Factory") {
+            if(auto_standort[i].unit_type === "Produktionsstätte") {
               markers[i].setVisible(true);
             }
           }
         } else {
           for (i = 0; i < auto_standort.length; i++) {
-            if(auto_standort[i].type === "Factory") {
+            if(auto_standort[i].unit_type === "Produktionsstätte") {
               markers[i].setVisible(false);
             }
           }
         }
       });
-
 
       // Hier wird der Filter für die Lieferanten gesetzt
       var checkbox_lieferanten = document.getElementById('checkbox-2');
@@ -310,18 +324,19 @@ function initMap() {
 
         if(this.checked) {
           for (i = 0; i < auto_standort.length; i++) {
-            if(auto_standort[i].type === "Supplier") {
+            if(auto_standort[i].unit_type === "Material Lieferant") {
               markers[i].setVisible(true);
             }
           }
         } else {
             for (i = 0; i < auto_standort.length; i++) {
-              if(auto_standort[i].type === "Supplier") {
+              if(auto_standort[i].unit_type === "Material Lieferant") {
                 markers[i].setVisible(false);
               }
             }
         }
       });
+
 
     // Hier wird die Funktionalität der Suchleiste implementiert
     var button = document.getElementById('button');
@@ -368,6 +383,7 @@ function initMap() {
           $('.alert').removeClass("show");
           $('.alert').addClass("hide");
           setTimeout(() => {  $('.alert').removeClass("showAlert"); }, 1100);
+          map.setZoom(4);
       }
 
       

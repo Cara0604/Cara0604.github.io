@@ -2,9 +2,10 @@
   h1 {
     color: red;
   }
-  #map {
+
+  #map  {
     width: 100%;
-    height: 350px;
+    max-height: 350px;
   }
 
   .alert {
@@ -12,7 +13,7 @@
   }
 
   .info {
-    width:100%;
+    width: 100%;
     min-width: 100%;
     min-height: 100%;
     z-index: 1000000000;
@@ -57,9 +58,7 @@
   .info .content {
     font-size: 12px
   }
-  
-}
 
-/* Wir bräuchten noch eine navbar, damit man das infor window besser an den oberen seitenrand anpassen kann */
+}
 
 /* Sobald das Fenster die Breite 1160 erreicht, verschiebt die Suchleiste nach unten*/
