@@ -258,7 +258,6 @@ function initMap() {
           } else {
             document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
           }
-
           
           if (auto_standort[a].employees_male == null) {
             document.querySelector('#arbeiterP').textContent = "";
@@ -394,7 +393,6 @@ function initMap() {
     $('.info').removeClass("show");
     $('.info').addClass("hide");
     setTimeout(() => {  $('.info').removeClass("showInfo"); }, 1100);
-    map.setZoom(4);
     document.getElementById('map').scrollIntoView({
     behavior: 'smooth'
     });
