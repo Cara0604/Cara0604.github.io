@@ -89,10 +89,11 @@ var markers = [];
 
 //Request, um die Daten aus der JSON-Datei zu holen
 
-var abfrage;
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMienhEAACAAmGUm';
 
 var abfrage = new XMLHttpRequest();
 abfrage.onreadystatechange = function() {
+  console.log(abfrage);
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(abfrage.responseText);
 
@@ -156,7 +157,7 @@ abfrage.onreadystatechange = function() {
       console.log(auto_standort);
 
 
-abfrage.open("GET", 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMienhEAACAAmGUm', false);
+abfrage.open("GET", url, false);
 // abfrage.open("GET", "response2.json", false);
 abfrage.send();
 
