@@ -89,7 +89,7 @@ var markers = [];
 
 //Request, um die Daten aus der JSON-Datei zu holen
 
-var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMienhEAACAAmGUm';
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=1000';
 
 var abfrage = new XMLHttpRequest();
 abfrage.onreadystatechange = function() {
