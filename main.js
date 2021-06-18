@@ -298,6 +298,43 @@ function initMap() {
 
       console.log(auto_standort);
 
+      ////////////////// unsere Verewigung
+      const infowindow2 = new google.maps.InfoWindow({
+      });
+        var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
+
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          animation: google.maps.Animation.BOUNCE,
+          map: map,
+          title: "FIM"
+        });
+
+        marker.addListener("click", () => {
+
+          document.querySelector('#firstHeading').textContent = "FIM";
+          document.querySelector('#typ').textContent = "Entwickler";
+          document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
+          document.querySelector('#creditor').textContent = "Diese Karte wurde Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+          document.querySelector('#partner-seitP').textContent = "";
+          document.querySelector('#purchasing-volumeP').textContent = "";
+          document.querySelector('#estimated-leverageP').textContent = "";
+          document.querySelector('#arbeiterinnenP').textContent = "";
+          document.querySelector('#arbeiterP').textContent = "";
+          document.querySelector('#beschwerdenP').textContent = "";
+
+          $('.info').addClass("show");
+          $('.info').removeClass("hide");
+          $('.info').addClass("showInfo");
+          map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
+          map.setZoom(8);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          $('.container').addClass("active");
+
+        }); 
+      //////////////////////////////////////////////////////
+      
+
       // Hier wird der Filter für die Produzenten gesetzt
       var checkbox_produzenten = document.getElementById('checkbox-1');
 
