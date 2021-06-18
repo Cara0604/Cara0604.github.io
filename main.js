@@ -88,8 +88,6 @@ var json_length;
 var markers = []; 
 
 //Request, um die Daten aus der JSON-Datei zu holen
-
-//var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=1000';
 var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
 
 while(url != null) {
