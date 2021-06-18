@@ -89,14 +89,17 @@ var markers = [];
 
 //Request, um die Daten aus der JSON-Datei zu holen
 
-var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=1000';
+//var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=1000';
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
 
-var abfrage = new XMLHttpRequest();
+while(url != null) {
+  var abfrage = new XMLHttpRequest();
 abfrage.onreadystatechange = function() {
   console.log(abfrage);
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(abfrage.responseText);
 
+    url = myObj.next_page;
     //Länge des Datensatzes (die Anzahl der Standorte)
     json_length = Object.keys(myObj.results).length;
 
@@ -160,6 +163,8 @@ abfrage.onreadystatechange = function() {
 abfrage.open("GET", url, false);
 // abfrage.open("GET", "response2.json", false);
 abfrage.send();
+}
+
 
 
 // $.ajax( {
