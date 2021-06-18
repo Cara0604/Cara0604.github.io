@@ -315,11 +315,11 @@ function initMap() {
           $('.info').addClass("show");
           $('.info').removeClass("hide");
           $('.info').addClass("showInfo");
-          // map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
+          map.setCenter({lat: 48.33366559150027, lng: 10.894521557382948});
           map.setZoom(8);
           window.scrollTo({ top: 0, behavior: 'smooth' });
           $('.container').addClass("active");
-
+            console.log("FIM Standort", marker);
         }); 
       //////////////////////////////////////////////////////
       
