@@ -304,7 +304,7 @@ function initMap() {
           document.querySelector('#firstHeading').textContent = "FIM";
           document.querySelector('#typ').textContent = "Entwickler";
           document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-          document.querySelector('#creditor').textContent = "Diese Karte wurde Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+          document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
           document.querySelector('#partner-seitP').textContent = "";
           document.querySelector('#purchasing-volumeP').textContent = "";
           document.querySelector('#estimated-leverageP').textContent = "";
