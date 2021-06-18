@@ -6,12 +6,17 @@ var name;
 var infos = [];
 var json_length;
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
+
+while (url != null) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
 
-    json_length = Object.keys(myObj.results).length;
+        url = myObj.next_page;
+        
+        json_length = Object.keys(myObj.results).length;
 
         for (var i = 0; i < json_length; ++i) {
             infos.push(myObj.results[i].data.country);
@@ -29,9 +34,10 @@ xmlhttp.onreadystatechange = function () {
     }
 };
 
-console.log(infos);
-xmlhttp.open("GET", ('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=100000'), false);
-xmlhttp.send();
+    console.log(infos);
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+}
 
 
 autocomplete(document.querySelector('.myInput'), infos);
