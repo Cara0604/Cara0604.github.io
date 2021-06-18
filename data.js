@@ -30,7 +30,7 @@ xmlhttp.onreadystatechange = function () {
 };
 
 console.log(infos);
-xmlhttp.open("GET", ('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=1000'), false);
+xmlhttp.open("GET", ('https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF&pageSize=100000'), false);
 xmlhttp.send();
 
 
