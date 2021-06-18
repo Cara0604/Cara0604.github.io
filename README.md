@@ -1,6 +1,7 @@
 # PSWI
        
 Projekt für Schöffel zur Abblidung deren Supply-Chain-Map
+----------------------------------------------------------
 
 Funktionsumfang:
 - Anzeigen aller Standorte aus der Datenbank mit Berücksichtigung der Paginierung
