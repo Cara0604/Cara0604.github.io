@@ -164,23 +164,6 @@ abfrage.send();
 }
 
 
-
-// $.ajax( {
-//   async: true,
-//   url: "https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27",
-//   context: abfrage.body,
-//   success: function() {
-//       $(this).addClass("done");
-//   }
-// });
-
-
-/*$.ajax({
-  dataType: "json",
-  url: 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YJvfJxIAACIArFwi&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YJrEPxAAACMASTcn%22%29+%5D%5D%27',
-});
-*/
-
 function initMap() {
 
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
