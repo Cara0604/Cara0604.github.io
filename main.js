@@ -225,36 +225,42 @@ function initMap() {
           if (auto_standort[a].partner_since_year == null) {
             document.querySelector('#partner-seitP').textContent = "";
           } else {
+            document.querySelector('#partner-seitP').innerHTML = "Partner-seit: <span id='partner-seit'></span>";
             document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
           }
 
           if (auto_standort[a].purchasing_volume == null) {
             document.querySelector('#purchasing-volumeP').textContent = "";
           } else {
+            document.querySelector('#purchasing-volumeP').innerHTML = "Purchasing-Volume: <span id='purchasing-volume'></span>";
             document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
           }
 
           if (auto_standort[a].estimated_leverage == null || auto_standort[a].estimated_leverage == "") {
             document.querySelector('#estimated-leverageP').textContent = "";
           } else {
+            document.querySelector('#estimated-leverageP').innerHTML = "Estimated-Leverage: <span id='estimated-leverage'></span>";
             document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;  
           }
           
           if (auto_standort[a].employees_female == null) {
             document.querySelector('#arbeiterinnenP').textContent = "";
           } else {
+            document.querySelector('#arbeiterinnenP').innerHTML = "Arbeiterinnen: <span id='arbeiterinnen'></span>";
             document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
           }
           
           if (auto_standort[a].employees_male == null) {
             document.querySelector('#arbeiterP').textContent = "";
-          } else {
+            } else {
+            document.querySelector('#arbeiterP').innerHTML = "Arbeiter: <span id='arbeiter'></span>";
             document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
           }
           
           if (auto_standort[a].complaints == null) {
             document.querySelector('#beschwerdenP').textContent = "";
           } else {
+            document.querySelector('#beschwerdenP').innerHTML = "Beschwerden: <span id='beschwerden'></span>";
             document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
           }
 
@@ -309,7 +315,7 @@ function initMap() {
           $('.info').addClass("show");
           $('.info').removeClass("hide");
           $('.info').addClass("showInfo");
-          map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
+          // map.setCenter({lat: auto_standort[a].la, lng: auto_standort[a].lo});
           map.setZoom(8);
           window.scrollTo({ top: 0, behavior: 'smooth' });
           $('.container').addClass("active");
