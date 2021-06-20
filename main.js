@@ -169,7 +169,7 @@ function initMap() {
     //hier wird definiert, wie stark in die Karte reingezoomt wird und wo sich das Zentrum befinden soll, wenn man die Seite aufruft
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
-      center: {lat: 30.363, lng: 50.234},
+      center: {lat: 48.11, lng: 10.45},
       restriction: {
         latLngBounds: {
           north: 85,
