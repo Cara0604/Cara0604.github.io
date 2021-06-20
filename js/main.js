@@ -97,15 +97,14 @@ while (url != null) {
 			var myObj = JSON.parse(abfrage.responseText);
 
 			url = myObj.next_page;
-
+			
 			//Länge des Datensatzes (die Anzahl der Standorte)
 			json_length = Object.keys(myObj.results).length;
-
+			
 			//hier werden die Daten aus der JSON-Datei in Variablen gespeichert
 			for (var i = 0; i < json_length; ++i) {
-
-				if (myObj.results[i].type === "supply_chain_unit") {
-
+				
+				if (myObj.results[i].type === "supply_chain_unit") {					
 					la = myObj.results[i].data.coordinates.latitude;
 					lo = myObj.results[i].data.coordinates.longitude;
 					name = myObj.results[i].data.name;
@@ -146,6 +145,7 @@ while (url != null) {
 						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id);
 
 					auto_standort.push(t);
+      				console.log(myObj.results[i].type);
 				}
 			}
 		}
