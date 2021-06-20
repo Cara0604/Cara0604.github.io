@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap');
 
+/* Allgemeine Einstellungen für die Informationsbox*/
 .info {
     min-width: 620px;
     position: absolute;
@@ -13,16 +14,16 @@
     z-index: 100000;
     border-color: black;
     background: black;
-    /* background: rgba(255, 255, 255, 0.4); */
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Hier wird das InfoWindow sichtbar, sobald es die Klasse showInfo erhält */
 .info.showInfo {
     opacity: 1;
     pointer-events: auto;
 }
 
-
+/* Hier wird eine spezifische Animation erstellt für das Erscheinen des InfoWindows */
 .info.show {
     animation: showInfo 1s ease forwards;
 }
@@ -41,6 +42,8 @@
     }
 }
 
+/* Hier wird eine spezifische Animation erstellt für das Verschwinden des InfoWindows erstellt*/
+
 .info.hide {
     animation: hideInfo 1s ease forwards;
 }
@@ -57,17 +60,11 @@
 }
 
 /* bearbeitet die Größe des Schließbuttons + Position*/
-.info .fa-times-circle {
+.info .close-info {
     position: absolute;
     transform: translateY(20%);
     color: white;
     font-size: 27px;
-}
-
-/* Position des Buttons */
-.info .close-info {
-    position: relative;
-    transform: translateY(-30%);
     cursor: pointer;
 }
 
@@ -78,13 +75,14 @@
     min-height: 600px;
 }
 
+/* Wenn man über den Button mit der Maus drüber geht */
 .close-info .fa-times-circle:hover {
     cursor: pointer;
     color: rgb(139, 134, 134);
 }
 
-#firstHeading,
-.info h1 {
+/* Hier wird die Überschrift jedes Standortes bearbeitet */
+#firstHeading {
     color: rgb(255, 255, 255);
     margin: 0 0 10px;
     font-size: 40px;
@@ -94,22 +92,27 @@
     letter-spacing: 5px;
 }
 
+/* Den Inhalt außer die Überschrift wird hier bearbeitet */
 .bodyContent {
     color: rgb(253, 253, 253);
     font-weight: 100;
     font-family: 'Playfair Display', serif;
     letter-spacing: 2px;
+    font-size: 20px;
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+/* Unterschiedliche Darstellung zwischen Eigenschaft und Inhalt: Hier wird der Inhalt einer Eigenschaft bearbeitet */
 .bodyContent span {
     color: rgb(187, 180, 180);
     font-family: 'Anton', sans-serif;
     letter-spacing: normal;
 }
 
-#picture {
+/* Bild wird bearbeitet, wenn eins existiert*/
+.showPic {
     position: relative;
     width: 100%;
     border: 5px rgb(255, 255, 255) ridge;
@@ -118,6 +121,12 @@
     margin-bottom: 3px;
 }
 
+/* Link wird bearbeitet */
 .bodyContent a {
     color: rgb(146, 246, 250);
+}
+
+/* Ändert die Farbe beim Drübergehen */
+.bodyContent a:hover {
+    color: rgb(139, 134, 134);
 }

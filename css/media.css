@@ -1,8 +1,6 @@
-@media only screen and (max-width: 600px) {
-  h1 {
-    color: red;
-  }
+/* Hier wird die Webseite an kleinere Skalarierung unter 600px in der Breite angepasst. Dabei stapelt sich alles untereinander. Das InfoWindow sowie die Notificationen werden an die Größe des Bildschirmes angepasst. Auch die Animationen für die beiden Nachrichtenarten werden angepasst */
 
+@media only screen and (max-width: 600px) {
   #map  {
     width: 100%;
     max-height: 350px;
@@ -56,9 +54,7 @@
   }
 
   .info .content {
-    font-size: 12px
+    font-size: 18px;
+    margin-top: 10px;
   }
-
 }
-
-/* Sobald das Fenster die Breite 1160 erreicht, verschiebt die Suchleiste nach unten*/

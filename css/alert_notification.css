@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap);
 
-
+/* Dekorative Gestaltung der Notification*/
 .alert {
     font-family: 'Roboto Mono';
     user-select: none;
@@ -17,11 +17,14 @@
     pointer-events: none;
 }
 
+/* Wenn diese Klasse hinzugefügt wird, wird die Notifaction sichtbar 
+wenn die Klasse entfernt wird, dann ist die Notifaction nicht mehr sichtbar*/
 .alert.showAlert{
     opacity: 1;
     pointer-events: auto;
 }
 
+/* Spezifische Animation erstellen, die für das Erscheinen der Notification sorgt */
 .alert.show{
     animation: show_slide 1s ease forwards;
 }
@@ -37,7 +40,8 @@
         transform: translateX(-10px);
     }
 }
-/*Verschwinden der Notification*/
+
+/*Spezifische Animation erstellen, die für das Verschwinden der Notification*/
 .alert.hide{
     animation: hide_slide 1s ease forwards;
 }
@@ -57,7 +61,7 @@
     }
 }
 
-/* Ausrufezeichen bearbeiten */
+/* Ausrufezeichen wird hier bearbeitet */
 .alert .fa-exclamation-circle{
     position: absolute;
     left: 20px;
@@ -67,12 +71,14 @@
     font-size: 30px;
 }
 
+/* Nachricht innerhalb der Notification */
 .alert .msg{
     padding: 0 20px;
     font-size: 18px;
     color: #ffffff;
 }
 
+/* Schließknopf wird bearbeitet */
 .alert .close-btn{
     position: absolute;
     right: 0px;

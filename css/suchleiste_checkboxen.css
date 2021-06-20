@@ -1,0 +1,123 @@
+/* Komplette Suchleiste + Checkboxen  */
+.uebersicht {
+    padding: 1rem;
+    margin: 1rem;
+    text-align: left;
+    float: left;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    transition: 300ms;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
+}
+
+/* Beim drübergehen mit der Maus, hebt sie sich ein wenig an */
+.search:hover {
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, .25);
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.searchTerm:current {
+    transform: scale(1.1);
+}
+
+/* Schriftart importieren */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;800&display=swap');
+
+/* Hier die Eingabe gestaltet */
+.searchTerm {
+    width: 160%;
+    height: 40px;
+    border: 3px solid black;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: black;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Die Luppe wird hier bearbeitet */
+.searchButton {
+    width: 60px;
+    height: 40px;
+    border: 3px solid black;
+    background: black;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Beschriftung der Checkboxen */
+.label {
+    color: black;
+    font-family: 'Arial', Courier, monospace;
+    text-shadow: 0 1px 100px rgb(119, 119, 119);
+}
+
+/*Gestaltung der Beschriftung beim Drüberfahren*/
+.label:hover {
+    cursor: pointer;
+    text-shadow: 0 2px 2px rgb(119, 119, 119);
+    color: grey;
+    transition: .15s;
+}
+
+/* Positionierung der einzelnen Filter */
+.div_check {
+    padding: 0.5rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Checkboxen-Bearbeitung */
+input[type="checkbox"] {
+    position: relative;
+    width: 24px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+    transition: .5s;
+    cursor: pointer;
+}
+
+/* Sobald es gedrückt wird, erscheint es schwarz*/
+input:checked[type="checkbox"] {
+    background: black;
+}
+
+/* Erstellt den runden Knopf */
+input[type="checkbox"]:after {
+    content: "";
+    /*Fügt den Kreis hinzu*/
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    transform: scale(1.4);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+/*Stellt die Position des Kreises ein, sobald er gedrückt wird*/
+input:checked[type="checkbox"]:after {
+    left: 14px;
+}
+
+input[type="text"]:checked {
+    background-color: #f5f5f5;
+}

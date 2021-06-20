@@ -11,29 +11,32 @@
     <link rel="stylesheet" href="css/info_window.css">
     <link rel="stylesheet" href="css/media.css">
     <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/suchleiste_checkboxen.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
 
-
-    <!-- Alert Notification-->
+    <!-- Element für die Alert-Notificatin: Hierbei muss EOS ein eigenes kit anlegen, um Fehlermeldungen zu vermeiden-->
     <script src="https://kit.fontawesome.com/91f6a03955.js" crossorigin="anonymous"></script>
-    <!-- dieses kit muss von schoeffel angepasst werden, da eos eine eigene nummer erhält -->
+    
+    <!-- Einbindung der Bibliothek jquery -->
     <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script defer src="main.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
-    <script defer src="js/autocomplete.js"></script>
-    <script defer src="data.js"></script>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
     
     <!--Suchbutton einfügen-->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
-
     
-
+    <!-- Scripts einfügen -->
+    <script defer src="js/main.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
+    <script defer src="js/autocomplete.js"></script>
+    <script defer src="js/data.js"></script>
+    <!-- GoogleMaps initFunction einbinden -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
+    
+    <!-- leichtes SEO -->
     <meta name="description" content="Awesome Supply-Chain Visualisation by Schöffel">
     <meta name="keywords" content="Supply-Chain, sustainability, caring about your customers, environmental Protection">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" />
     <title>Supply-Chain Übersicht</title>
 </head>
 
@@ -41,9 +44,11 @@
     <div class="wrapper">
         <!--Info Window-->
         <div class="info hide">
+            <!-- Schließbutton -->
             <span class="close-info">
                 <i class="fas fa-times-circle"></i>
             </span>
+            <!-- Content -->
             <div class="content">
                 <h1><span id="firstHeading"></span></h1>
                 <div class="bodyContent">
@@ -56,16 +61,10 @@
                     <p id="arbeiterinnenP"></p>
                     <p id="arbeiterP"></p>
                     <p id="beschwerdenP"></p>
-                    <!-- <p>Transport: <span id="transport"></span></p>
-                    <p>Co2-Fußabdruck: <span id="co2-fußabdruck"></span></p> -->
-                    <img id="picture" src="">
+                    <img id="picture" class="showPic"
+                        src="">
                     <p id="more">Weitere Informationen finden sie <a target="_blank"
-                            href="https://vimeo.com/563570171">hier</a></p>
-                    <!-- <iframe
-                            src="https://player.vimeo.com/video/563570171?&color=ffffff&byline=0&portrait=0"
-                            width="400" height="360" frameborder="0"
-                            allow="picture-in-picture" allowfullscreen>
-                    </iframe> -->
+                        href="https://player.vimeo.com/video/563570171?&color=ffffff&byline=0&portrait=0" width="400" height="360" frameborder="0" allow="picture-in-picture" allowfullscreen>hier</a></p>
                 </div>
             </div>
         </div>
@@ -84,38 +83,33 @@
             <h1 class="header_1"> Willkommen auf unserer Supply-Chain-Map</h1>
             <div class="uebersicht">
                 <h2 class="header_2">Standortsuche:</h2>
-
+                <!-- Suchleiste -->
                 <form id="searchForm" autocomplete="off" action="/action_page.php">
                     <div class="search autocomplete">
-                        <input type="text" class="searchTerm myInput" placeholder="Name, Land, Stadt (Fluss)"
-                            id="searchbar">
+                        <input type="text" class="searchTerm myInput" placeholder="Name, Land, Stadt (Fluss)">
                         <button type="button" value="search" class="searchButton" id="button">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
                 </form>
-
+                <!-- Checkboxen -->
                 <form class="check">
                     <div class="div_check">
                         <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
-                        <label class="label" for="checkbox-2">Lieferanten<img src="/bilder/fabrik.svg"
+                        <label class="label" for="checkbox-2">Lieferanten<img src="bilder/fabrik.png"
                                 height="25px" /></label>
                     </div>
                     <div class="div_check">
                         <input type="checkbox" id="checkbox-1" name="Produzenten" checked>
-                        <label class="label" for="checkbox-1">Produzenten<img src="/bilder/nahmaschine.svg"
+                        <label class="label" for="checkbox-1">Produzenten<img src="bilder/nahmaschine.png"
                                 height="25px" /></label>
                     </div>
                 </form>
             </div>
-
-             <!--Div-Element für die Map -->
-            <!-- Hier wird auch der API-Key für Google-Maps eingefügt -->
+            <!-- Google Map -->
             <div id="map"></div>
         </div>
     </div>
-
-    
 </body>
 <footer>
     &copy; by Cara, Dominik, Felix, Hani und Jakob

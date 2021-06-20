@@ -1,46 +1,52 @@
-
+/* Hier wird das Autocomplete in der Suchleiste bearbeitet und seine Position relativ zur Suchleiste bearbeitet */
 .autocomplete {
   position: relative;
+  z-index: 10;
 }
 
+/*  Gestaltung der DropDownListe*/
 input.myInput {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
+  width: 100%;
+
 }
 
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
+/* ein selektiertes Item hat die Hintergrundfarbe dodgerBlue */
 input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
 }
+
+/* Die Items innerhalb der Liste werden angepasst */
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
   border-bottom: none;
   border-top: none;
-  z-index: 10;
   /*Position der Autocomplete Items hat die selbe Größe wie der Container*/
   top: 100%;
   left: 0;
   right: 0;
 }
+
+/* Jedes item bekommt ein div, und gestalten dieses übersichtlicher */
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
 }
+
+/*Wenn man über ein Item mit der Maus fährt:*/
 .autocomplete-items div:hover {
-  /*Wenn man über ein Item mit der Maus fährt:*/
   background-color: #e9e9e9;
 }
+
+/* Wenn man mit dem Pfeiltasten navigiert, erhalten diese die Hintergrundfarbe blau */
 .autocomplete-active {
-  /*Mit Pfeilelementen durch die Items navigieren:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
