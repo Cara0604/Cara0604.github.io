@@ -191,7 +191,7 @@ function initMap() {
 					lng: auto_standort[i].lo
 				},
 				map: map,
-				icon: new google.maps.MarkerImage('bilder/fabrik.png', null, null, null, new google.maps.Size(30, 30)),
+				icon: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png',
 				animation: google.maps.Animation.DROP,
 				title: auto_standort[i].name
 			});
@@ -202,7 +202,7 @@ function initMap() {
 					lng: auto_standort[i].lo
 				},
 				map: map,
-				icon: new google.maps.MarkerImage('bilder/nahmaschine.png', null, null, null, new google.maps.Size(30, 30)),
+				icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
 				animation: google.maps.Animation.DROP,
 				title: auto_standort[i].name
 			});
