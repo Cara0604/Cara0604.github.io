@@ -1,4 +1,4 @@
-/* Komplette Suchleiste + Checkboxen  */
+/* Komplette Suchleiste + Checkboxen */
 .uebersicht {
     padding: 1rem;
     margin: 1rem;
@@ -14,7 +14,7 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
 }
 
-/* Beim drübergehen mit der Maus, hebt sie sich ein wenig an */
+/* Beim Drübergehen mit der Maus hebt sich die Suchleiste ein wenig an */
 .search:hover {
     box-shadow: 0px 5px 30px rgba(0, 0, 0, .25);
     transform: scale(1.1);
@@ -42,7 +42,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Die Luppe wird hier bearbeitet */
+/* Die Lupe wird hier bearbeitet */
 .searchButton {
     width: 60px;
     height: 40px;
@@ -63,7 +63,7 @@
     text-shadow: 0 1px 100px rgb(119, 119, 119);
 }
 
-/*Gestaltung der Beschriftung beim Drüberfahren*/
+/* Gestaltung der Beschriftung beim Drüberfahren */
 .label:hover {
     cursor: pointer;
     text-shadow: 0 2px 2px rgb(119, 119, 119);
@@ -92,7 +92,7 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-/* Sobald es gedrückt wird, erscheint es schwarz*/
+/* Sobald es gedrückt wird, erscheint es schwarz */
 input:checked[type="checkbox"] {
     background: black;
 }
@@ -100,7 +100,7 @@ input:checked[type="checkbox"] {
 /* Erstellt den runden Knopf */
 input[type="checkbox"]:after {
     content: "";
-    /*Fügt den Kreis hinzu*/
+    /* Fügt den Kreis hinzu */
     position: absolute;
     width: 10px;
     height: 10px;
@@ -113,7 +113,7 @@ input[type="checkbox"]:after {
     transition: 0.5s;
 }
 
-/*Stellt die Position des Kreises ein, sobald er gedrückt wird*/
+/* Stellt die Position des Kreises ein, sobald er gedrückt wird */
 input:checked[type="checkbox"]:after {
     left: 14px;
 }

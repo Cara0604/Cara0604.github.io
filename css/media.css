@@ -1,4 +1,7 @@
-/* Hier wird die Webseite an kleinere Skalarierung unter 600px in der Breite angepasst. Dabei stapelt sich alles untereinander. Das InfoWindow sowie die Notificationen werden an die Größe des Bildschirmes angepasst. Auch die Animationen für die beiden Nachrichtenarten werden angepasst */
+/* Hier wird die Webseite an kleinere Skalarierung unter 600px in der Breite angepasst. 
+Dabei stapelt sich alles untereinander. 
+Das InfoWindow sowie die Notificationen werden an die Größe des Bildschirmes angepasst. 
+Auch die Animationen für die beiden Nachrichtenarten werden angepasst */
 
 @media only screen and (max-width: 600px) {
   #map  {

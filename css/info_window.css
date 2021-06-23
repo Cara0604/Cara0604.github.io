@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap');
 
-/* Allgemeine Einstellungen für die Informationsbox*/
+/* Allgemeine Einstellungen für die Informationsbox */
 .info {
     min-width: 620px;
     position: absolute;
@@ -23,7 +23,7 @@
     pointer-events: auto;
 }
 
-/* Hier wird eine spezifische Animation erstellt für das Erscheinen des InfoWindows */
+/* Hier wird eine spezifische Animation für das Erscheinen des InfoWindows erstellt */
 .info.show {
     animation: showInfo 1s ease forwards;
 }
@@ -42,8 +42,7 @@
     }
 }
 
-/* Hier wird eine spezifische Animation erstellt für das Verschwinden des InfoWindows erstellt*/
-
+/* Hier wird eine spezifische Animation für das Verschwinden des InfoWindows erstellt*/
 .info.hide {
     animation: hideInfo 1s ease forwards;
 }
@@ -59,7 +58,7 @@
     }
 }
 
-/* bearbeitet die Größe des Schließbuttons + Position*/
+/* bearbeitet die Größe des Schließbuttons + Position */
 .info .close-info {
     position: absolute;
     transform: translateY(20%);
@@ -92,7 +91,7 @@
     letter-spacing: 5px;
 }
 
-/* Den Inhalt außer die Überschrift wird hier bearbeitet */
+/* Der Inhalt außer die Überschrift wird hier bearbeitet */
 .bodyContent {
     color: rgb(253, 253, 253);
     font-weight: 100;
@@ -102,6 +101,7 @@
 
 }
 
+/* Schriftart Import */
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 /* Unterschiedliche Darstellung zwischen Eigenschaft und Inhalt: Hier wird der Inhalt einer Eigenschaft bearbeitet */
@@ -111,7 +111,7 @@
     letter-spacing: normal;
 }
 
-/* Bild wird bearbeitet, wenn eins existiert*/
+/* Bild wird bearbeitet, wenn eins existiert */
 .showPic {
     position: relative;
     width: 100%;
