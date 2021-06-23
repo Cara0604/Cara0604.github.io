@@ -15,7 +15,7 @@ body {
 	position: relative;
 }
 
-/* Inhalte, die immer sichtbar sind (also, notification und infoWindow werden ausgelassen */
+/* Inhalte, die immer sichtbar sind (also, notification und infoWindow) werden ausgelassen */
 .container {
     width: 95%;
     margin: auto;
@@ -30,7 +30,7 @@ body {
 	transition: 0.5s;
 }
 
-/* Ueberschrift: 'Willkommen auf unserer Supply-Chain-Map'*/
+/* Überschrift: 'Willkommen auf unserer Supply-Chain-Map' */
 .header_1 {
 	background: white;
 	text-align: center;
