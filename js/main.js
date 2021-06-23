@@ -75,19 +75,19 @@ var port_coordinates_latitude;
 var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
-var hcs_id; //eineutige id
+var hcs_id; //eineutige ID
 
 //Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
 var contentString = [];
-var ids = []; //Alle Ids um zu vergleichen, ids existieren
+var ids = []; //Alle IdD um zu vergleichen, ob IDs existieren
 
 var json_length;
 
 //Feld, in dem alle Marker gespeichert werden
 var markers = [];
 
-//Request, um die Daten aus der JSON-Datei zu holen
+//Request, um die Daten aus der Datenbank zu holen
 var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
 
 while (url != null) {
@@ -101,7 +101,7 @@ while (url != null) {
 			//Länge des Datensatzes (die Anzahl der Standorte)
 			json_length = Object.keys(myObj.results).length;
 			
-			//hier werden die Daten aus der JSON-Datei in Variablen gespeichert
+			//hier werden die Daten aus der JSON-Datei in den Variablen gespeichert
 			for (var i = 0; i < json_length; ++i) {
 				
 				if (myObj.results[i].type === "supply_chain_unit") {					
@@ -152,7 +152,6 @@ while (url != null) {
 	}
 
 	abfrage.open("GET", url, false);
-	// abfrage.open("GET", "response2.json", false);
 	abfrage.send();
 }
 
@@ -213,20 +212,19 @@ function initMap() {
 					lng: auto_standort[i].lo
 				},
 				map: map,
-				//icon: new google.maps.MarkerImage('bilder/marker_blue.png', null, null, null, new google.maps.Size(30,30)),
 				animation: google.maps.Animation.DROP,
 				title: auto_standort[i].name
 			});
 		}
 
-		//hier wird einerseits die Funktionalität implementiert, dass unser infowindow erscheint und jedes mal ein spezifisches für jeden Standort
+		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
 		newMarker.addListener("click", () => {
 			document.querySelector('#firstHeading').textContent = auto_standort[a].name;
 			document.querySelector('#typ').textContent = auto_standort[a].unit_type;
 			document.querySelector('#adresse').textContent = auto_standort[a].adress;
 			document.querySelector('#creditor').textContent = auto_standort[a].creditor;
 
-			//Manche Standorte haben keine Informationen und deshalb wird erstmal überprüft, ob Daten vorliegen!
+			//Manche Standorte haben keine Informationen und deshalb wird erstmal überprüft, ob Daten vorliegen:
 			if (auto_standort[a].partner_since_year == null) {
 				document.querySelector('#partner-seitP').textContent = "";
 			} else {
@@ -269,7 +267,7 @@ function initMap() {
 				document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
 			}
 
-			// Wenn das für src null eingesetzt  (bzw undefined) tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
+			// Wenn hier für src null eingesetzt wird (bzw. undefined), tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
 
 			if (auto_standort[a].supplier_image != null) {
 				$('#picture').addClass("showPic");
@@ -282,7 +280,7 @@ function initMap() {
 			// if (auto_standort[a].supplier_video != null) {
 			// }
 
-			//Wenn auf den Standort geclicked wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren 
+			//Wenn auf den Standort geklickt wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren 
 			$('.info').addClass("show");
 			$('.info').removeClass("hide");
 			$('.info').addClass("showInfo");
@@ -301,7 +299,7 @@ function initMap() {
 		markers.push(newMarker);
 	}
 
-	////////////////// unsere Verewigung
+	////////////////// unsere Verewigung -> der FIM-Standort
 	const infowindow2 = new google.maps.InfoWindow({});
 	var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
@@ -453,7 +451,8 @@ function initMap() {
 
 } //Ende der initMap Funktion
 
-//close Alert function
+
+//close Alert Funktion
 $('.close-btn').click(function() {
 	$('.alert').removeClass("show");
 	$('.alert').addClass("hide");

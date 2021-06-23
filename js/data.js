@@ -8,7 +8,8 @@ var json_length;
 
 var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
 
-// Die Daten werden in verschieden Websiten, damit in verschiedene Links gespeichert. Um an sie ranzukommen muss man hierfür, die variable url austauschen mit dem nächsten Link. Die wird in dem Attribut myObj.next_page abgerufen
+// Die Daten werden in verschieden Websiten, damit in verschiedene Links gespeichert. Um an sie ranzukommen muss man hierfür 
+//die variable url mit dem nächsten Link austauschen. Diese wird in dem Attribut myObj.next_page abgerufen
 
 while (url != null) {
 	var xmlhttp = new XMLHttpRequest();
@@ -20,7 +21,7 @@ while (url != null) {
 
 			json_length = Object.keys(myObj.results).length;
 
-			//falls der Inhalt der Attributes nicht leer ist, wird er dem Feld infos hinzugefügt
+			//falls der Inhalt der Attributes nicht leer ist, wird er dem Feld Infos hinzugefügt
 			for (var i = 0; i < json_length; ++i) {
 				if (myObj.results[i].data.country != null) {
 					infos.push(myObj.results[i].data.country);
@@ -33,7 +34,7 @@ while (url != null) {
 				}
 			}
 
-			//sollte etwas doppelt sein, wird es hier gelöscht
+			//sollte etwas doppelt sein, wird es hier gelöscht -> Erhöhung der Datenqualität
 			for (var i = 0; i < infos.length; i++) {
 				for (var j = 0; j < infos.length; j++) {
 					if ((infos[i] == infos[j]) && i != j) {
@@ -48,5 +49,5 @@ while (url != null) {
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
 }
-//hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
+//hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete-Funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
 autocomplete(document.querySelector('.myInput'), infos);
