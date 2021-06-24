@@ -80,7 +80,7 @@ var hcs_id; //eineutige ID
 //Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
 var contentString = [];
-var ids = []; //Alle IdD um zu vergleichen, ob IDs existieren
+var ids = []; //Alle IDs, um zu vergleichen, ob IDs existieren
 
 var json_length;
 
