@@ -81,6 +81,7 @@ var hcs_id; //eineutige ID
 var auto_standort = [];
 var contentString = [];
 var ids = []; //Alle IDs, um zu vergleichen, ob IDs existieren
+var latlng = [];
 
 var json_length;
 
@@ -297,48 +298,50 @@ function initMap() {
 		});
 		//alle Marker werden in markers gespeichert
 		markers.push(newMarker);
+		latlng[i] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
 	}
 
-	////////////////// unsere Verewigung -> der FIM-Standort
-	const infowindow2 = new google.maps.InfoWindow({});
-	var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
-	var marker = new google.maps.Marker({
-		position: myLatlng,
-		animation: google.maps.Animation.BOUNCE,
-		map: map,
-		title: "FIM"
-	});
+	// ////////////////// unsere Verewigung -> der FIM-Standort
+	// const infowindow2 = new google.maps.InfoWindow({});
+	// var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
-	marker.addListener("click", () => {
+	// var marker = new google.maps.Marker({
+	// 	position: myLatlng,
+	// 	animation: google.maps.Animation.BOUNCE,
+	// 	map: map,
+	// 	title: "FIM"
+	// });
 
-		document.querySelector('#firstHeading').textContent = "FIM";
-		document.querySelector('#typ').textContent = "Entwickler";
-		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-		document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
-		document.querySelector('#partner-seitP').textContent = "";
-		document.querySelector('#purchasing-volumeP').textContent = "";
-		document.querySelector('#estimated-leverageP').textContent = "";
-		document.querySelector('#arbeiterinnenP').textContent = "";
-		document.querySelector('#arbeiterP').textContent = "";
-		document.querySelector('#beschwerdenP').textContent = "";
+	// marker.addListener("click", () => {
 
-		$('.info').addClass("show");
-		$('.info').removeClass("hide");
-		$('.info').addClass("showInfo");
-		map.setCenter({
-			lat: 48.33366559150027,
-			lng: 10.894521557382948
-		});
-		map.setZoom(8);
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-		$('.container').addClass("active");
-		console.log("FIM Standort", marker);
-	});
-	//////////////////////////////////////////////////////
+	// 	document.querySelector('#firstHeading').textContent = "FIM";
+	// 	document.querySelector('#typ').textContent = "Entwickler";
+	// 	document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
+	// 	document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+	// 	document.querySelector('#partner-seitP').textContent = "";
+	// 	document.querySelector('#purchasing-volumeP').textContent = "";
+	// 	document.querySelector('#estimated-leverageP').textContent = "";
+	// 	document.querySelector('#arbeiterinnenP').textContent = "";
+	// 	document.querySelector('#arbeiterP').textContent = "";
+	// 	document.querySelector('#beschwerdenP').textContent = "";
+
+	// 	$('.info').addClass("show");
+	// 	$('.info').removeClass("hide");
+	// 	$('.info').addClass("showInfo");
+	// 	map.setCenter({
+	// 		lat: 48.33366559150027,
+	// 		lng: 10.894521557382948
+	// 	});
+	// 	map.setZoom(8);
+	// 	window.scrollTo({
+	// 		top: 0,
+	// 		behavior: 'smooth'
+	// 	});
+	// 	$('.container').addClass("active");
+	// 	console.log("FIM Standort", marker);
+	// });
+	// //////////////////////////////////////////////////////
 
 
 	// Hier wird der Filter für die Produzenten gesetzt
@@ -384,19 +387,28 @@ function initMap() {
 	});
 
 
+	var latlong = [];
+
 	// Hier wird die Funktionalität der Suchleiste implementiert
 	var button = document.getElementById('button');
 	button.addEventListener("click", function() {
 		var i;
 		var input = document.querySelector('.searchTerm').value.toLowerCase();
 		var eingabe = false;
-
+		
+		var a = 0;
+		var bounds = new google.maps.LatLngBounds();
+		latlong.splice(0, latlong.length);
 		for (i = 0; i < markers.length; i++) {
 			//erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
 			markers[i].setVisible(false);
 			if (auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
 				markers[i].setVisible(true);
 				eingabe = true;
+
+				latlong[a] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
+				bounds.extend(latlong[a]);
+				a++;
 			}
 		}
 
@@ -422,10 +434,16 @@ function initMap() {
 					$('.alert').removeClass("showAlert");
 				}, 1100);
 			}, 3000);
+
 			//wenn die Eingabe leer ist, werden alle Standorte angezeigt
 		} else if (input === "") {
 			for (i = 0; i < markers.length; i++) {
 				markers[i].setVisible(true);
+			}
+
+			//Mitte der Karte bestimmen
+			for (var i = 0; i < latlng.length; ++i) {
+				bounds.extend(latlng[i]);
 			}
 
 			$('.alert').removeClass("show");
@@ -434,6 +452,13 @@ function initMap() {
 				$('.alert').removeClass("showAlert");
 			}, 1100);
 		}
+		//Grenzen der Karte übergeben
+		console.log(a);
+		map.fitBounds(bounds);
+		
+		if (a === 1) {
+			map.setZoom(8);
+		}	
 	});
 
 	//Damit wird das InfoWindow geschlossen
@@ -460,3 +485,4 @@ $('.close-btn').click(function() {
 		$('.alert').removeClass("showAlert");
 	}, 1100);
 });
+
