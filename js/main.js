@@ -180,7 +180,6 @@ function initMap() {
 	});
 
 	//Marker anlegen anhand ihres Typus
-	const infowindow = new google.maps.InfoWindow({});
 
 	for (var i = 0; i < auto_standort.length; i++) {
 		const a = i;
@@ -303,7 +302,6 @@ function initMap() {
 
 
 	// ////////////////// unsere Verewigung -> der FIM-Standort
-	// const infowindow2 = new google.maps.InfoWindow({});
 	// var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
 	// var marker = new google.maps.Marker({
@@ -339,7 +337,6 @@ function initMap() {
 	// 		behavior: 'smooth'
 	// 	});
 	// 	$('.container').addClass("active");
-	// 	console.log("FIM Standort", marker);
 	// });
 	// //////////////////////////////////////////////////////
 
