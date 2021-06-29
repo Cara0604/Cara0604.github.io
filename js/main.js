@@ -301,77 +301,97 @@ function initMap() {
 	}
 
 
-	// ////////////////// unsere Verewigung -> der FIM-Standort
-	// var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
+	////////////////// unsere Verewigung -> der FIM-Standort
+	var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
-	// var marker = new google.maps.Marker({
-	// 	position: myLatlng,
-	// 	animation: google.maps.Animation.BOUNCE,
-	// 	map: map,
-	// 	title: "FIM"
-	// });
+	var marker = new google.maps.Marker({
+		position: myLatlng,
+		animation: google.maps.Animation.BOUNCE,
+		map: map,
+		title: "FIM"
+	});
 
-	// marker.addListener("click", () => {
+	marker.addListener("click", () => {
 
-	// 	document.querySelector('#firstHeading').textContent = "FIM";
-	// 	document.querySelector('#typ').textContent = "Entwickler";
-	// 	document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-	// 	document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
-	// 	document.querySelector('#partner-seitP').textContent = "";
-	// 	document.querySelector('#purchasing-volumeP').textContent = "";
-	// 	document.querySelector('#estimated-leverageP').textContent = "";
-	// 	document.querySelector('#arbeiterinnenP').textContent = "";
-	// 	document.querySelector('#arbeiterP').textContent = "";
-	// 	document.querySelector('#beschwerdenP').textContent = "";
+		document.querySelector('#firstHeading').textContent = "FIM";
+		document.querySelector('#typ').textContent = "Entwickler";
+		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
+		document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+		document.querySelector('#partner-seitP').textContent = "";
+		document.querySelector('#purchasing-volumeP').textContent = "";
+		document.querySelector('#estimated-leverageP').textContent = "";
+		document.querySelector('#arbeiterinnenP').textContent = "";
+		document.querySelector('#arbeiterP').textContent = "";
+		document.querySelector('#beschwerdenP').textContent = "";
 
-	// 	$('.info').addClass("show");
-	// 	$('.info').removeClass("hide");
-	// 	$('.info').addClass("showInfo");
-	// 	map.setCenter({
-	// 		lat: 48.33366559150027,
-	// 		lng: 10.894521557382948
-	// 	});
-	// 	map.setZoom(8);
-	// 	window.scrollTo({
-	// 		top: 0,
-	// 		behavior: 'smooth'
-	// 	});
-	// 	$('.container').addClass("active");
-	// });
-	// //////////////////////////////////////////////////////
+		$('.info').addClass("show");
+		$('.info').removeClass("hide");
+		$('.info').addClass("showInfo");
+		map.setCenter({
+			lat: 48.33366559150027,
+			lng: 10.894521557382948
+		});
+		map.setZoom(8);
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+		$('.container').addClass("active");
+	});
+	//////////////////////////////////////////////////////
 
+	var button = document.getElementById('button');
 
 	// Hier wird der Filter für die Produzenten gesetzt
 	var checkbox_produzenten = document.getElementById('checkbox-1');
-
-	checkbox_produzenten.addEventListener('change', function() {
-		var i;
-
-		if (this.checked) {
-			for (i = 0; i < auto_standort.length; i++) {
-				if (auto_standort[i].unit_type === "Produktionsstätte") {
-					markers[i].setVisible(true);
-				}
-			}
-		} else {
-			for (i = 0; i < auto_standort.length; i++) {
-				if (auto_standort[i].unit_type === "Produktionsstätte") {
-					markers[i].setVisible(false);
-				}
-			}
-		}
-	});
-
-	// Hier wird der Filter für die Lieferanten gesetzt
 	var checkbox_lieferanten = document.getElementById('checkbox-2');
 
-	checkbox_lieferanten.addEventListener('change', function() {
+
+	checkbox_produzenten.addEventListener('change', function() {
+		button.click();
+		if(checkbox_produzenten.checked && checkbox_lieferanten.checked) {
+			marker.setVisible(true);
+		} else {
+			marker.setVisible(false);
+		}
+	});
+
+	function changeProduzentTrue(eingabe) {
 		var i;
 
-		if (this.checked) {
-			for (i = 0; i < auto_standort.length; i++) {
-				if (auto_standort[i].unit_type === "Material Lieferant") {
-					markers[i].setVisible(true);
+			if (checkbox_produzenten.checked) {
+				for (i = 0; i < auto_standort.length; i++) {
+					if (auto_standort[i].unit_type === "Produktionsstätte" && eingabe[i]) {
+						markers[i].setVisible(true);
+					}
+				}
+			} else {
+				for (i = 0; i < auto_standort.length; i++) {
+					if (auto_standort[i].unit_type === "Produktionsstätte") {
+						markers[i].setVisible(false);
+					}
+				}
+			}
+	}
+
+	// Hier wird der Filter für die Lieferanten gesetzt
+
+	checkbox_lieferanten.addEventListener('change', function() {
+		button.click();
+		if(checkbox_produzenten.checked && checkbox_lieferanten.checked) {
+			marker.setVisible(true);
+		} else {
+			marker.setVisible(false);
+		}
+	});
+
+	function changeLieferantenTrue(eingabe) {
+		var i;
+		if (checkbox_lieferanten.checked) {
+		console.log(checkbox_produzenten.checked);
+		for (i = 0; i < auto_standort.length; i++) {
+			if (auto_standort[i].unit_type === "Material Lieferant" && eingabe[i]) {
+				markers[i].setVisible(true);
 				}
 			}
 		} else {
@@ -381,17 +401,17 @@ function initMap() {
 				}
 			}
 		}
-	});
+	}
+
 
 
 	var latlong = [];
 
 	// Hier wird die Funktionalität der Suchleiste implementiert
-	var button = document.getElementById('button');
 	button.addEventListener("click", function() {
 		var i;
 		var input = document.querySelector('.searchTerm').value.toLowerCase();
-		var eingabe = false;
+		var eingabe = [];
 		
 		var a = 0;
 		var bounds = new google.maps.LatLngBounds();
@@ -399,9 +419,10 @@ function initMap() {
 		for (i = 0; i < markers.length; i++) {
 			//erstmal alle Marker unsichtbar machen, sodass danach nur die gesuchten auf sichtbar gesetzt werden müssen
 			markers[i].setVisible(false);
+			eingabe[i] = false;
 			if (auto_standort[i].name.toLowerCase() == input || auto_standort[i].country.toLowerCase() == input || auto_standort[i].place.toLowerCase() == input) {
 				markers[i].setVisible(true);
-				eingabe = true;
+				eingabe[i] = true;
 
 				latlong[a] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
 				bounds.extend(latlong[a]);
@@ -449,8 +470,11 @@ function initMap() {
 				$('.alert').removeClass("showAlert");
 			}, 1100);
 		}
+
+		changeLieferantenTrue(eingabe);
+		changeProduzentTrue(eingabe);
+
 		//Grenzen der Karte übergeben
-		console.log(a);
 		map.fitBounds(bounds);
 		
 		if (a === 1) {

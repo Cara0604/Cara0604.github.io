@@ -24,6 +24,12 @@ while (url != null) {
 			//falls der Inhalt der Attributes nicht leer ist, wird er dem Feld Infos hinzugefügt
 			for (var i = 0; i < json_length; ++i) {
 				if (myObj.results[i].data.country != null) {
+					// nicht löschen!!!!
+					// var string = myObj.results[i].data.country;
+					// var splitted = string.split(" ");
+					// for (var a = 0; a < splitted.length; ++a) {
+					// 	infos.push(splitted[a]);
+					// }
 					infos.push(myObj.results[i].data.country);
 				}
 				if (myObj.results[i].data.place != null) {
@@ -49,5 +55,6 @@ while (url != null) {
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
 }
+
 //hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete-Funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
 autocomplete(document.querySelector('.myInput'), infos);
