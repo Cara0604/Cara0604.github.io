@@ -8,6 +8,7 @@ Funktionsumfang:
 - Unterscheidung der Standorte in "Lieferanten" und "Produzenten"
 - Möglichkeit, nach den oben genannten Kategorien zu filtern
 - Möglichkeit, gezielt nach Standort zu suchen (Name, Land, Stadt)
+- autocomplete für die Suche
 - Weiterleitung auf Videoplayer / PDF, falls verfügbar
 - Autocomplete-Funktion für die Suche
 - mobile Version für Website
