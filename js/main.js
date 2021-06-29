@@ -388,7 +388,6 @@ function initMap() {
 	function changeLieferantenTrue(eingabe) {
 		var i;
 		if (checkbox_lieferanten.checked) {
-		console.log(checkbox_produzenten.checked);
 		for (i = 0; i < auto_standort.length; i++) {
 			if (auto_standort[i].unit_type === "Material Lieferant" && eingabe[i]) {
 				markers[i].setVisible(true);
