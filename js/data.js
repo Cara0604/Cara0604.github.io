@@ -25,27 +25,30 @@ while (url != null) {
 			//falls der Inhalt der Attributes nicht leer ist, wird er dem Feld Infos hinzugefügt
 			for (var i = 0; i < json_length; ++i) {
 				if (myObj.results[i].data.country != null) {
-					// var string = myObj.results[i].data.country;
-					// var splitted = string.split(" ");
-					// for (var a = 0; a < splitted.length; ++a) {
-					// 	suche.push(splitted[a]);
-					// }
+					var string = myObj.results[i].data.country;
+					var splitted = string.split(" ");
+					for (var a = 0; a < splitted.length; ++a) {
+						suche.push(splitted[a]);
+					}
+
 					infos.push(myObj.results[i].data.country);
 				}
 				if (myObj.results[i].data.place != null) {
-					// var string = myObj.results[i].data.place;
-					// var splitted = string.split(" ");
-					// for (var a = 0; a < splitted.length; ++a) {
-					// 	suche.push(splitted[a]);
-					// }
+					var string = myObj.results[i].data.place;
+					var splitted = string.split(" ");
+					for (var a = 0; a < splitted.length; ++a) {
+						suche.push(splitted[a]);
+					}
+
 					infos.push(myObj.results[i].data.place);
 				}
 				if (myObj.results[i].data.name != null) {
-					// var string = myObj.results[i].data.name;
-					// var splitted = string.split(" ");
-					// for (var a = 0; a < splitted.length; ++a) {
-					// 	suche.push(splitted[a]);
-					// }
+					var string = myObj.results[i].data.name;
+					var splitted = string.split(" ");
+					for (var a = 0; a < splitted.length; ++a) {
+						suche.push(splitted[a]);
+					}
+
 					infos.push(myObj.results[i].data.name);
 				}
 			}
