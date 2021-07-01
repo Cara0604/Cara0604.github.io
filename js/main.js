@@ -220,6 +220,8 @@ function initMap() {
 		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
 		newMarker.addListener("click", () => {
 			document.querySelector('#firstHeading').textContent = auto_standort[a].name;
+			//"Typ:" soll nicht angezeigt werden, sondern nur der Typ an sich
+			document.querySelector('#typP').innerHTML = "<span id='typ'></span>";
 			document.querySelector('#typ').textContent = auto_standort[a].unit_type;
 			document.querySelector('#adresse').textContent = auto_standort[a].adress;
 			document.querySelector('#creditor').textContent = auto_standort[a].creditor;
@@ -228,7 +230,7 @@ function initMap() {
 			if (auto_standort[a].partner_since_year == null) {
 				document.querySelector('#partner-seitP').textContent = "";
 			} else {
-				document.querySelector('#partner-seitP').innerHTML = "Partner-seit: <span id='partner-seit'></span>";
+				document.querySelector('#partner-seitP').innerHTML = "Zusammenarbeit seit: <span id='partner-seit'></span>";
 				document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
 			}
 
@@ -236,14 +238,14 @@ function initMap() {
 				document.querySelector('#purchasing-volumeP').textContent = "";
 			} else {
 				document.querySelector('#purchasing-volumeP').innerHTML = "Purchasing-Volume: <span id='purchasing-volume'></span>%";
-				document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume * 100;
+				document.querySelector('#purchasing-volume').textContent = Math.ceil(auto_standort[a].purchasing_volume);
 			}
 
 			if (auto_standort[a].estimated_leverage == null || auto_standort[a].estimated_leverage == "") {
 				document.querySelector('#estimated-leverageP').textContent = "";
 			} else {
-				document.querySelector('#estimated-leverageP').innerHTML = "Estimated-Leverage: <span id='estimated-leverage'></span>";
-				document.querySelector('#estimated-leverage').textContent = auto_standort[a].estimated_leverage;
+				document.querySelector('#estimated-leverageP').innerHTML = "Estimated-Leverage: <span id='estimated-leverage'></span>%";
+				document.querySelector('#estimated-leverage').textContent = Math.ceil(auto_standort[a].estimated_leverage);
 			}
 
 			if (auto_standort[a].employees_female == null) {
@@ -260,12 +262,15 @@ function initMap() {
 				document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
 			}
 
-			if (auto_standort[a].complaints == null) {
+			//hier soll eine Leerzeile fair_wear_foundation hin
+			//fair_wear_audit und fair_wear_training
+
+			/*if (auto_standort[a].complaints == null) {
 				document.querySelector('#beschwerdenP').textContent = "";
 			} else {
 				document.querySelector('#beschwerdenP').innerHTML = "Beschwerden: <span id='beschwerden'></span>";
 				document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
-			}
+			}*/
 
 			// Wenn hier für src null eingesetzt wird (bzw. undefined), tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
 
