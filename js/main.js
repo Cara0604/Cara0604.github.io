@@ -5,7 +5,7 @@ class Standort {
 	constructor(la, lo, name, unit_type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
 		estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
 		last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
-		port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id) {
+		port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id) {
 
 		this.hcs_id = hcs_id;
 		this.la = la;
@@ -31,7 +31,7 @@ class Standort {
 		this.mode_of_transportation = mode_of_transportation;
 		this.port_name = port_name;
 		this.port_coordinates_latitude = port_coordinates_latitude;
-		this.port_coordinates_longitude = port_coordinates_latitude;
+		this.port_coordinates_longitude = port_coordinates_longitude;
 		this.warehouse_name = warehouse_name;
 		this.carbon_footprint = carbon_footprint;
 		this.street = street;
@@ -39,6 +39,7 @@ class Standort {
 		this.place = place;
 		this.country_code = country_code;
 		this.country = country;
+		this.fwf_id = fwf_id;
 	}
 }
 
@@ -76,6 +77,7 @@ var port_coordinates_longitude;
 var warehouse_name;
 var carbon_footprint;
 var hcs_id; //eineutige ID
+var fwf_id;
 
 //Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
@@ -116,7 +118,7 @@ while (url != null) {
 					place = myObj.results[i].data.place;
 					country_code = myObj.results[i].data.country_code;
 					country = myObj.results[i].data.country;
-					adress = myObj.results[i].data.country + ", " + myObj.results[i].data.place;
+					adress =  myObj.results[i].data.place + ", " + myObj.results[i].data.country;
 					bild = myObj.results[i].data.supplier_image.url;
 					creditor = myObj.results[i].data.creditor;
 					division = myObj.results[i].data.devision;
@@ -138,12 +140,13 @@ while (url != null) {
 					port_coordinates_longitude = myObj.results[i].data.port_coordinates_longitude;
 					warehouse_name = myObj.results[i].data.warehouse_name;
 					carbon_footprint = myObj.results[i].data.carbon_footprint;
+					fwf_id = myObj.results[i].data.fwf_id;
 
 					//für jeden Standort wird ein Objekt erzeugt
 					let t = new Standort(la, lo, name, unit_type, adress, bild, creditor, division,
 						partner_since_year, purchasing_volume, estimated_leverage, employees_female, employees_male,
 						audit_type, fair_wear_audit, last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
-						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id);
+						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id);
 
 					auto_standort.push(t);
       				console.log(myObj.results[i].type);
@@ -224,7 +227,7 @@ function initMap() {
 			document.querySelector('#typP').innerHTML = "<span id='typ'></span>";
 			document.querySelector('#typ').textContent = auto_standort[a].unit_type;
 			document.querySelector('#adresse').textContent = auto_standort[a].adress;
-			document.querySelector('#creditor').textContent = auto_standort[a].creditor;
+			// document.querySelector('#creditor').textContent = auto_standort[a].creditor;
 
 			//Manche Standorte haben keine Informationen und deshalb wird erstmal überprüft, ob Daten vorliegen:
 			if (auto_standort[a].partner_since_year == null) {
@@ -260,6 +263,28 @@ function initMap() {
 			} else {
 				document.querySelector('#arbeiterP').innerHTML = "Arbeiter: <span id='arbeiter'></span>";
 				document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
+			}
+
+			if (auto_standort[a].fwf_id == null) {
+				document.querySelector('#fwf_id').textContent = "";
+				document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
+			} else {
+				//document.querySelector('#fwf_idP').innerHTML = "Fair wear ID: <span id='fwf_id'></span>";
+				document.querySelector('#fwf_id').textContent = " " + auto_standort[a].fwf_id;
+			}
+
+			if (auto_standort[a].fair_wear_audit == null) {
+				document.querySelector('#fair_wear_auditP').textContent = "";
+			} else {
+				document.querySelector('#fair_wear_auditP').innerHTML = "Fair wear audit: <span id='fair_wear_audit'></span>";
+				document.querySelector('#fair_wear_audit').textContent = auto_standort[a].fair_wear_audit;
+			}
+
+			if (auto_standort[a].last_fair_wear_training == null) {
+				document.querySelector('#last_fair_wear_trainingP').textContent = "";
+			} else {
+				document.querySelector('#last_fair_wear_trainingP').innerHTML = "Last fair wear training: <span id='last_fair_wear_training'></span>";
+				document.querySelector('#last_fair_wear_training').textContent = auto_standort[a].last_fair_wear_training;
 			}
 
 			//hier soll eine Leerzeile fair_wear_foundation hin
@@ -319,15 +344,17 @@ function initMap() {
 	marker.addListener("click", () => {
 
 		document.querySelector('#firstHeading').textContent = "FIM";
-		document.querySelector('#typ').textContent = "Entwickler";
+		document.querySelector('#typ').textContent = "Entwicklerteam";
 		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-		document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+		// document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#partner-seitP').textContent = "";
 		document.querySelector('#purchasing-volumeP').textContent = "";
 		document.querySelector('#estimated-leverageP').textContent = "";
 		document.querySelector('#arbeiterinnenP').textContent = "";
 		document.querySelector('#arbeiterP').textContent = "";
 		document.querySelector('#beschwerdenP').textContent = "";
+		document.querySelector('#fwf_id').textContent = "";
+		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
 
 		$('.info').addClass("show");
 		$('.info').removeClass("hide");
