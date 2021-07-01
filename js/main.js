@@ -235,8 +235,8 @@ function initMap() {
 			if (auto_standort[a].purchasing_volume == null) {
 				document.querySelector('#purchasing-volumeP').textContent = "";
 			} else {
-				document.querySelector('#purchasing-volumeP').innerHTML = "Purchasing-Volume: <span id='purchasing-volume'></span>";
-				document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume;
+				document.querySelector('#purchasing-volumeP').innerHTML = "Purchasing-Volume: <span id='purchasing-volume'></span>%";
+				document.querySelector('#purchasing-volume').textContent = auto_standort[a].purchasing_volume * 100;
 			}
 
 			if (auto_standort[a].estimated_leverage == null || auto_standort[a].estimated_leverage == "") {
