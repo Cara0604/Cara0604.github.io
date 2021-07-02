@@ -18,21 +18,25 @@
 
     <!-- Element für die Alert-Notificatin: Hierbei muss EOS ein eigenes Kit anlegen, um Fehlermeldungen zu vermeiden-->
     <script src="https://kit.fontawesome.com/91f6a03955.js" crossorigin="anonymous"></script>
-    
+
     <!-- Einbindung der Bibliothek jquery -->
     <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    
+
     <!--Suchbutton einfügen-->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
-    
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+        crossorigin="anonymous"></script>
+
     <!-- Scripts einfügen -->
     <script defer src="js/main.js"></script> <!-- Mit dem defer wird es erst nach dem Body geladen-->
     <script defer src="js/autocomplete.js"></script>
     <script defer src="js/data.js"></script>
-    
+
     <!-- GoogleMaps initFunction einbinden -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap" type="text/javascript"></script>
-    
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFuLT313jOj_3arI3VBeRnKTi9BQhOi3U&callback=initMap"
+        type="text/javascript"></script>
+
     <!-- leichtes SEO -->
     <meta name="description" content="Awesome Supply-Chain Visualisation by Schöffel">
     <meta name="keywords" content="Supply-Chain, sustainability, caring about your customers, environmental Protection">
@@ -55,21 +59,23 @@
                 <div class="bodyContent">
                     <p id="typP">Typ: <span id="typ"></span></p>
                     <p id="adresseP">Adresse: <span id="adresse"></span></p>
-                    <!-- <p id="creditorP">Creditor: <span id="creditor"></span></p> --> 
+                    <!-- <p id="creditorP">Creditor: <span id="creditor"></span></p> -->
                     <p id="partner-seitP"></p>
                     <p id="purchasing-volumeP"></p>
                     <p id="estimated-leverageP"></p>
                     <p id="arbeiterinnenP"></p>
                     <p id="arbeiterP"></p>
-                    <p id="fwf_idP"><a href="https://www.fairwear.org/">Fair wear ID:</a><span id ="fwf_id"></span></p> 
+                    <p id="fwf_idP"><a target="_blank" href="https://www.fairwear.org/">Fair wear ID:</a><span
+                            id="fwf_id"></span></p>
                     <p id="fair_wear_auditP"></p>
                     <p id="last_fair_wear_trainingP"></p>
 
                     <p id="beschwerdenP"></p>
-                    <img id="picture" class="showPic"
-                        src="">
+                    <img id="picture" class="showPic" src="">
                     <p id="more">Weitere Informationen finden Sie in diesem <a target="_blank"
-                        href="https://player.vimeo.com/video/563570171?&color=ffffff&byline=0&portrait=0" width="400" height="360" frameborder="0" allow="picture-in-picture" allowfullscreen>Video</a></p>
+                            href="https://player.vimeo.com/video/563570171?&color=ffffff&byline=0&portrait=0"
+                            width="400" height="360" frameborder="0" allow="picture-in-picture"
+                            allowfullscreen>Video</a></p>
                 </div>
             </div>
         </div>
@@ -101,13 +107,13 @@
                 <form class="check">
                     <div class="div_check">
                         <input type="checkbox" id="checkbox-2" name="Lieferanten" checked>
-                        <label class="label" for="checkbox-2">Lieferanten<img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png"
-                                height="25px" /></label>
+                        <label class="label" for="checkbox-2">Lieferanten<img
+                                src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" height="25px" /></label>
                     </div>
                     <div class="div_check">
                         <input type="checkbox" id="checkbox-1" name="Produzenten" checked>
-                        <label class="label" for="checkbox-1">Produzenten<img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                                height="25px" /></label>
+                        <label class="label" for="checkbox-1">Produzenten<img
+                                src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" height="25px" /></label>
                     </div>
                 </form>
             </div>
