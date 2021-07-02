@@ -91,7 +91,7 @@ var json_length;
 var markers = [];
 
 //Request, um die Daten aus der Datenbank zu holen
-var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YN8SIRIAACEAtqif';
 
 while (url != null) {
 	var abfrage = new XMLHttpRequest();
@@ -208,17 +208,19 @@ function initMap() {
 				animation: google.maps.Animation.DROP,
 				title: auto_standort[i].name
 			});
-		} else {
-			newMarker = new google.maps.Marker({
-				position: {
-					lat: auto_standort[i].la,
-					lng: auto_standort[i].lo
-				},
-				map: map,
-				animation: google.maps.Animation.DROP,
-				title: auto_standort[i].name
-			});
-		}
+		} 
+		// Hiermit werden Standorte angezeigt, die keinen oder einen anderen Typ haben!
+		// else {
+		// 	newMarker = new google.maps.Marker({
+		// 		position: {
+		// 			lat: auto_standort[i].la,
+		// 			lng: auto_standort[i].lo
+		// 		},
+		// 		map: map,
+		// 		animation: google.maps.Animation.DROP,
+		// 		title: auto_standort[i].name
+		// 	});
+		// }
 
 		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
 		newMarker.addListener("click", () => {

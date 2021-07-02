@@ -1,5 +1,5 @@
 //Hier wird der Input und die Datei übergeben
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr, suche) {
 
 	var currentFocus;
 	//Funktion wird ausgelöst, wenn Eingabe gestartet wird
@@ -12,33 +12,43 @@ function autocomplete(inp, arr) {
 		}
 		currentFocus = -1;
 
-		//Erstellt ein div Element aus dem Datensatz
+		//Erstellt ein div Element aus dem Datensatz und fügt eine id bzw. eine class
 		a = document.createElement("DIV");
 		a.setAttribute("id", this.id + "autocomplete-list");
 		a.setAttribute("class", "autocomplete-items");
+
 		//Dieser wird als "Kind" vom ganzen Autocomplete-Container gestellt:
 		this.parentNode.appendChild(a);
 		//Für jedes Element im übergebenen Feld arr...
 		for (i = 0; i < arr.length; i++) {
 			// Hier wird überprüft, ob das eingebene Element in der Suchleiste mit den selben Buchstaben beginnt, wie die Elemente im Feld
-			if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-				// Für jeden Treffer wird ein eigenes Div erstellt: 
-				b = document.createElement("DIV");
-				// Die Buchstaben, die übereinstimmen, werden fett gemacht
-				b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-				b.innerHTML += arr[i].substr(val.length);
-				//hier wird ein Eingabefeld eingesetzt, das den Wert vom aktuellen Feltindex hält
-				b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-				//hier wird ein Listener hinzugefügt, falls jemand auf ein Element in der Liste klickt
-				b.addEventListener("click", function(e) {
-					//erst wird der Text in das Suchfeld übernommen:
-					inp.value = this.getElementsByTagName("input")[0].value;
-					//anschließend wird die komplette Liste geschlossen: 
-					closeAllLists();
-					//löst dann den Suchbutton aus, als hätte man darauf geklickt
-					$('#button').trigger('click');
-				});
-				a.appendChild(b);
+			var substring = suche[i].substr(0, val.length).toUpperCase();
+			if (suche[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+
+				for (var zahl = 0; zahl < arr.length; ++zahl) {
+
+					if (arr[zahl].toUpperCase().includes(substring)) {
+						// Für jeden Treffer wird ein eigenes Div erstellt: 
+						b = document.createElement("DIV");
+						// Die Buchstaben, die übereinstimmen, werden fett gemacht
+						b.innerHTML = "<strong>" + arr[zahl].substr(0, val.length) + "</strong>";
+						b.innerHTML += arr[zahl].substr(val.length);
+						//hier wird ein Eingabefeld eingesetzt, das den Wert vom aktuellen Feltindex hält
+						b.innerHTML += "<input type='hidden' value='" + arr[zahl] + "'>";
+						//hier wird ein Listener hinzugefügt, falls jemand auf ein Element in der Liste klickt
+						b.addEventListener("click", function(e) {
+							//erst wird der Text in das Suchfeld übernommen:
+							inp.value = this.getElementsByTagName("input")[0].value;
+							//anschließend wird die komplette Liste geschlossen: 
+							closeAllLists();
+							//löst dann den Suchbutton aus, als hätte man darauf geklickt
+							$('#button').trigger('click');
+						});
+						a.appendChild(b);
+					}
+
+				}
+				
 			}
 		}
 	});

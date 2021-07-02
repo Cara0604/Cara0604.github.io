@@ -61,6 +61,13 @@ while (url != null) {
 					}
 				}
 			}
+			for (var i = 0; i < suche.length; i++) {
+				for (var j = 0; j < suche.length; j++) {
+					if (suche[i] == suche[j] && i != j) {
+						suche.splice(j, 1);
+					}
+				}
+			}
 		}
 	};
 
@@ -71,6 +78,6 @@ while (url != null) {
 
 
 //hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete-Funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
-autocomplete(document.querySelector('.myInput'), infos);
+autocomplete(document.querySelector('.myInput'), infos, suche);
 
 //man müsste nicht nur infos übergeben, sondern auch suche und dabei müsste man jedes mal herausfinden, in welchem Indez genau das Wort von suche in infos zu finden ist => Außerdem müsste man noch die Anzeige dann anpassen; und man müsste aus suche noch paar unnötige zeichen entfernen
