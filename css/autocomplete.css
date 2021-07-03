@@ -50,3 +50,7 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.autocomplete span {
+  font-weight: bold;
+}

@@ -268,10 +268,9 @@ function initMap() {
 			}
 
 			if (auto_standort[a].fwf_id == null) {
-				document.querySelector('#fwf_id').textContent = "";
-				document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
+				document.querySelector('#fwf_idP').textContent = "";
 			} else {
-				//document.querySelector('#fwf_idP').innerHTML = "Fair wear ID: <span id='fwf_id'></span>";
+				document.querySelector('#fwf_idP').innerHTML = "<a target='_blank' href='https://www.fairwear.org/'>Fair wear ID:</a><span id='fwf_id'></span>";
 				document.querySelector('#fwf_id').textContent = " " + auto_standort[a].fwf_id;
 			}
 
