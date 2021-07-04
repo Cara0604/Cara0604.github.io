@@ -27,18 +27,15 @@ function autocomplete(inp, arr, suche) {
 
 				for (var zahl = 0; zahl < arr.length; ++zahl) {
 
-					if (arr[zahl].toUpperCase().includes(substring)) { //hier muss man noch die if bedingung anpassen, da alle buchstaben gemeint sind und nicht nur der Anfang der Wörters
+					//hier muss man noch die if bedingung anpassen, da alle buchstaben gemeint sind und nicht nur der Anfang der Wör
+					if (arr[zahl].toUpperCase().includes(suche[i].toUpperCase())) { 
 						// Für jeden Treffer wird ein eigenes Div erstellt: 
 						b = document.createElement("DIV");
 
 						// Die Buchstaben, die übereinstimmen, werden fett gemacht
-						// b.innerHTML = "<strong>" + arr[zahl].substr(0, substring.length) + "</strong>";
 
 						b.innerHTML = "<input id='value' type='hidden' value='" + arr[zahl] + "'>" + "<p id=text></p>";
-						b.querySelector('#text').innerHTML += arr[zahl].toUpperCase().replace(substring.toUpperCase(), "<span>"  + substring + '</span>');
-						// b.innerHTML += arr[zahl].substr(substring.length);
-						console.log("Was hier los_: ", zahl);
-						//hier wird ein Eingabefeld eingesetzt, das den Wert vom aktuellen Feldindex hält
+						b.querySelector('#text').innerHTML += arr[zahl].toUpperCase().replace(substring.toUpperCase(), "<span>"  + substring + '</span>');						
 
 						//hier wird ein Listener hinzugefügt, falls jemand auf ein Element in der Liste klickt
 						b.addEventListener("click", function(e) {
@@ -49,13 +46,9 @@ function autocomplete(inp, arr, suche) {
 							//löst dann den Suchbutton aus, als hätte man darauf geklickt
 							$('#button').trigger('click');
 						});
-						
 						a.appendChild(b);
-
 					}
-
 				}
-				
 			}
 		}
 	});

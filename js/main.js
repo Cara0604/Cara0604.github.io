@@ -288,9 +288,6 @@ function initMap() {
 				document.querySelector('#last_fair_wear_training').textContent = auto_standort[a].last_fair_wear_training;
 			}
 
-			//hier soll eine Leerzeile fair_wear_foundation hin
-			//fair_wear_audit und fair_wear_training
-
 			/*if (auto_standort[a].complaints == null) {
 				document.querySelector('#beschwerdenP').textContent = "";
 			} else {
@@ -300,15 +297,17 @@ function initMap() {
 
 			// Wenn hier für src null eingesetzt wird (bzw. undefined), tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
 
-			if (auto_standort[a].supplier_image != null) {
+			if (auto_standort[a].bild != null) {
 				$('#picture').addClass("showPic");
-				document.querySelector('#picture').src = auto_standort[a].supplier_image;
+				document.querySelector('#picture').src = auto_standort[a].bild;
 			} else {
 				// $('#picture').removeClass("showPic");
 				document.querySelector('#picture').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwsq1r1AOCs6_prjRTVrOe7wDUdriCjl6XW_sbp47qF6PfB6iglkqNtxjLTq5E5mjJkkw&usqp=CAU";
 			}
 
-			// if (auto_standort[a].supplier_video != null) {
+			// if (auto_standort[a].video != null) {
+			// 	document.querySelector('#more').href = auto_standort[a].video;
+			// } else {
 			// }
 
 			//Wenn auf den Standort geklickt wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren 
@@ -330,7 +329,6 @@ function initMap() {
 		markers.push(newMarker);
 		latlng[i] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
 	}
-
 
 	////////////////// unsere Verewigung -> der FIM-Standort
 	var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
@@ -434,8 +432,6 @@ function initMap() {
 			}
 		}
 	}
-
-
 
 	var latlong = [];
 
