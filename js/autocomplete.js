@@ -19,23 +19,37 @@ function autocomplete(inp, arr, suche) {
 
 		//Dieser wird als "Kind" vom ganzen Autocomplete-Container gestellt:
 		this.parentNode.appendChild(a);
+
+		//hilft dabei, dass die Autocomplete-Liste wiederholungsfrei bleibt
+		var elements_in_list = [];
+
 		//Für jedes Element im übergebenen Feld suche...
 		for (i = 0; i < suche.length; i++) {
+			console.log(suche[i]);
 			// ... wird überprüft, ob das eingebene Element in der Suchleiste mit den selben Buchstaben beginnt, wie die Elemente im Feld
 			var substring = suche[i].substr(0, val.length).toUpperCase();
 			if (substring === val.toUpperCase()) {
-
+				console.log(suche[i] + " " + substring);
 				for (var zahl = 0; zahl < arr.length; ++zahl) {
+					
+					//hier muss man noch die if bedingung anpassen, da alle buchstaben gemeint sind und nicht nur der Anfang der Wörter
+					if (arr[zahl].toUpperCase().includes(suche[i].toUpperCase()) && !elements_in_list.includes(arr[zahl])) {
+						elements_in_list.push(arr[zahl]);
 
-					//hier muss man noch die if bedingung anpassen, da alle buchstaben gemeint sind und nicht nur der Anfang der Wör
-					if (arr[zahl].toUpperCase().includes(suche[i].toUpperCase())) { 
 						// Für jeden Treffer wird ein eigenes Div erstellt: 
 						b = document.createElement("DIV");
 
 						// Die Buchstaben, die übereinstimmen, werden fett gemacht
+						// Wenn der Substring nicht den Anfang darstellt, wird ein Leerzeichen vor dem Substring eingefügt, damit auch wirklich der richtige Substring fett gemacht wird 
+						// (bei einem Buchstaben wird sonst das erste Vorkommen dieses fett)
 
 						b.innerHTML = "<input id='value' type='hidden' value='" + arr[zahl] + "'>" + "<p id=text></p>";
-						b.querySelector('#text').innerHTML += arr[zahl].toUpperCase().replace(substring.toUpperCase(), "<span>"  + substring + '</span>');						
+						if (substring == arr[zahl].substr(0, substring.length).toUpperCase()) {
+							b.querySelector('#text').innerHTML += arr[zahl].toUpperCase().replace(substring.toUpperCase(), "<span>"  + substring + '</span>');
+						} else {
+							b.querySelector('#text').innerHTML += arr[zahl].toUpperCase().replace((" " + substring).toUpperCase(), "<span>"  + " " + substring + '</span>');
+						}
+												
 
 						//hier wird ein Listener hinzugefügt, falls jemand auf ein Element in der Liste klickt
 						b.addEventListener("click", function(e) {

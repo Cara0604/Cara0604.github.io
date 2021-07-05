@@ -7,7 +7,22 @@ var infos = [];
 var suche = [];
 var json_length;
 
-var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YMnpZxMAACoACiwF';
+var master_ref;
+var initiale_abfrage = new XMLHttpRequest();
+initiale_abfrage.onreadystatechange = function() {
+	if(this.readyState == 4 && this.status == 200) {
+		var myObj = JSON.parse(initiale_abfrage.responseText);
+		var i = 0;
+		while(myObj.refs[i].id != "master") {
+			i++;
+		}
+		master_ref = myObj.refs[i].ref;
+	}
+}
+initiale_abfrage.open("GET", "https://schoeffel-b2c.cdn.prismic.io/api/v2", false);
+initiale_abfrage.send();
+
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=' + master_ref;
 
 // Die Daten werden in verschieden Websiten, damit in verschiedene Links gespeichert. Um an sie ranzukommen muss man hierfür 
 //die variable url mit dem nächsten Link austauschen. Diese wird in dem Attribut myObj.next_page abgerufen
@@ -24,6 +39,11 @@ while (url != null) {
 
 			//falls der Inhalt der Attributes nicht leer ist, wird er dem Feld Infos hinzugefügt
 			for (var i = 0; i < json_length; ++i) {
+
+				//falls es nicht zum Typ supply_chain_unit gehört, soll abgebrochen werden
+				if (!(myObj.results[i].type === "supply_chain_unit")) {
+					break;
+				}
 				if (myObj.results[i].data.country != null) {
 					var string = myObj.results[i].data.country;
 					var splitted = string.split(" ");

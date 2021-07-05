@@ -90,8 +90,24 @@ var json_length;
 //Feld, in dem alle Marker gespeichert werden
 var markers = [];
 
+//Hier wird die master_ref automatisch abgefragt. So muss man die url nicht bei jeder Änderung der Datenbank updaten.
+var master_ref;
+var initiale_abfrage = new XMLHttpRequest();
+initiale_abfrage.onreadystatechange = function() {
+	if(this.readyState == 4 && this.status == 200) {
+		var myObj = JSON.parse(initiale_abfrage.responseText);
+		var i = 0;
+		while(myObj.refs[i].id != "master") {
+			i++;
+		}
+		master_ref = myObj.refs[i].ref;
+	}
+}
+initiale_abfrage.open("GET", "https://schoeffel-b2c.cdn.prismic.io/api/v2", false);
+initiale_abfrage.send();
+
 //Request, um die Daten aus der Datenbank zu holen
-var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=YN8SIRIAACEAtqif';
+var url = 'https://schoeffel-b2c.cdn.prismic.io/api/v2/documents/search?ref=' + master_ref;
 
 while (url != null) {
 	var abfrage = new XMLHttpRequest();
@@ -149,7 +165,6 @@ while (url != null) {
 						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id);
 
 					auto_standort.push(t);
-      				console.log(myObj.results[i].type);
 				}
 			}
 		}
@@ -186,6 +201,7 @@ function initMap() {
 
 	for (var i = 0; i < auto_standort.length; i++) {
 		const a = i;
+		
 		if (auto_standort[i].unit_type === "Material Lieferant") {
 			newMarker = new google.maps.Marker({
 				position: {
@@ -208,19 +224,9 @@ function initMap() {
 				animation: google.maps.Animation.DROP,
 				title: auto_standort[i].name
 			});
-		} 
-		// Hiermit werden Standorte angezeigt, die keinen oder einen anderen Typ haben!
-		// else {
-		// 	newMarker = new google.maps.Marker({
-		// 		position: {
-		// 			lat: auto_standort[i].la,
-		// 			lng: auto_standort[i].lo
-		// 		},
-		// 		map: map,
-		// 		animation: google.maps.Animation.DROP,
-		// 		title: auto_standort[i].name
-		// 	});
-		// }
+		} else { //damit es bei anderen unit_types nicht zu Problemen im Code kommt
+			break;
+		}
 
 		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
 		newMarker.addListener("click", () => {
