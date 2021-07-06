@@ -5,7 +5,7 @@ class Standort {
 	constructor(la, lo, name, unit_type, adress, bild, creditor, division, partner_since_year, purchasing_volume,
 		estimated_leverage, employees_female, employees_male, audit_type, fair_wear_audit,
 		last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
-		port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id) {
+		port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id, supplier_video_id) {
 
 		this.hcs_id = hcs_id;
 		this.la = la;
@@ -40,6 +40,7 @@ class Standort {
 		this.country_code = country_code;
 		this.country = country;
 		this.fwf_id = fwf_id;
+		this.supplier_video_id = supplier_video_id;
 	}
 }
 
@@ -78,6 +79,7 @@ var warehouse_name;
 var carbon_footprint;
 var hcs_id; //eineutige ID
 var fwf_id;
+var supplier_video_id;
 
 //Feld, in dem alle Standorte gespeichert werden (inkl. aller Attribute)
 var auto_standort = [];
@@ -157,14 +159,21 @@ while (url != null) {
 					warehouse_name = myObj.results[i].data.warehouse_name;
 					carbon_footprint = myObj.results[i].data.carbon_footprint;
 					fwf_id = myObj.results[i].data.fwf_id;
+					if (Object.keys(myObj.results[i].data.supplier_video) == 0) {
+						supplier_video_id = null;
+					} else {
+						supplier_video_id = myObj.results[i].data.supplier_video.video_id;
+					}
+					
 
 					//für jeden Standort wird ein Objekt erzeugt
 					let t = new Standort(la, lo, name, unit_type, adress, bild, creditor, division,
 						partner_since_year, purchasing_volume, estimated_leverage, employees_female, employees_male,
 						audit_type, fair_wear_audit, last_fair_wear_training, bsci_id, wrap_id, complaints, certificates, mode_of_transportation,
-						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id);
+						port_name, port_coordinates_latitude, port_coordinates_longitude, warehouse_name, carbon_footprint, street, street_addition, place, country_code, country, hcs_id, fwf_id, supplier_video_id);
 
 					auto_standort.push(t);
+					
 				}
 			}
 		}
@@ -311,10 +320,12 @@ function initMap() {
 				document.querySelector('#picture').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwsq1r1AOCs6_prjRTVrOe7wDUdriCjl6XW_sbp47qF6PfB6iglkqNtxjLTq5E5mjJkkw&usqp=CAU";
 			}
 
-			// if (auto_standort[a].video != null) {
-			// 	document.querySelector('#more').href = auto_standort[a].video;
-			// } else {
-			// }
+			if (auto_standort[a].supplier_video_id != null) {
+				var href2 = "https://player.vimeo.com/video/" + auto_standort[a].supplier_video_id;
+				document.querySelector('#more').innerHTML = "Weitere Informationen finden Sie in diesem <a target='_blank' href='" + href2 + "' width='400' height='360' frameborder='0' allow='picture-in-picture' allowfullscreen>Video</a>"
+			} else {
+				document.querySelector('#more').textContent = "";
+			}
 
 			//Wenn auf den Standort geklickt wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren
 			$('.info').addClass("show");
@@ -358,7 +369,6 @@ function initMap() {
 		document.querySelector('#arbeiterinnenP').textContent = "";
 		document.querySelector('#arbeiterP').textContent = "";
 		document.querySelector('#beschwerdenP').textContent = "";
-		document.querySelector('#fwf_id').textContent = "";
 		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
 
 		$('.info').addClass("show");
