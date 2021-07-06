@@ -25,11 +25,9 @@ function autocomplete(inp, arr, suche) {
 
 		//Für jedes Element im übergebenen Feld suche...
 		for (i = 0; i < suche.length; i++) {
-			console.log(suche[i]);
 			// ... wird überprüft, ob das eingebene Element in der Suchleiste mit den selben Buchstaben beginnt, wie die Elemente im Feld
 			var substring = suche[i].substr(0, val.length).toUpperCase();
 			if (substring === val.toUpperCase()) {
-				console.log(suche[i] + " " + substring);
 				for (var zahl = 0; zahl < arr.length; ++zahl) {
 					
 					//hier muss man noch die if bedingung anpassen, da alle buchstaben gemeint sind und nicht nur der Anfang der Wörter

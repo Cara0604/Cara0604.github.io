@@ -42,7 +42,7 @@ while (url != null) {
 
 				//falls es nicht zum Typ supply_chain_unit gehört, soll abgebrochen werden
 				if (!(myObj.results[i].type === "supply_chain_unit")) {
-					break;
+					continue;
 				}
 				if (myObj.results[i].data.country != null) {
 					var string = myObj.results[i].data.country;
@@ -89,6 +89,7 @@ while (url != null) {
 				}
 			}
 		}
+
 	};
 
 	//holt sich die Daten
@@ -96,6 +97,8 @@ while (url != null) {
 	xmlhttp.send();
 }
 
+		console.log(infos);
+		console.log("suche", suche)
 
 //hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete-Funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
 autocomplete(document.querySelector('.myInput'), infos, suche);
