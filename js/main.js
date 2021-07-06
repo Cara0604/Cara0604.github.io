@@ -116,14 +116,14 @@ while (url != null) {
 			var myObj = JSON.parse(abfrage.responseText);
 
 			url = myObj.next_page;
-			
+
 			//Länge des Datensatzes (die Anzahl der Standorte)
 			json_length = Object.keys(myObj.results).length;
-			
+
 			//hier werden die Daten aus der JSON-Datei in den Variablen gespeichert
 			for (var i = 0; i < json_length; ++i) {
-				
-				if (myObj.results[i].type === "supply_chain_unit") {					
+
+				if (myObj.results[i].type === "supply_chain_unit") {
 					la = myObj.results[i].data.coordinates.latitude;
 					lo = myObj.results[i].data.coordinates.longitude;
 					name = myObj.results[i].data.name;
@@ -201,7 +201,7 @@ function initMap() {
 
 	for (var i = 0; i < auto_standort.length; i++) {
 		const a = i;
-		
+
 		if (auto_standort[i].unit_type === "Material Lieferant") {
 			newMarker = new google.maps.Marker({
 				position: {
@@ -225,7 +225,7 @@ function initMap() {
 				title: auto_standort[i].name
 			});
 		} else { //damit es bei anderen unit_types nicht zu Problemen im Code kommt
-			break;
+			continue;
 		}
 
 		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
@@ -316,7 +316,7 @@ function initMap() {
 			// } else {
 			// }
 
-			//Wenn auf den Standort geklickt wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren 
+			//Wenn auf den Standort geklickt wird, öffnet sich das infoWindow, zoomt zum spezifischen Standort; lässt den Hintergrund ausblurren
 			$('.info').addClass("show");
 			$('.info').removeClass("hide");
 			$('.info').addClass("showInfo");
@@ -446,7 +446,7 @@ function initMap() {
 		var i;
 		var input = document.querySelector('.searchTerm').value.toLowerCase();
 		var eingabe = [];
-		
+
 		var a = 0;
 		var bounds = new google.maps.LatLngBounds();
 		latlong.splice(0, latlong.length);
@@ -510,10 +510,10 @@ function initMap() {
 
 		//Grenzen der Karte übergeben
 		map.fitBounds(bounds);
-		
+
 		if (a === 1) {
 			map.setZoom(8);
-		}	
+		}
 	});
 
 	//Damit wird das InfoWindow geschlossen
@@ -540,4 +540,3 @@ $('.close-btn').click(function() {
 		$('.alert').removeClass("showAlert");
 	}, 1100);
 });
-

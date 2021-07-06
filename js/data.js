@@ -97,9 +97,6 @@ while (url != null) {
 	xmlhttp.send();
 }
 
-		console.log(infos);
-		console.log("suche", suche)
-
 //hiermit übergeben wir Daten an autocomplete.js, um die Autcomplete-Funktion zu ermöglichen. Hier wird die Eingabe und unsere Variable mit allen Straßen, Plätzen und Ländern übergeben
 autocomplete(document.querySelector('.myInput'), infos, suche);
 
