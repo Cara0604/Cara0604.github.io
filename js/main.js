@@ -207,7 +207,6 @@ function initMap() {
 	});
 
 	//Marker anlegen anhand ihres Typus
-
 	for (var i = 0; i < auto_standort.length; i++) {
 		const a = i;
 
@@ -256,7 +255,7 @@ function initMap() {
 
 			document.querySelector('#adresseP').innerHTML = "Address: <span id='adresse'></span>";
 			document.querySelector('#adresse').textContent = auto_standort[a].adress;
-			// document.querySelector('#creditor').textContent = auto_standort[a].creditor;
+			
 
 			//Manche Standorte haben keine Informationen und deshalb wird erstmal überprüft, ob Daten vorliegen:
 			if (auto_standort[a].partner_since_year == null) {
@@ -315,20 +314,12 @@ function initMap() {
 				document.querySelector('#last_fair_wear_training').textContent = auto_standort[a].last_fair_wear_training;
 			}
 
-			/*if (auto_standort[a].complaints == null) {
-				document.querySelector('#beschwerdenP').textContent = "";
-			} else {
-				document.querySelector('#beschwerdenP').innerHTML = "Beschwerden: <span id='beschwerden'></span>";
-				document.querySelector('#beschwerden').textContent = auto_standort[a].complaints;
-			}*/
-
-			// Wenn hier für src null eingesetzt wird (bzw. undefined), tritt eine Fehlermeldung ein, die beschreibt, dass der localHost undefined ist
 
 			if (auto_standort[a].bild != null) {
 				$('#picture').addClass("showPic");
 				document.querySelector('#picture').src = auto_standort[a].bild;
 			} else {
-				// $('#picture').removeClass("showPic");
+				
 				document.querySelector('#picture').src = "/bilder/error_bild.png";
 			}
 
@@ -359,7 +350,7 @@ function initMap() {
 		latlng[i] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
 	}
 
-	////////////////// unsere Verewigung -> der FIM-Standort
+	//-------------- unsere Verewigung -> der FIM-Standort ---------------
 	var myLatlng = new google.maps.LatLng(48.33366559150027, 10.894521557382948);
 
 	var marker = new google.maps.Marker({
@@ -374,7 +365,6 @@ function initMap() {
 		document.querySelector('#firstHeading').textContent = "FIM, Universität Augsburg";
 		document.querySelector('#typ').textContent = "Developers";
 		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-		//document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#partner-seitP').textContent = "";
 		document.querySelector('#purchasing-volumeP').textContent = "";
 		document.querySelector('#estimated-leverageP').textContent = "";
@@ -398,7 +388,7 @@ function initMap() {
 		});
 		$('.container').addClass("active");
 	});
-	//////////////////////////////////////////////////////
+	//-------------
 
 	var button = document.getElementById('button');
 
