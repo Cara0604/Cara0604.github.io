@@ -459,7 +459,7 @@ function initMap() {
 		var i;
 		var input = document.querySelector('.searchTerm').value.toLowerCase();
 		var eingabe = [];
-		let setztDieGrenzen = false, invalideEingabe;
+		var invalidEingabe = true, setztGrenzen = true;
 		var a = 0;
 		var bounds = new google.maps.LatLngBounds();
 		latlong.splice(0, latlong.length);
@@ -473,14 +473,14 @@ function initMap() {
 
 				latlong[a] = new google.maps.LatLng(auto_standort[i].la, auto_standort[i].lo);
 				bounds.extend(latlong[a]);
-				a++;
+				++a;
+				invalidEingabe = false;
 			}
-			setztDieGrenzen = true;
-			invalideEingabe = false;
 		}
 
 		//falls die Eingabe nicht übereinstimmt werden keine Standorte angezeigt
-		if (input != "" && invalideEingabe) {
+		if (input != "" && invalidEingabe) {
+			setztGrenzen = false;
 			for (i = 0; i < markers.length; i++) {
 				markers[i].setVisible(false);
 			}
@@ -502,7 +502,6 @@ function initMap() {
 					$('.alert').removeClass("showAlert");
 				}, 1100);
 			}, 3000);
-			setztDieGrenzen = false;
 
 			//wenn die Eingabe leer ist, werden alle Standorte angezeigt
 		} else if (input === "") {
@@ -520,14 +519,14 @@ function initMap() {
 			setTimeout(() => {
 				$('.alert').removeClass("showAlert");
 			}, 1100);
-			setztDieGrenzen = true;
+			setztGrenzen = true;
 		}
 
 		changeLieferantenTrue(eingabe);
 		changeProduzentTrue(eingabe);
 
 		//Grenzen der Karte übergeben
-		if (setztDieGrenzen) {
+		if (setztGrenzen) {
 			map.fitBounds(bounds);
 		}
 
