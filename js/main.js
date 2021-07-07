@@ -352,24 +352,25 @@ function initMap() {
 
 	var marker = new google.maps.Marker({
 		position: myLatlng,
-		animation: google.maps.Animation.BOUNCE,
+		animation: google.maps.Animation.DROP,
 		map: map,
 		title: "FIM"
 	});
 
 	marker.addListener("click", () => {
 
-		document.querySelector('#firstHeading').textContent = "FIM";
+		document.querySelector('#firstHeading').textContent = "FIM, Universität Augsburg";
 		document.querySelector('#typ').textContent = "Entwicklerteam";
 		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
-		// document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+		//document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#partner-seitP').textContent = "";
 		document.querySelector('#purchasing-volumeP').textContent = "";
 		document.querySelector('#estimated-leverageP').textContent = "";
 		document.querySelector('#arbeiterinnenP').textContent = "";
-		document.querySelector('#arbeiterP').textContent = "";
+		document.querySelector('#arbeiterP').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#beschwerdenP').textContent = "";
 		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
+		document.querySelector('#picture').src = "/bilder/fim_standort.jpeg";
 
 		$('.info').addClass("show");
 		$('.info').removeClass("hide");
