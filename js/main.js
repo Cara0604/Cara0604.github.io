@@ -370,7 +370,7 @@ function initMap() {
 		document.querySelector('#arbeiterP').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#beschwerdenP').textContent = "";
 		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
-		document.querySelector('#picture').src = "/bilder/fim_standort.jpeg";
+		document.querySelector('#picture').src = "/bilder/fim_standort.jpg";
 
 		$('.info').addClass("show");
 		$('.info').removeClass("hide");
