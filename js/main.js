@@ -239,10 +239,22 @@ function initMap() {
 
 		//hier wird einerseits die Funktionalität implementiert, dass unser Infowindow erscheint und zwar jedes mal ein spezifisches für jeden Standort
 		newMarker.addListener("click", () => {
+			
 			document.querySelector('#firstHeading').textContent = auto_standort[a].name;
 			//"Typ:" soll nicht angezeigt werden, sondern nur der Typ an sich
-			document.querySelector('#typP').innerHTML = "<span id='typ'></span>";
-			document.querySelector('#typ').textContent = auto_standort[a].unit_type;
+			if (auto_standort[a].unit_type == "Material Lieferant") {
+				document.querySelector('#typ').innerHTML = "Material Supplier";
+			} else {
+				document.querySelector('#typ').innerHTML = "Manufacturer";
+			}
+			
+			//die beiden auskommentierten unteren Zeilen wären für einen automatischen Abruf aus der Datenbank gedacht.
+			//wir übersetzen die Begriffe jedoch auf Englisch, weshalb wir die Abfrage in 245-249 manuell machen!
+			
+			//document.querySelector('#typP').innerHTML = "<span id='typ'></span>";
+			//document.querySelector('#typ').textContent = auto_standort[a].unit_type;
+
+			document.querySelector('#adresseP').innerHTML = "Address: <span id='adresse'></span>";
 			document.querySelector('#adresse').textContent = auto_standort[a].adress;
 			// document.querySelector('#creditor').textContent = auto_standort[a].creditor;
 
@@ -250,7 +262,7 @@ function initMap() {
 			if (auto_standort[a].partner_since_year == null) {
 				document.querySelector('#partner-seitP').textContent = "";
 			} else {
-				document.querySelector('#partner-seitP').innerHTML = "Zusammenarbeit seit: <span id='partner-seit'></span>";
+				document.querySelector('#partner-seitP').innerHTML = "Cooperation since: <span id='partner-seit'></span>";
 				document.querySelector('#partner-seit').textContent = auto_standort[a].partner_since_year;
 			}
 
@@ -271,14 +283,14 @@ function initMap() {
 			if (auto_standort[a].employees_female == null) {
 				document.querySelector('#arbeiterinnenP').textContent = "";
 			} else {
-				document.querySelector('#arbeiterinnenP').innerHTML = "Arbeiterinnen: <span id='arbeiterinnen'></span>";
+				document.querySelector('#arbeiterinnenP').innerHTML = "Female Workers: <span id='arbeiterinnen'></span>";
 				document.querySelector('#arbeiterinnen').textContent = auto_standort[a].employees_female;
 			}
 
 			if (auto_standort[a].employees_male == null) {
 				document.querySelector('#arbeiterP').textContent = "";
 			} else {
-				document.querySelector('#arbeiterP').innerHTML = "Arbeiter: <span id='arbeiter'></span>";
+				document.querySelector('#arbeiterP').innerHTML = "Male Workers: <span id='arbeiter'></span>";
 				document.querySelector('#arbeiter').textContent = auto_standort[a].employees_male;
 			}
 
@@ -322,7 +334,7 @@ function initMap() {
 
 			if (auto_standort[a].supplier_video_id != null) {
 				var href2 = "https://player.vimeo.com/video/" + auto_standort[a].supplier_video_id;
-				document.querySelector('#more').innerHTML = "Weitere Informationen finden Sie in diesem <a target='_blank' href='" + href2 + "' width='400' height='360' frameborder='0' allow='picture-in-picture' allowfullscreen>Video</a>"
+				document.querySelector('#more').innerHTML = "More information here: <a target='_blank' href='" + href2 + "' width='400' height='360' frameborder='0' allow='picture-in-picture' allowfullscreen>Video</a>"
 			} else {
 				document.querySelector('#more').textContent = "";
 			}
@@ -360,7 +372,7 @@ function initMap() {
 	marker.addListener("click", () => {
 
 		document.querySelector('#firstHeading').textContent = "FIM, Universität Augsburg";
-		document.querySelector('#typ').textContent = "Entwicklerteam";
+		document.querySelector('#typ').textContent = "Developers";
 		document.querySelector('#adresse').textContent = "@Cara, Hani, Felix, Domi, Jakob";
 		//document.querySelector('#creditor').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
 		document.querySelector('#partner-seitP').textContent = "";
@@ -369,7 +381,7 @@ function initMap() {
 		document.querySelector('#arbeiterinnenP').textContent = "";
 		document.querySelector('#arbeiterP').textContent = "This Supply-Chain-Map was developed by students from the University of Augsbug";
 		document.querySelector('#beschwerdenP').textContent = "";
-		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
+		document.querySelector('#fwf_idP').textContent = "";
 		document.querySelector('#picture').src = "/bilder/fim_standort.jpg";
 
 		$('.info').addClass("show");
