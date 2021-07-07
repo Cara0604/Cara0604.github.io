@@ -478,7 +478,7 @@ function initMap() {
 		}
 
 		//falls die Eingabe nicht übereinstimmt werden keine Standorte angezeigt
-		if (!eingabe && input != "") {
+		if (input != "") {
 			for (i = 0; i < markers.length; i++) {
 				markers[i].setVisible(false);
 			}
@@ -489,6 +489,7 @@ function initMap() {
 				top: 0,
 				behavior: 'smooth'
 			});
+
 			$('.alert').addClass("show");
 			$('.alert').removeClass("hide");
 			$('.alert').addClass("showAlert");
