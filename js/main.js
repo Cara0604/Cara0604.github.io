@@ -317,7 +317,7 @@ function initMap() {
 				document.querySelector('#picture').src = auto_standort[a].bild;
 			} else {
 				// $('#picture').removeClass("showPic");
-				document.querySelector('#picture').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwsq1r1AOCs6_prjRTVrOe7wDUdriCjl6XW_sbp47qF6PfB6iglkqNtxjLTq5E5mjJkkw&usqp=CAU";
+				document.querySelector('#picture').src = "/bilder/error_bild.png";
 			}
 
 			if (auto_standort[a].supplier_video_id != null) {
@@ -367,7 +367,7 @@ function initMap() {
 		document.querySelector('#purchasing-volumeP').textContent = "";
 		document.querySelector('#estimated-leverageP').textContent = "";
 		document.querySelector('#arbeiterinnenP').textContent = "";
-		document.querySelector('#arbeiterP').textContent = "Diese Karte wurde von Studenten der Uni Augsburg im Rahmen des Projektstudiums Wirtschaftsinformatik entwickelt";
+		document.querySelector('#arbeiterP').textContent = "This Supply-Chain-Map was developed by students from the University of Augsbug";
 		document.querySelector('#beschwerdenP').textContent = "";
 		document.querySelector('#fwf_idP').innerHTML = " <span id='fwf_id'></span>";
 		document.querySelector('#picture').src = "/bilder/fim_standort.jpg";
