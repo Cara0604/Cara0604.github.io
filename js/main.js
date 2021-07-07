@@ -372,7 +372,7 @@ function initMap() {
 		document.querySelector('#arbeiterP').textContent = "This Supply-Chain-Map was developed by students from the University of Augsbug";
 		document.querySelector('#beschwerdenP').textContent = "";
 		document.querySelector('#fwf_idP').textContent = "";
-		document.querySelector('#picture').src = "/bilder/fim_standort.jpg";
+		document.querySelector('#picture').src = "bilder/fim_standort.jpg";
 
 		$('.info').addClass("show");
 		$('.info').removeClass("hide");
@@ -459,7 +459,7 @@ function initMap() {
 		var i;
 		var input = document.querySelector('.searchTerm').value.toLowerCase();
 		var eingabe = [];
-
+		let setztDieGrenzen = false, invalideEingabe;
 		var a = 0;
 		var bounds = new google.maps.LatLngBounds();
 		latlong.splice(0, latlong.length);
@@ -475,10 +475,12 @@ function initMap() {
 				bounds.extend(latlong[a]);
 				a++;
 			}
+			setztDieGrenzen = true;
+			invalideEingabe = false;
 		}
 
 		//falls die Eingabe nicht übereinstimmt werden keine Standorte angezeigt
-		if (input != "") {
+		if (input != "" && invalideEingabe) {
 			for (i = 0; i < markers.length; i++) {
 				markers[i].setVisible(false);
 			}
@@ -500,6 +502,7 @@ function initMap() {
 					$('.alert').removeClass("showAlert");
 				}, 1100);
 			}, 3000);
+			setztDieGrenzen = false;
 
 			//wenn die Eingabe leer ist, werden alle Standorte angezeigt
 		} else if (input === "") {
@@ -517,13 +520,16 @@ function initMap() {
 			setTimeout(() => {
 				$('.alert').removeClass("showAlert");
 			}, 1100);
+			setztDieGrenzen = true;
 		}
 
 		changeLieferantenTrue(eingabe);
 		changeProduzentTrue(eingabe);
 
 		//Grenzen der Karte übergeben
-		map.fitBounds(bounds);
+		if (setztDieGrenzen) {
+			map.fitBounds(bounds);
+		}
 
 		if (a === 1) {
 			map.setZoom(8);
